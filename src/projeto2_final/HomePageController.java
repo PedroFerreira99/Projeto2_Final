@@ -41,11 +41,9 @@ public class HomePageController implements Initializable {
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-         System.out.println("You clicked me!");
+        System.out.println("You clicked me!");
   
         int c=2;
-       
-        
         
         factory= Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -54,23 +52,19 @@ public class HomePageController implements Initializable {
      
         
         
-            Query q = em.createNamedQuery("Tipofuncionario.findByIdTipofuncionario");
-            q.setParameter("idTipofuncionario", c);
+        Query q = em.createNamedQuery("Tipofuncionario.findAll");
+        //q.setParameter("idTipofuncionario", c);
             
-        //    Object obj = q.getSingleResult();
+        // Object obj = q.getSingleResult();
             
-             for(Object obj : q.getResultList()){
+        for(Object obj : q.getResultList()){
             System.out.println( ((Tipofuncionario)obj).getNome());
-            
         }
-          //  tp = ((Tipofuncionario)obj)
+        //  tp = ((Tipofuncionario)obj)
         //  for(Object uti : q.getSingleResult()){
-      //  System.out.println(obj );
+            //  System.out.println(obj );
             
-    //    }
-          
-      
-          
+        //  }          
        
     }
     
