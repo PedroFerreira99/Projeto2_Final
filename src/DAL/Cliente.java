@@ -62,8 +62,6 @@ public class Cliente implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
     @OneToMany(mappedBy = "idcliente")
-    private List<Avaliacao> avaliacaoList;
-    @OneToMany(mappedBy = "idcliente")
     private List<Pagamento> pagamentoList;
     @OneToMany(mappedBy = "idcliente")
     private List<ClienteAula> clienteAulaList;
@@ -142,15 +140,6 @@ public class Cliente implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @XmlTransient
-    public List<Avaliacao> getAvaliacaoList() {
-        return avaliacaoList;
-    }
-
-    public void setAvaliacaoList(List<Avaliacao> avaliacaoList) {
-        this.avaliacaoList = avaliacaoList;
     }
 
     @XmlTransient

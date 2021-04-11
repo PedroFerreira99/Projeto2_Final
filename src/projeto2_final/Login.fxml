@@ -19,7 +19,7 @@
                   <Font size="50.0" />
                </font>
             </Text>
-            <TextField layoutX="708.0" layoutY="220.0" prefHeight="31.0" prefWidth="212.0" />
+            <TextField fx:id="LoginEmail" layoutX="708.0" layoutY="220.0" prefHeight="31.0" prefWidth="212.0" />
             <Text layoutX="600.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="49.20703125">
                <font>
                   <Font size="20.0" />
@@ -30,13 +30,13 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <PasswordField layoutX="708.0" layoutY="304.0" prefHeight="31.0" prefWidth="212.0" />
+            <PasswordField fx:id="LoginPassword" layoutX="708.0" layoutY="304.0" prefHeight="31.0" prefWidth="212.0" />
             <ImageView fitHeight="305.0" fitWidth="411.0" layoutX="61.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Media/logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="708.0" layoutY="389.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="212.0" style="-fx-background-color: #eeb623;" text="Login">
+            <Button layoutX="708.0" layoutY="389.0" mnemonicParsing="false" onAction="#LoginBotao" prefHeight="48.0" prefWidth="212.0" style="-fx-background-color: #eeb623;" text="Login">
                <font>
                   <Font size="20.0" />
                </font>

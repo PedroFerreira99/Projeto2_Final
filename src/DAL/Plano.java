@@ -44,8 +44,6 @@ public class Plano implements Serializable {
     @Column(name = "PRECO")
     private Double preco;
     @OneToMany(mappedBy = "idplano")
-    private List<Pagamento> pagamentoList;
-    @OneToMany(mappedBy = "idplano")
     private List<Cliente> clienteList;
 
     public Plano() {
@@ -77,15 +75,6 @@ public class Plano implements Serializable {
 
     public void setPreco(Double preco) {
         this.preco = preco;
-    }
-
-    @XmlTransient
-    public List<Pagamento> getPagamentoList() {
-        return pagamentoList;
-    }
-
-    public void setPagamentoList(List<Pagamento> pagamentoList) {
-        this.pagamentoList = pagamentoList;
     }
 
     @XmlTransient

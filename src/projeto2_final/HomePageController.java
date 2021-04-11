@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import DAL.Plano;
 import DAL.Tipofuncionario;
 import java.io.IOException;
 import java.net.URL;
@@ -16,8 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,36 +26,36 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
- * FXML Controller class
  *
  * @author Pedro Ferreira
  */
-public class LoginController implements Initializable {
+public class HomePageController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
     @FXML
-    private TextField LoginEmail;
+    private Label label;
+    
+   
     
     @FXML
-    private PasswordField LoginPassword;
-    
-    
-    
-    @FXML
-    private void LoginBotao(ActionEvent event) throws IOException {
+    private void handleButtonAction(ActionEvent event) throws IOException {
+         System.out.println("You clicked me!");
+  
+        int c=2;
+       
         
-         factory= Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
+        
+        factory= Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         
-        String x = LoginEmail.getText();
-         System.out.println(x);
-    //     ((Node) (event.getSource())).getScene().getWindow().hide();
-    
-    
-        Query q = em.createNamedQuery("Tipofuncionario.findByIdTipofuncionario");
-            q.setParameter("idTipofuncionario", "2");
+        //Query q = em.createNamedQuery("Tipofuncionario.findAll");
+     
+        
+        
+            Query q = em.createNamedQuery("Tipofuncionario.findByIdTipofuncionario");
+            q.setParameter("idTipofuncionario", c);
             
         //    Object obj = q.getSingleResult();
             
@@ -62,23 +63,17 @@ public class LoginController implements Initializable {
             System.out.println( ((Tipofuncionario)obj).getNome());
             
         }
+          //  tp = ((Tipofuncionario)obj)
+        //  for(Object uti : q.getSingleResult()){
+      //  System.out.println(obj );
+            
+    //    }
           
-     /*     Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-     
-        stage.setScene(scene);
-        stage.show();
-       */         
+      
+          
        
     }
     
-    
-
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

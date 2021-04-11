@@ -13,6 +13,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -65,9 +67,10 @@ public class Funcionario implements Serializable {
     @OneToMany(mappedBy = "idfuncionario")
     private List<Horario> horarioList;
     @OneToMany(mappedBy = "idfuncionario")
-    private List<Avaliacao> avaliacaoList;
-    @OneToMany(mappedBy = "idfuncionario")
     private List<Aula> aulaList;
+    @JoinColumn(name = "TIPOFUNCIONARIO", referencedColumnName = "ID_TIPOFUNCIONARIO")
+    @ManyToOne
+    private Tipofuncionario tipofuncionario;
     @OneToMany(mappedBy = "idfuncionario")
     private List<Marcacao> marcacaoList;
 
@@ -160,21 +163,20 @@ public class Funcionario implements Serializable {
     }
 
     @XmlTransient
-    public List<Avaliacao> getAvaliacaoList() {
-        return avaliacaoList;
-    }
-
-    public void setAvaliacaoList(List<Avaliacao> avaliacaoList) {
-        this.avaliacaoList = avaliacaoList;
-    }
-
-    @XmlTransient
     public List<Aula> getAulaList() {
         return aulaList;
     }
 
     public void setAulaList(List<Aula> aulaList) {
         this.aulaList = aulaList;
+    }
+
+    public Tipofuncionario getTipofuncionario() {
+        return tipofuncionario;
+    }
+
+    public void setTipofuncionario(Tipofuncionario tipofuncionario) {
+        this.tipofuncionario = tipofuncionario;
     }
 
     @XmlTransient

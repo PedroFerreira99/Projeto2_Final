@@ -66,12 +66,6 @@ public class Avaliacao implements Serializable {
     private Double perimetroCintura;
     @Column(name = "PERIMETRO_PERNA")
     private Double perimetroPerna;
-    @JoinColumn(name = "IDCLIENTE", referencedColumnName = "IDCLIENTE")
-    @ManyToOne
-    private Cliente idcliente;
-    @JoinColumn(name = "IDFUNCIONARIO", referencedColumnName = "IDFUNCIONARIO")
-    @ManyToOne
-    private Funcionario idfuncionario;
     @JoinColumn(name = "IDMARCACAO", referencedColumnName = "IDMARCACAO")
     @ManyToOne
     private Marcacao idmarcacao;
@@ -169,22 +163,6 @@ public class Avaliacao implements Serializable {
 
     public void setPerimetroPerna(Double perimetroPerna) {
         this.perimetroPerna = perimetroPerna;
-    }
-
-    public Cliente getIdcliente() {
-        return idcliente;
-    }
-
-    public void setIdcliente(Cliente idcliente) {
-        this.idcliente = idcliente;
-    }
-
-    public Funcionario getIdfuncionario() {
-        return idfuncionario;
-    }
-
-    public void setIdfuncionario(Funcionario idfuncionario) {
-        this.idfuncionario = idfuncionario;
     }
 
     public Marcacao getIdmarcacao() {

@@ -45,9 +45,6 @@ public class Pagamento implements Serializable {
     @JoinColumn(name = "IDCLIENTE", referencedColumnName = "IDCLIENTE")
     @ManyToOne
     private Cliente idcliente;
-    @JoinColumn(name = "IDPLANO", referencedColumnName = "IDPLANO")
-    @ManyToOne
-    private Plano idplano;
 
     public Pagamento() {
     }
@@ -86,14 +83,6 @@ public class Pagamento implements Serializable {
 
     public void setIdcliente(Cliente idcliente) {
         this.idcliente = idcliente;
-    }
-
-    public Plano getIdplano() {
-        return idplano;
-    }
-
-    public void setIdplano(Plano idplano) {
-        this.idplano = idplano;
     }
 
     @Override
