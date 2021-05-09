@@ -2,20 +2,20 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.media.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto2_final.MenuClienteController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto2_final.MenuFuncionarioController">
     <children>
       <Pane layoutY="125.0" prefHeight="678.0" prefWidth="1100.0" style="-fx-background-color: #F1E7DA;" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
          <children>
             <Pane layoutX="153.0" layoutY="53.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
                <children>
-                  <Button fx:id="consultarCliente" layoutX="102.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Minha Conta" textFill="WHITE" />
+                  <Button fx:id="consultarCliente" layoutX="90.0" layoutY="116.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar Clientes" textFill="WHITE" />
                   <ImageView fitHeight="100.0" fitWidth="85.0" layoutX="113.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Media/avatar.png" />
@@ -25,7 +25,7 @@
             </Pane>
             <Pane layoutX="153.0" layoutY="266.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
                <children>
-                  <Button fx:id="consultarFuncionario" layoutX="52.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Inscrever em aulas de grupo" textFill="WHITE" />
+                  <Button fx:id="consultarFuncionario" layoutX="48.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Registar Consulta de nutrição" textFill="WHITE" />
                   <ImageView fitHeight="100.0" fitWidth="85.0" layoutX="113.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Media/edit.png" />
@@ -33,9 +33,9 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="643.0" layoutY="473.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
+            <Pane layoutX="153.0" layoutY="476.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
                <children>
-                  <Button fx:id="consultarAdmin" layoutX="48.0" layoutY="116.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar consulta de nutrição" textFill="WHITE" />
+                  <Button fx:id="consultarAdmin" layoutX="48.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar consulta de nutriçao" textFill="WHITE" />
                   <ImageView fitHeight="100.0" fitWidth="85.0" layoutX="116.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Media/diet.png" />
@@ -43,19 +43,19 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="153.0" layoutY="473.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
+            <Pane layoutX="643.0" layoutY="476.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
                <children>
-                  <Button fx:id="consultarHorarios" layoutX="53.0" layoutY="117.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Marcar consulta de nutrição" textFill="WHITE" />
+                  <Button fx:id="consultarHorarios" layoutX="31.0" layoutY="116.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar meu horário de trabalho" textFill="WHITE" />
                   <ImageView fitHeight="100.0" fitWidth="90.0" layoutX="110.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Media/calendar.png" />
+                        <Image url="@../Media/clock(1).png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
             <Pane layoutX="643.0" layoutY="53.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
                <children>
-                  <Button fx:id="consultarPagamentos" layoutX="17.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Verificar Pagamentos de mensalidades" textFill="WHITE" />
+                  <Button fx:id="consultarPagamentos" layoutX="13.0" layoutY="115.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar Pagamentos de mensalidades" textFill="WHITE" />
                   <ImageView fitHeight="100.0" fitWidth="90.0" layoutX="110.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Media/credit-card.png" />
@@ -65,7 +65,7 @@
             </Pane>
             <Pane layoutX="643.0" layoutY="266.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
                <children>
-                  <Button fx:id="consultarAulasGrupo" layoutX="36.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar minhas aulas de grupo" textFill="WHITE" />
+                  <Button fx:id="consultarAulasGrupo" layoutX="62.0" layoutY="114.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar aulas de grupo" textFill="WHITE" />
                   <ImageView fitHeight="100.0" fitWidth="90.0" layoutX="110.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Media/dumbbell.png" />
