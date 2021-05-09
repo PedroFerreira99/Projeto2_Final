@@ -44,7 +44,7 @@ public class LoginController implements Initializable {
     
     @FXML
     private void LoginBotao(ActionEvent event) throws IOException {
-        
+   /*     
          factory= Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         
@@ -58,19 +58,25 @@ public class LoginController implements Initializable {
             
         //    Object obj = q.getSingleResult();
             
+        
+        
+        
+        
+        
+        
              for(Object obj : q.getResultList()){
             System.out.println( ((Tipofuncionario)obj).getNome());
             
-        }
+        }*/
           
-     /*     Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
         
         Scene scene = new Scene(root);
         Stage stage = new Stage();
      
         stage.setScene(scene);
         stage.show();
-       */         
+               
        
     }
     
