@@ -6,7 +6,7 @@
 package DAL;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -38,7 +38,7 @@ public class Plano implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "IDPLANO")
-    private BigDecimal idplano;
+    private BigInteger idplano;
     @Column(name = "NOME")
     private String nome;
     @Column(name = "PRECO")
@@ -49,15 +49,20 @@ public class Plano implements Serializable {
     public Plano() {
     }
 
-    public Plano(BigDecimal idplano) {
+    public Plano(BigInteger idplano) {
+        this.idplano = idplano;
+    }
+    
+    public Plano(String nome,BigInteger idplano ) {
+        this.nome = nome;
         this.idplano = idplano;
     }
 
-    public BigDecimal getIdplano() {
+    public BigInteger getIdplano() {
         return idplano;
     }
 
-    public void setIdplano(BigDecimal idplano) {
+    public void setIdplano(BigInteger idplano) {
         this.idplano = idplano;
     }
 

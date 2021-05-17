@@ -10,32 +10,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto2_final.HomePageController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto2_final.HomePageController">
    <children>
       <Pane layoutY="125.0" prefHeight="475.0" prefWidth="1100.0" style="-fx-background-color: #F1E7DA;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
          <children>
-            <Pane prefHeight="475.0" prefWidth="697.0">
+            <Pane prefHeight="475.0" prefWidth="686.0">
                <children>
-                  <ImageView fitHeight="497.0" fitWidth="696.0" pickOnBounds="true">
+                  <ImageView fitHeight="575.0" fitWidth="687.0" pickOnBounds="true">
                      <image>
                         <Image url="@../Media/imageMain.jpg" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="697.0" layoutY="-2.0" prefHeight="475.0" prefWidth="404.0">
+            <Pane layoutX="688.0" layoutY="-2.0" prefHeight="575.0" prefWidth="413.0">
                <children>
-                  <ImageView fitHeight="125.0" fitWidth="161.0" layoutX="122.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="132.0" fitWidth="182.0" layoutX="115.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Media/logo.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O FisioGYM começou com a sua atividade&#10; em 1988, e depois deste tempo todo continua &#10;a estar no topo da indústria do Fitness.&#10;Visita-nos e vais encontrar um ambiente fabuloso,&#10; umas excelentes boas vindas, aulas divertidas,&#10; apoio, motivação e um excelente acompanhamento.">
+                  <Text layoutX="17.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O FisioGYM começou com a sua atividade&#10; em 1988, e depois deste tempo todo continua &#10;a estar no topo da indústria do Fitness.&#10;Visita-nos e vais encontrar um ambiente fabuloso,&#10; umas excelentes boas vindas, aulas divertidas,&#10; apoio, motivação e um excelente acompanhamento.">
                      <font>
                         <Font size="16.5" />
                      </font>
                   </Text>
-                  <Text layoutX="14.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mas, nada disto seria possível sem pessoas como tu." textAlignment="CENTER" wrappingWidth="362.6708984375">
+                  <Text layoutX="14.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mas, nada disto seria possível sem pessoas como tu." textAlignment="CENTER" wrappingWidth="362.6708984375">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -46,7 +46,7 @@
       </Pane>
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fill="#eeb623" layoutX="40.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FisioGYM">
+            <Text fx:id="butt" fill="#eeb623" layoutX="40.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FisioGYM">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>

@@ -32,6 +32,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Marcacao.findAll", query = "SELECT m FROM Marcacao m")
     , @NamedQuery(name = "Marcacao.findByIdmarcacao", query = "SELECT m FROM Marcacao m WHERE m.idmarcacao = :idmarcacao")
     , @NamedQuery(name = "Marcacao.findByData", query = "SELECT m FROM Marcacao m WHERE m.data = :data")
+    , @NamedQuery(name = "Marcacao.findByFuncionario", query = "SELECT m FROM Marcacao m WHERE m.idfuncionario.nome = :idfuncionario")
+    , @NamedQuery(name = "Marcacao.findByFuncionarioHora", query = "SELECT m FROM Marcacao m WHERE m.idfuncionario.nome = :idfuncionario order by m.horario")
     , @NamedQuery(name = "Marcacao.findByHorario", query = "SELECT m FROM Marcacao m WHERE m.horario = :horario")})
 public class Marcacao implements Serializable {
 
@@ -59,6 +61,14 @@ public class Marcacao implements Serializable {
 
     public Marcacao(BigDecimal idmarcacao) {
         this.idmarcacao = idmarcacao;
+    }
+    
+    public Marcacao(BigDecimal idmarcacao, String data, String horario, Cliente idcliente, Funcionario idfuncionario ) {
+        this.idmarcacao = idmarcacao;
+        this.data = data;
+        this.horario = horario;
+        this.idcliente = idcliente;
+        this.idfuncionario = idfuncionario;
     }
 
     public BigDecimal getIdmarcacao() {

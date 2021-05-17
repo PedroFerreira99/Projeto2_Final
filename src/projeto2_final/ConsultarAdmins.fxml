@@ -15,16 +15,16 @@
     <children>
       <Pane layoutY="125.0" prefHeight="579.0" prefWidth="1100.0" style="-fx-background-color: #F1E7DA;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
          <children>
-            <TableView layoutX="40.0" layoutY="118.0" prefHeight="444.0" prefWidth="1021.0">
+            <TableView fx:id="tableAdmins" layoutX="40.0" layoutY="118.0" prefHeight="444.0" prefWidth="1021.0">
               <columns>
-                <TableColumn prefWidth="54.0" text="Id" />
-                <TableColumn prefWidth="136.0" text="Nome" />
-                  <TableColumn prefWidth="132.0" text="TELEMOVEL" />
-                  <TableColumn prefWidth="122.0" text="NIF" />
-                  <TableColumn minWidth="0.0" prefWidth="110.0" text="NCC" />
-                  <TableColumn prefWidth="172.0" text="MORADA" />
-                  <TableColumn minWidth="0.0" prefWidth="127.0" text="EMAIL" />
-                  <TableColumn minWidth="0.0" prefWidth="167.0" text="DATA NASCIMENTO" />
+                <TableColumn fx:id="col_id" prefWidth="54.0" text="Id" />
+                <TableColumn fx:id="col_nome" prefWidth="136.0" text="Nome" />
+                  <TableColumn fx:id="col_telemovel" prefWidth="132.0" text="TELEMOVEL" />
+                  <TableColumn fx:id="col_nif" prefWidth="122.0" text="NIF" />
+                  <TableColumn fx:id="col_ncc" minWidth="0.0" prefWidth="110.0" text="NCC" />
+                  <TableColumn fx:id="col_morada" prefWidth="172.0" text="MORADA" />
+                  <TableColumn fx:id="col_email" minWidth="0.0" prefWidth="127.0" text="EMAIL" />
+                  <TableColumn fx:id="col_data" minWidth="0.0" prefWidth="167.0" text="DATA NASCIMENTO" />
               </columns>
             </TableView>
             <Text layoutX="420.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administradores">
@@ -32,7 +32,7 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button layoutX="905.0" layoutY="588.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Criar admin" textFill="WHITE" />
+            <Button layoutX="905.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaCriarAdmin" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Criar admin" textFill="WHITE" />
          </children>
       </Pane>
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

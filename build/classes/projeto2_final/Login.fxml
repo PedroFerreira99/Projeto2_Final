@@ -10,37 +10,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto2_final.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projeto2_final.LoginController">
    <children>
       <Pane layoutY="125.0" prefHeight="575.0" prefWidth="1100.0" style="-fx-background-color: #F1E7DA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="125.0">
          <children>
-            <Text layoutX="642.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem Vindo!!" wrappingWidth="297.8720703125">
+            <Text layoutX="633.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem Vindo!!" wrappingWidth="298.8720703125">
                <font>
-                  <Font size="50.0" />
+                  <Font size="55.0" />
                </font>
             </Text>
-            <TextField fx:id="LoginEmail" layoutX="708.0" layoutY="220.0" prefHeight="31.0" prefWidth="212.0" />
-            <Text layoutX="600.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="49.20703125">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="600.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+            <TextField fx:id="LoginEmail" layoutX="708.0" layoutY="270.0" prefHeight="31.0" prefWidth="212.0" />
+            <Text layoutX="600.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="49.20703125">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <PasswordField fx:id="LoginPassword" layoutX="708.0" layoutY="304.0" prefHeight="31.0" prefWidth="212.0" />
-            <ImageView fitHeight="305.0" fitWidth="411.0" layoutX="61.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+            <Text layoutX="600.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="LoginPassword" layoutX="708.0" layoutY="355.0" prefHeight="31.0" prefWidth="212.0" />
+            <ImageView fitHeight="305.0" fitWidth="411.0" layoutX="61.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Media/logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="708.0" layoutY="389.0" mnemonicParsing="false" onAction="#LoginBotao" prefHeight="48.0" prefWidth="212.0" style="-fx-background-color: #eeb623;" text="Login">
+            <Button layoutX="708.0" layoutY="458.0" mnemonicParsing="false" onAction="#LoginBotao" prefHeight="48.0" prefWidth="212.0" style="-fx-background-color: #eeb623;" text="Login">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
+            <Text fx:id="emailVazio" fill="#f81010" layoutX="720.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.6708984375">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="passwordVazio" fill="#f81010" layoutX="720.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.6708984375">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="loginErrado" fill="#f81010" layoutX="720.0" layoutY="527.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.6708984375">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
       <Pane disable="true" prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

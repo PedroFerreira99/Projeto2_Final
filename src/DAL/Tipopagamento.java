@@ -7,30 +7,30 @@ package DAL;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Pedro Ferreira
  */
 @Entity
-@Table(name = "PAGAMENTO")
+@Table(name = "TIPOPAGAMENTO")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p")
-    , @NamedQuery(name = "Pagamento.findByIdpagamento", query = "SELECT p FROM Pagamento p WHERE p.idpagamento = :idpagamento")
-    , @NamedQuery(name = "Pagamento.findByPreco", query = "SELECT p FROM Pagamento p WHERE p.preco = :preco")
-    , @NamedQuery(name = "Pagamento.findByData", query = "SELECT p FROM Pagamento p WHERE p.data = :data")})
-public class Pagamento implements Serializable {
+    @NamedQuery(name = "Tipopagamento.findAll", query = "SELECT t FROM Tipopagamento t")
+    , @NamedQuery(name = "Tipopagamento.findByIdpagamento", query = "SELECT t FROM Tipopagamento t WHERE t.idpagamento = :idpagamento")
+    , @NamedQuery(name = "Tipopagamento.findByNome", query = "SELECT t FROM Tipopagamento t WHERE t.nome = :nome")})
+public class Tipopagamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -38,21 +38,15 @@ public class Pagamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDPAGAMENTO")
     private BigDecimal idpagamento;
-    @Column(name = "PRECO")
-    private Double preco;
-    @Column(name = "DATA")
-    private String data;
-    @JoinColumn(name = "IDCLIENTE", referencedColumnName = "IDCLIENTE")
-    @ManyToOne
-    private Cliente idcliente;
-    @JoinColumn(name = "TIPOPAGAMENTO", referencedColumnName = "IDPAGAMENTO")
-    @ManyToOne
-    private Tipopagamento tipopagamento;
+    @Column(name = "NOME")
+    private String nome;
+    @OneToMany(mappedBy = "tipopagamento")
+    private List<Pagamento> pagamentoList;
 
-    public Pagamento() {
+    public Tipopagamento() {
     }
 
-    public Pagamento(BigDecimal idpagamento) {
+    public Tipopagamento(BigDecimal idpagamento) {
         this.idpagamento = idpagamento;
     }
 
@@ -64,36 +58,21 @@ public class Pagamento implements Serializable {
         this.idpagamento = idpagamento;
     }
 
-    public Double getPreco() {
-        return preco;
+    public String getNome() {
+        return nome;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getData() {
-        return data;
+    @XmlTransient
+    public List<Pagamento> getPagamentoList() {
+        return pagamentoList;
     }
 
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public Cliente getIdcliente() {
-        return idcliente;
-    }
-
-    public void setIdcliente(Cliente idcliente) {
-        this.idcliente = idcliente;
-    }
-
-    public Tipopagamento getTipopagamento() {
-        return tipopagamento;
-    }
-
-    public void setTipopagamento(Tipopagamento tipopagamento) {
-        this.tipopagamento = tipopagamento;
+    public void setPagamentoList(List<Pagamento> pagamentoList) {
+        this.pagamentoList = pagamentoList;
     }
 
     @Override
@@ -106,10 +85,10 @@ public class Pagamento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pagamento)) {
+        if (!(object instanceof Tipopagamento)) {
             return false;
         }
-        Pagamento other = (Pagamento) object;
+        Tipopagamento other = (Tipopagamento) object;
         if ((this.idpagamento == null && other.idpagamento != null) || (this.idpagamento != null && !this.idpagamento.equals(other.idpagamento))) {
             return false;
         }
@@ -118,7 +97,7 @@ public class Pagamento implements Serializable {
 
     @Override
     public String toString() {
-        return "DAL.Pagamento[ idpagamento=" + idpagamento + " ]";
+        return "DAL.Tipopagamento[ idpagamento=" + idpagamento + " ]";
     }
     
 }

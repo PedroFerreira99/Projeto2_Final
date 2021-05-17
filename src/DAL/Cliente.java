@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "CLIENTE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c order by c.idcliente")
     , @NamedQuery(name = "Cliente.findByIdcliente", query = "SELECT c FROM Cliente c WHERE c.idcliente = :idcliente")
     , @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")
     , @NamedQuery(name = "Cliente.findByNcc", query = "SELECT c FROM Cliente c WHERE c.ncc = :ncc")
@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cliente.findByTelemovel", query = "SELECT c FROM Cliente c WHERE c.telemovel = :telemovel")
     , @NamedQuery(name = "Cliente.findByRua", query = "SELECT c FROM Cliente c WHERE c.rua = :rua")
     , @NamedQuery(name = "Cliente.findByEmail", query = "SELECT c FROM Cliente c WHERE c.email = :email")
-    , @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password")})
+    , @NamedQuery(name = "Cliente.findByPassword", query = "SELECT c FROM Cliente c WHERE c.password = :password")
+    , @NamedQuery(name = "Cliente.findBySexo", query = "SELECT c FROM Cliente c WHERE c.sexo = :sexo")
+    , @NamedQuery(name = "Cliente.findByUsername", query = "SELECT c FROM Cliente c WHERE c.username = :username")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,6 +63,10 @@ public class Cliente implements Serializable {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "SEXO")
+    private String sexo;
+    @Column(name = "USERNAME")
+    private String username;
     @OneToMany(mappedBy = "idcliente")
     private List<Pagamento> pagamentoList;
     @OneToMany(mappedBy = "idcliente")
@@ -72,6 +78,19 @@ public class Cliente implements Serializable {
     private List<Marcacao> marcacaoList;
 
     public Cliente() {
+    }
+    
+    public Cliente(BigDecimal idcliente, String nome, String username, BigInteger telemovel, BigInteger ncc, String rua, String email, String dataNascimento, String sexo, Plano idplano) {
+        this.idcliente = idcliente;
+        this.nome = nome;
+        this.username = username;
+        this.telemovel = telemovel;
+        this.ncc = ncc;
+        this.rua = rua;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.sexo = sexo;
+        this.idplano = idplano;
     }
 
     public Cliente(BigDecimal idcliente) {
@@ -140,6 +159,22 @@ public class Cliente implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @XmlTransient

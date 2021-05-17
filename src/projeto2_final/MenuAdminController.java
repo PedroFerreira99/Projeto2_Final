@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import com.github.fxrouter.FXRouter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,27 +34,48 @@ public class MenuAdminController implements Initializable {
     
   
     public void consultClientes(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ConsultarClientes.fxml"));
+       /* Parent root = FXMLLoader.load(getClass().getResource("ConsultarClientes.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
+       
+        FXRouter.when("ConsultarClientes", "ConsultarClientes.fxml");     
+        FXRouter.goTo("ConsultarClientes");
     }
     
     public void consultFuncionarios(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ConsultarFuncionarios.fxml"));
+       /* Parent root = FXMLLoader.load(getClass().getResource("ConsultarFuncionarios.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
+        
+        FXRouter.when("ConsultarFuncionarios", "ConsultarFuncionarios.fxml");     
+        FXRouter.goTo("ConsultarFuncionarios");
     }
     
     public void consultAdmins(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ConsultarAdmins.fxml"));
+       /* Parent root = FXMLLoader.load(getClass().getResource("ConsultarAdmins.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
+        
+        FXRouter.when("ConsultarAdmins", "ConsultarAdmins.fxml");     
+        FXRouter.goTo("ConsultarAdmins");
+    }
+    
+    public void consultAulas(ActionEvent event) throws IOException {
+            
+        FXRouter.when("ConsultarAulas", "ConsultarAulas.fxml");     
+        FXRouter.goTo("ConsultarAulas");
+    }
+    
+    public void consultHorarioFuncionario(ActionEvent event) throws IOException {
+            
+        FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
+        FXRouter.goTo("ConsultarHorarioFuncionario");
     }
     
 }

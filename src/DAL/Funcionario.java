@@ -77,6 +77,18 @@ public class Funcionario implements Serializable {
     public Funcionario() {
     }
 
+    public Funcionario(BigDecimal idfuncionario, String nome, BigInteger telemovel, BigInteger nif, BigInteger ncc, String rua, String email, String dataNascimento) {
+        this.idfuncionario = idfuncionario;
+        this.nome = nome;
+        this.telemovel = telemovel;
+        this.nif = nif;
+        this.ncc = ncc;
+        this.rua = rua;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+    }
+    
+    
     public Funcionario(BigDecimal idfuncionario) {
         this.idfuncionario = idfuncionario;
     }

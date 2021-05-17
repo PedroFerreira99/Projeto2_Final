@@ -5,9 +5,22 @@
  */
 package projeto2_final;
 
+import DAL.Cliente;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import com.github.fxrouter.FXRouter;
+import javafx.event.ActionEvent;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -19,9 +32,31 @@ public class MenuClienteController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    @FXML
+    private Text userNome;
+    
+    Cliente c = (Cliente) FXRouter.getData(); 
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        
+        
+        userNome.setText(c.getNome());  
+    }   
     
+    public void minhaConta(ActionEvent event) throws IOException {
+            
+        FXRouter.when("MinhaConta", "MinhaConta.fxml");     
+       // FXRouter.goTo("MinhaConta");
+        FXRouter.goTo("MinhaConta", c);
+    }
+    
+        public void consulta(ActionEvent event) throws IOException {
+            
+        FXRouter.when("CriarConsulta", "CriarConsulta.fxml");     
+       // FXRouter.goTo("MinhaConta");
+        FXRouter.goTo("CriarConsulta", c);
+    }
+     
 }

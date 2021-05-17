@@ -7,6 +7,7 @@ package DAL;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "AULA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Aula.findAll", query = "SELECT a FROM Aula a")
+    @NamedQuery(name = "Aula.findAll", query = "SELECT a FROM Aula a order by a.idaula")
     , @NamedQuery(name = "Aula.findByIdaula", query = "SELECT a FROM Aula a WHERE a.idaula = :idaula")
     , @NamedQuery(name = "Aula.findByNome", query = "SELECT a FROM Aula a WHERE a.nome = :nome")
     , @NamedQuery(name = "Aula.findByDiasemana", query = "SELECT a FROM Aula a WHERE a.diasemana = :diasemana")
@@ -42,7 +43,7 @@ public class Aula implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "IDAULA")
-    private BigDecimal idaula;
+    private BigInteger idaula;
     @Column(name = "NOME")
     private String nome;
     @Column(name = "DIASEMANA")
@@ -60,15 +61,26 @@ public class Aula implements Serializable {
     public Aula() {
     }
 
-    public Aula(BigDecimal idaula) {
+    public Aula(BigInteger idaula) {
         this.idaula = idaula;
     }
+    
+    public Aula(BigInteger idaula, String nome, String diasemana, String horarioinicial, String horariofinal, Funcionario idfuncionario ) {
+        this.idaula = idaula;
+        this.nome = nome;
+        this.diasemana = diasemana;
+        this.horarioinicial = horarioinicial;
+        this.horariofinal = horariofinal;
+        this.idfuncionario = idfuncionario;
+    }
+    
+    
 
-    public BigDecimal getIdaula() {
+    public BigInteger getIdaula() {
         return idaula;
     }
 
-    public void setIdaula(BigDecimal idaula) {
+    public void setIdaula(BigInteger idaula) {
         this.idaula = idaula;
     }
 

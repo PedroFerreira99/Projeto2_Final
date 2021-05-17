@@ -7,6 +7,7 @@ package projeto2_final;
 
 import DAL.Cliente;
 import DAL.Plano;
+import com.github.fxrouter.FXRouter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,13 +29,20 @@ public class Projeto2_Final extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+      /*  Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
         
         Scene scene = new Scene(root);
      //   stage.setMaximized(true);
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
         
+ 
+        FXRouter.bind(this, stage,1100,800);
+        FXRouter.when("HomePage", "HomePage.fxml");     
+        FXRouter.goTo("HomePage");
+     
+        //FXRouter.when("HomePage", "CriarConsulta.fxml");     
+        //FXRouter.goTo("HomePage");
        
     }
 
@@ -43,17 +51,6 @@ public class Projeto2_Final extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-     /*   
-        factory= Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-        
-        Query q = em.createNamedQuery("Plano.findAll");
-           
-          
-          for(Object uti : q.getResultList()){
-            System.out.println( ((Plano)uti).getNome() );
-            
-        }*/
     }
     
 }
