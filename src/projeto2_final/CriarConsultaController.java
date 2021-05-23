@@ -14,6 +14,9 @@ import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -31,6 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -46,17 +50,18 @@ public class CriarConsultaController implements Initializable {
     private Funcionario ff ;
     
     String[] horarios= {"02:00", "02:30", "03:00", "03:30", "04:00" };
+    //ArrayList<String> horarios = new ArrayList<String>(Arrays.asList( "02:00", "02:30", "03:00", "03:30", "04:00") );
     
     Cliente c = (Cliente) FXRouter.getData(); 
     
     @FXML
     private JFXComboBox consultaFuncionario;
-    
- //   @FXML
-   // private JFXComboBox consultaHora;
-    
+        
     @FXML
     private Text dataVazia;
+    
+    @FXML
+    private Text horarioCheio;
     
     @FXML
     private JFXComboBox consultaHorario;
@@ -104,23 +109,11 @@ public class CriarConsultaController implements Initializable {
 
             }   
         }
-        
-    /*    for(String hora : horarios){
-            horariosList.addAll(hora);
-            consultaHorario.getItems().setAll(horariosList);
-            //System.out.println(hora);
-        }*/
     }    
     
     
     public void tabelaHorarios (ActionEvent event) throws IOException {
-        
-        
-       // System.out.println("NOME:" +consultaFuncionario.getValue().toString());
-        
-        
-        //String dataFuncionario = consultaData.getValue().toString();
-        //String nomeFuncionario = consulta.getValue().toString();
+
         horariosList.clear();
         consultaHorario.getItems().clear();
         consultaTabela.getItems().clear();
@@ -133,6 +126,12 @@ public class CriarConsultaController implements Initializable {
           
           dataVazia.setText("");
           String nomeFuncionario = consultaFuncionario.getValue().toString();
+          
+            for(String hora : horarios){
+
+                horariosList.addAll(hora);
+                consultaHorario.getItems().setAll(horariosList);
+            }
           
       
         
@@ -148,46 +147,17 @@ public class CriarConsultaController implements Initializable {
                 String horario = ((Marcacao) d).getHorario();
                 Cliente idCliente = ((Marcacao) d).getIdcliente();
                 Funcionario idFuncionario = ((Marcacao) d).getIdfuncionario();
-
-              //  marcacaoList.addAll(nome);
-              //  consultaTabela.getItems().setAll(marcacaoList);
-
-           
          
          marcacaoList.add(new Marcacao(id,data, horario,idCliente, idFuncionario)  );
             
         consultaTabela.setItems(marcacaoList);
-        
-        
-            for(String hora : horarios){
-            //horariosList.addAll(hora);
-            //consultaHorario.getItems().setAll(horariosList);
-            //System.out.println(hora);
-              //  System.out.println("tttttt" +((Marcacao) d).getHorario());
-                if(!((Marcacao) d).getHorario().equals(hora) ){
-                    //System.out.println("horasss:" +hora);
-                    horariosList.addAll(hora);
-                    consultaHorario.getItems().setAll(horariosList);
                 
-                }
-            }
-        
-            
-        
-            }else{
-                
-                for(String hora : horarios){
-                    
-                    horariosList.addAll(hora);
-                    consultaHorario.getItems().setAll(horariosList);
-                }
-                
-            }
+            }      
        }
       }
     }
         
-       // col_funcionario.setCellValueFactory(new PropertyValueFactory<>("idfuncionario"));
+    
         col_funcionario.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getIdfuncionario().getNome()));
         col_data.setCellValueFactory(new PropertyValueFactory<>("data"));
@@ -218,9 +188,7 @@ public class CriarConsultaController implements Initializable {
 
         FXRouter.when("MenuCliente", "MenuCliente.fxml");     
         FXRouter.goTo("MenuCliente", c);
-           
-                
-    
+       
     }
     
     
@@ -242,6 +210,47 @@ public class CriarConsultaController implements Initializable {
         }
         
         return f;
+    }
+    
+    
+    
+    public void escolherHorario (ActionEvent event) throws IOException {
+          horarioCheio.setText("");
+
+        if(consultaHorario.getValue() != null ){
+          String nomeFuncionario = consultaFuncionario.getValue().toString();
+
+        factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
+        EntityManager em = factory.createEntityManager();
+        Query q = em.createNamedQuery("Marcacao.findByFuncionarioHora");
+        q.setParameter("idfuncionario", nomeFuncionario);
+        for (Object d : q.getResultList()) {
+                    
+            if(((Marcacao) d).getData().equals(consultaData.getValue().toString())){
+                BigDecimal id = ((Marcacao) d).getIdmarcacao();
+                String data = ((Marcacao) d).getData();
+                String horario = ((Marcacao) d).getHorario();
+                Cliente idCliente = ((Marcacao) d).getIdcliente();
+                Funcionario idFuncionario = ((Marcacao) d).getIdfuncionario();
+                
+
+                if(((Marcacao) d).getHorario().equals(consultaHorario.getValue().toString())){
+                    horarioCheio.setText("ja existe consulta nesse dia");
+                }
+                               
+                
+            }
+            
+       }
+       
+      }
+        
+    }  
+    
+    public void voltarMenu(ActionEvent event) throws IOException {
+        
+        FXRouter.when("MenuCliente", "MenuCliente.fxml");     
+        FXRouter.goTo("MenuCliente", c);
     }
     
 }

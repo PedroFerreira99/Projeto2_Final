@@ -41,8 +41,8 @@ public class Projeto2_Final extends Application {
         FXRouter.when("HomePage", "HomePage.fxml");     
         FXRouter.goTo("HomePage");
      
-        //FXRouter.when("HomePage", "CriarConsulta.fxml");     
-        //FXRouter.goTo("HomePage");
+       // FXRouter.when("HomePage", "MenuAdmin.fxml");     
+       // FXRouter.goTo("HomePage");
        
     }
 

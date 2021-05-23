@@ -99,9 +99,5 @@ public class Tipofuncionario implements Serializable {
     public String toString() {
         return "DAL.Tipofuncionario[ idTipofuncionario=" + idTipofuncionario + " ]";
     }
-
-    public int intValue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

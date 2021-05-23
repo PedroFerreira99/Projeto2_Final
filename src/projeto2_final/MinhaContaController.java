@@ -124,7 +124,7 @@ public class MinhaContaController implements Initializable {
         
       //  clienteData.setText("");
     
-        if (clienteNome.getText().isEmpty() && clienteUsername.getText().isEmpty() && clienteMorada.getText().isEmpty() && clienteEmail.getText().isEmpty() && clienteNcc.getText().isEmpty() && clienteTelemovel.getText().isEmpty()  && clientePassword.getText().isEmpty()) {
+        if (clienteNome.getText().isEmpty() || clienteUsername.getText().isEmpty() || clienteMorada.getText().isEmpty() || clienteEmail.getText().isEmpty() || clienteNcc.getText().isEmpty() || clienteTelemovel.getText().isEmpty()  || clientePassword.getText().isEmpty()) {
                 criarVazio.setText("Preencha todos os campos");   
          }else{
             String nomeInput = clienteNome.getText();

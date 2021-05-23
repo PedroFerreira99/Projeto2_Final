@@ -7,7 +7,6 @@ package DAL;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -30,11 +29,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "AULA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Aula.findAll", query = "SELECT a FROM Aula a order by a.idaula")
+    @NamedQuery(name = "Aula.findAll", query = "SELECT a FROM Aula a")
     , @NamedQuery(name = "Aula.findByIdaula", query = "SELECT a FROM Aula a WHERE a.idaula = :idaula")
     , @NamedQuery(name = "Aula.findByNome", query = "SELECT a FROM Aula a WHERE a.nome = :nome")
     , @NamedQuery(name = "Aula.findByDiasemana", query = "SELECT a FROM Aula a WHERE a.diasemana = :diasemana")
     , @NamedQuery(name = "Aula.findByHorarioinicial", query = "SELECT a FROM Aula a WHERE a.horarioinicial = :horarioinicial")
+    , @NamedQuery(name = "Aula.findByIdFuncionario", query = "SELECT a FROM Aula a WHERE a.idfuncionario = :idfuncionario")
     , @NamedQuery(name = "Aula.findByHorariofinal", query = "SELECT a FROM Aula a WHERE a.horariofinal = :horariofinal")})
 public class Aula implements Serializable {
 
@@ -43,7 +43,7 @@ public class Aula implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "IDAULA")
-    private BigInteger idaula;
+    private BigDecimal idaula;
     @Column(name = "NOME")
     private String nome;
     @Column(name = "DIASEMANA")
@@ -61,11 +61,11 @@ public class Aula implements Serializable {
     public Aula() {
     }
 
-    public Aula(BigInteger idaula) {
+    public Aula(BigDecimal idaula) {
         this.idaula = idaula;
     }
     
-    public Aula(BigInteger idaula, String nome, String diasemana, String horarioinicial, String horariofinal, Funcionario idfuncionario ) {
+    public Aula(BigDecimal idaula, String nome, String diasemana, String horarioinicial, String horariofinal, Funcionario idfuncionario ) {
         this.idaula = idaula;
         this.nome = nome;
         this.diasemana = diasemana;
@@ -73,14 +73,12 @@ public class Aula implements Serializable {
         this.horariofinal = horariofinal;
         this.idfuncionario = idfuncionario;
     }
-    
-    
 
-    public BigInteger getIdaula() {
+    public BigDecimal getIdaula() {
         return idaula;
     }
 
-    public void setIdaula(BigInteger idaula) {
+    public void setIdaula(BigDecimal idaula) {
         this.idaula = idaula;
     }
 

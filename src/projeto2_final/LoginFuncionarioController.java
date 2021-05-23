@@ -104,7 +104,7 @@ public class LoginFuncionarioController implements Initializable {
                         
                         //System.out.println("admin");
                         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-                        FXRouter.goTo("MenuAdmin");
+                        FXRouter.goTo("MenuAdmin" , f);
                     }
                     else if(tipoUser == 2){
                         
@@ -115,7 +115,7 @@ public class LoginFuncionarioController implements Initializable {
                         
                         
                         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-                        FXRouter.goTo("MenuFuncionario");
+                        FXRouter.goTo("MenuFuncionario" , f);
                     }
             }
 

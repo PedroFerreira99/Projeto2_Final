@@ -7,6 +7,7 @@ package projeto2_final;
 
 import DAL.Cliente;
 import DAL.Funcionario;
+import com.github.fxrouter.FXRouter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -24,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -66,7 +68,9 @@ public class ConsultarFuncionariosController implements Initializable {
     
     @FXML
     private TableColumn<Funcionario, String> col_data;
-  
+    
+    @FXML
+    private Text editarVazio;
 
     ObservableList<Funcionario> funcionarioList = FXCollections.observableArrayList();
     
@@ -128,6 +132,18 @@ public class ConsultarFuncionariosController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void paginaEditarFuncionario(ActionEvent event) throws IOException {
+        
+    if (tableFuncionarios.getSelectionModel().getSelectedItem() != null) {
+        Funcionario f = tableFuncionarios.getSelectionModel().getSelectedItem();
+
+        FXRouter.when("EditarFuncionario", "EditarFuncionario.fxml");     
+        FXRouter.goTo("EditarFuncionario", f);
+    }else{
+        editarVazio.setText("Selecione um funcionario");
+    }
     }
     
 }

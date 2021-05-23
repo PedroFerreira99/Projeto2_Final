@@ -48,15 +48,25 @@ public class MenuClienteController implements Initializable {
     public void minhaConta(ActionEvent event) throws IOException {
             
         FXRouter.when("MinhaConta", "MinhaConta.fxml");     
-       // FXRouter.goTo("MinhaConta");
         FXRouter.goTo("MinhaConta", c);
     }
     
-        public void consulta(ActionEvent event) throws IOException {
+    public void consulta(ActionEvent event) throws IOException {
             
         FXRouter.when("CriarConsulta", "CriarConsulta.fxml");     
-       // FXRouter.goTo("MinhaConta");
         FXRouter.goTo("CriarConsulta", c);
+    }
+        
+    public void consultAulasCliente(ActionEvent event) throws IOException {
+            
+        FXRouter.when("ConsultarAulasCliente", "ConsultarAulasCliente.fxml");     
+        FXRouter.goTo("ConsultarAulasCliente", c);
+    }
+    
+    public void consultMinhasAulas(ActionEvent event) throws IOException {
+            
+        FXRouter.when("ConsultarMinhasAulas", "ConsultarMinhasAulas.fxml");     
+        FXRouter.goTo("ConsultarMinhasAulas", c);
     }
      
 }

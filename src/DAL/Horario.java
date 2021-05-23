@@ -27,6 +27,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h")
+   // , @NamedQuery(name = "Horario.findLikeNome", query = "SELECT h FROM Horario h")
+    , @NamedQuery(name = "Horario.findAllDistinct", query = "SELECT h FROM Horario h WHERE h.idhorario IN (SELECT MIN(h.idhorario) FROM Horario h GROUP BY h.idfuncionario ) ORDER BY h.idfuncionario")
+    , @NamedQuery(name = "Horario.findByIdfuncionario", query = "SELECT h FROM Horario h WHERE h.idfuncionario = :idfuncionario")
     , @NamedQuery(name = "Horario.findByIdhorario", query = "SELECT h FROM Horario h WHERE h.idhorario = :idhorario")
     , @NamedQuery(name = "Horario.findByHoraentrda", query = "SELECT h FROM Horario h WHERE h.horaentrda = :horaentrda")
     , @NamedQuery(name = "Horario.findByHorasaida", query = "SELECT h FROM Horario h WHERE h.horasaida = :horasaida")})
@@ -42,6 +45,9 @@ public class Horario implements Serializable {
     private String horaentrda;
     @Column(name = "HORASAIDA")
     private String horasaida;
+    @JoinColumn(name = "IDDIA", referencedColumnName = "IDDIA")
+    @ManyToOne
+    private Dia iddia;
     @JoinColumn(name = "IDFUNCIONARIO", referencedColumnName = "IDFUNCIONARIO")
     @ManyToOne
     private Funcionario idfuncionario;
@@ -51,6 +57,11 @@ public class Horario implements Serializable {
 
     public Horario(BigDecimal idhorario) {
         this.idhorario = idhorario;
+    }
+    
+    public Horario(BigDecimal idhorario,Funcionario idfuncionario) {
+        this.idhorario = idhorario;
+        this.idfuncionario = idfuncionario;
     }
 
     public BigDecimal getIdhorario() {
@@ -75,6 +86,14 @@ public class Horario implements Serializable {
 
     public void setHorasaida(String horasaida) {
         this.horasaida = horasaida;
+    }
+
+    public Dia getIddia() {
+        return iddia;
+    }
+
+    public void setIddia(Dia iddia) {
+        this.iddia = iddia;
     }
 
     public Funcionario getIdfuncionario() {

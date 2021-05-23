@@ -13,6 +13,7 @@
     <class>DAL.Plano</class>
     <class>DAL.Tipopagamento</class>
     <class>DAL.Pagamento</class>
+    <class>DAL.Dia</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
       <property name="javax.persistence.jdbc.user" value="projeto2"/>

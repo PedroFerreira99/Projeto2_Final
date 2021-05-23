@@ -30,6 +30,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,6 +46,8 @@ public class ConsultarClientesController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
+    
+    Funcionario f = (Funcionario) FXRouter.getData(); 
     
     
     @FXML
@@ -77,6 +80,10 @@ public class ConsultarClientesController implements Initializable {
     @FXML
     private TableColumn<Cliente, String> col_sexo;
     
+        
+    @FXML
+    private Text editarVazio;
+    
     
     ObservableList<Cliente> clienteList = FXCollections.observableArrayList();
 
@@ -107,38 +114,8 @@ public class ConsultarClientesController implements Initializable {
             
             
             clienteList.add(new Cliente(id, nome, username, telemovel, ncc,rua, email, data, sexo, pp)  );
-            
             tableClientes.setItems(clienteList);
-           //  clienteList.add(new Cliente( id, nome,ncc,data,telemovel,rua,email,password,sexo,username)  );
-            
-        //    clienteList.add(new Cliente( ((Cliente) d).getIdcliente(), ((Cliente) d).getNome()    )  );
-                    
-           //     if (email.equals(LoginEmail.getText()) && pass.equals(LoginPassword.getText())) {
-             //      System.out.println(" \n - " + ((Cliente) d).getNome() );
-               /*    Plano idplano = (((Cliente) d).getIdplano());
-                   System.out.println("login certo");
-                   System.out.println(idplano);
-                   */
-                   
-               //    Cliente c = new Cliente();
-                 //  c =  (Cliente) d;
-                   
-                   
-               /*   Parent page_parent = FXMLLoader.load(getClass().getResource("MenuCliente.fxml"));
-                   Scene page_scene = new Scene(page_parent);
-                   Stage a = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                   a.setScene(page_scene);
-                   a.setUserData(c);
-                   a.show();*/
-               
-             //      FXRouter.when("MenuCliente", "MenuCliente.fxml");     
-              //     FXRouter.goTo("MenuCliente",c);
-                 //FXRouter.when("login", "MenuCliente.fxml");
-              /*   FXRouter.goTo("MenuAdmin.fxml"); 
-                   System.out.println(c.getRua());
-                   */
-               // }else{
-                   // loginErrado.setText("login errado");
+
                 }
             //}
         
@@ -168,19 +145,42 @@ public class ConsultarClientesController implements Initializable {
     
     
     public void voltarMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+      //  if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 1){
+      ////     FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+       //     FXRouter.goTo("MenuAdmin", f);
+      //  }else if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 2){
+           
+            FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+            FXRouter.goTo("MenuAdmin", f);
+      //  }
     }
     
     public void paginaCriarClientes(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("CriarCliente.fxml"));
+      /*  Parent root = FXMLLoader.load(getClass().getResource("CriarCliente.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
+        FXRouter.when("CriarCliente", "CriarCliente.fxml");     
+        FXRouter.goTo("CriarCliente", f);
+    }
+    
+    public void paginaEditarCliente(ActionEvent event) throws IOException {
+        
+    if (tableClientes.getSelectionModel().getSelectedItem() != null) {
+        Cliente c = tableClientes.getSelectionModel().getSelectedItem();
+        
+    //    if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 1){
+    //        FXRouter.when("EditarCliente", "EditarCliente.fxml");     
+    //        FXRouter.goTo("EditarCliente", c);
+      //  }else if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 2){
+            FXRouter.when("EditarCliente", "EditarCliente.fxml");     
+            FXRouter.goTo("EditarCliente", c);
+      //  }
+        
+    }else{
+        editarVazio.setText("Selecione um cliente");
+    }
     }
     
 }

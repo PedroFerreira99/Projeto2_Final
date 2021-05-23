@@ -27,6 +27,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -64,6 +65,9 @@ public class ConsultarAulasController implements Initializable {
     
     @FXML
     private TableColumn<Aula, String> col_funcionario;
+    
+    @FXML
+    private Text editarVazio;
         
     ObservableList<Aula> aulaList = FXCollections.observableArrayList();
 
@@ -78,7 +82,7 @@ public class ConsultarAulasController implements Initializable {
         for (Object d : q.getResultList()) {
            
             
-            BigInteger id = ((Aula) d).getIdaula();
+            BigDecimal id = ((Aula) d).getIdaula();
             String nome = ((Aula) d).getNome();
             String data = ((Aula) d).getDiasemana();
             String horainicio = ((Aula) d).getHorarioinicial();
@@ -86,7 +90,7 @@ public class ConsultarAulasController implements Initializable {
             
             String nomeF =  ((Aula) d).getIdfuncionario().getNome().toString();
             
-            System.out.println("nome:" +nomeF);
+        //    System.out.println("nome:" +nomeF);
 //            BigDecimal idFunc = new BigDecimal(  ((Aula) d).getIdfuncionario().toString());
 //            String nomeFunc = ((Aula) d).getIdfuncionario().getNome();
             
@@ -126,10 +130,26 @@ public class ConsultarAulasController implements Initializable {
         FXRouter.goTo("CriarAula");
     }
     
-        public void voltarMenu(ActionEvent event) throws IOException {
+    public void voltarMenu(ActionEvent event) throws IOException {
         
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
         FXRouter.goTo("MenuAdmin");
     }
+    
+    public void paginaEditarAulas(ActionEvent event) throws IOException {
+        
+    if (tableAulas.getSelectionModel().getSelectedItem() != null) {
+        Aula a = tableAulas.getSelectionModel().getSelectedItem();
+        //nameTextField.setText(a.getName());
+       // addressTextField.setText(a.getAddress());
+     //   System.out.println("valores:" +a.getNome() );
+        
+        FXRouter.when("EditarAula", "EditarAula.fxml");     
+        FXRouter.goTo("EditarAula", a);
+    }else{
+        editarVazio.setText("Selecione uma aula");
+    }
+    }
+    
     
 }

@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "CLIENTE")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c order by c.idcliente")
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
     , @NamedQuery(name = "Cliente.findByIdcliente", query = "SELECT c FROM Cliente c WHERE c.idcliente = :idcliente")
     , @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")
     , @NamedQuery(name = "Cliente.findByNcc", query = "SELECT c FROM Cliente c WHERE c.ncc = :ncc")
@@ -79,6 +79,10 @@ public class Cliente implements Serializable {
 
     public Cliente() {
     }
+
+    public Cliente(BigDecimal idcliente) {
+        this.idcliente = idcliente;
+    }
     
     public Cliente(BigDecimal idcliente, String nome, String username, BigInteger telemovel, BigInteger ncc, String rua, String email, String dataNascimento, String sexo, Plano idplano) {
         this.idcliente = idcliente;
@@ -91,10 +95,6 @@ public class Cliente implements Serializable {
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
         this.idplano = idplano;
-    }
-
-    public Cliente(BigDecimal idcliente) {
-        this.idcliente = idcliente;
     }
 
     public BigDecimal getIdcliente() {

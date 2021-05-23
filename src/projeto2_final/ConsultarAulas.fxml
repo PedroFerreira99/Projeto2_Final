@@ -28,6 +28,8 @@
                </font>
             </Text>
             <Button layoutX="858.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaCriarAulas" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Criar aula" textFill="WHITE" />
+            <Button layoutX="694.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaEditarAulas" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Editar aula" textFill="WHITE" />
+            <Text fx:id="editarVazio" fill="#f81010" layoutX="694.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="181.0" />
          </children>
       </Pane>
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

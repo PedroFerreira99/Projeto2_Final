@@ -83,7 +83,7 @@ public class CriarFuncionarioController implements Initializable {
         
       //  funcionarioData.setText("");
     
-        if (funcionarioNome.getText().isEmpty() && funcionarioPassword.getText().isEmpty() && funcionarioMorada.getText().isEmpty() && funcionarioEmail.getText().isEmpty() && funcionarioNcc.getText().isEmpty() && funcionarioNif.getText().isEmpty() && funcionarioData.getValue()==null && funcionarioTelemovel.getText().isEmpty() ) {
+        if (funcionarioNome.getText().isEmpty() || funcionarioPassword.getText().isEmpty() || funcionarioMorada.getText().isEmpty() || funcionarioEmail.getText().isEmpty() || funcionarioNcc.getText().isEmpty() || funcionarioNif.getText().isEmpty() || funcionarioData.getValue()==null || funcionarioTelemovel.getText().isEmpty() ) {
                 criarVazio.setText("Preencha os campos");   
                 
          }else{

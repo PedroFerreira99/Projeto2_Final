@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import DAL.Funcionario;
 import com.github.fxrouter.FXRouter;
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +24,8 @@ import javafx.stage.Stage;
  * @author Pedro Ferreira
  */
 public class MenuAdminController implements Initializable {
+    
+    Funcionario f = (Funcionario) FXRouter.getData(); 
 
     /**
      * Initializes the controller class.
@@ -34,14 +37,9 @@ public class MenuAdminController implements Initializable {
     
   
     public void consultClientes(ActionEvent event) throws IOException {
-       /* Parent root = FXMLLoader.load(getClass().getResource("ConsultarClientes.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();*/
        
         FXRouter.when("ConsultarClientes", "ConsultarClientes.fxml");     
-        FXRouter.goTo("ConsultarClientes");
+        FXRouter.goTo("ConsultarClientes" , f);
     }
     
     public void consultFuncionarios(ActionEvent event) throws IOException {

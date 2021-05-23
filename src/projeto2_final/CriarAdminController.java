@@ -80,7 +80,7 @@ public class CriarAdminController implements Initializable {
         
       //  funcionarioData.setText("");
     
-        if (adminNome.getText().isEmpty() && adminPassword.getText().isEmpty() && adminMorada.getText().isEmpty() && adminEmail.getText().isEmpty() && adminNcc.getText().isEmpty() && adminNif.getText().isEmpty() && adminData.getValue()==null && adminTelemovel.getText().isEmpty() ) {
+        if (adminNome.getText().isEmpty() || adminPassword.getText().isEmpty() || adminMorada.getText().isEmpty() || adminEmail.getText().isEmpty() || adminNcc.getText().isEmpty() || adminNif.getText().isEmpty() || adminData.getValue()==null || adminTelemovel.getText().isEmpty() ) {
                 criarVazio.setText("Preencha os campos");   
                 
          }else{

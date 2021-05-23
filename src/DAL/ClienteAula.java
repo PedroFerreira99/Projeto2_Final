@@ -27,6 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ClienteAula.findAll", query = "SELECT c FROM ClienteAula c")
+    ,@NamedQuery(name = "ClienteAula.finddddddd", query = "SELECT c FROM ClienteAula c WHERE c.idaula = :idaula AND c.idcliente = :idcliente")
+    , @NamedQuery(name = "ClienteAula.findByIdCliente", query = "SELECT c FROM ClienteAula c WHERE c.idcliente = :idcliente")
     , @NamedQuery(name = "ClienteAula.findByIdClienteaula", query = "SELECT c FROM ClienteAula c WHERE c.idClienteaula = :idClienteaula")})
 public class ClienteAula implements Serializable {
 
@@ -48,6 +50,12 @@ public class ClienteAula implements Serializable {
 
     public ClienteAula(BigDecimal idClienteaula) {
         this.idClienteaula = idClienteaula;
+    }
+    
+    public ClienteAula(BigDecimal idClienteaula , Aula idaula , Cliente idcliente) {
+        this.idClienteaula = idClienteaula;
+        this.idaula = idaula;
+        this.idcliente = idcliente;
     }
 
     public BigDecimal getIdClienteaula() {

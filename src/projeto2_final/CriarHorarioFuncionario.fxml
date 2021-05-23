@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -25,23 +25,21 @@
                         <Font size="14.5" />
                      </font>
                   </Text>
-                  <Text layoutX="39.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionario" />
-                  <Button layoutX="323.0" layoutY="413.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="221.0" style="-fx-background-color: #264653;" text="Criar" textFill="WHITE">
+                  <Text layoutX="39.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionario:" />
+                  <Button layoutX="323.0" layoutY="413.0" mnemonicParsing="false" onAction="#criarHorario" prefHeight="38.0" prefWidth="221.0" style="-fx-background-color: #264653;" text="Criar" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Text fx:id="criarVazio" layoutX="329.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="209.443359375" />
-                  <ChoiceBox fx:id="choiseFuncionario" layoutX="138.0" layoutY="39.0" prefHeight="31.0" prefWidth="240.0" />
                   <Text layoutX="501.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
-                  <TextField editable="false" layoutX="590.0" layoutY="43.0" prefHeight="31.0" prefWidth="240.0" />
+                  <TextField fx:id="horarioEmail" editable="false" layoutX="590.0" layoutY="43.0" prefHeight="31.0" prefWidth="240.0" />
                   <Text layoutX="162.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Segunda:">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
-                  <JFXTimePicker layoutX="62.0" layoutY="151.0" prefHeight="31.0" prefWidth="111.0" />
-                  <JFXTimePicker layoutX="226.0" layoutY="151.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioSegundaInicio" layoutX="62.0" layoutY="151.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioSegundaFim" layoutX="226.0" layoutY="151.0" prefHeight="31.0" prefWidth="111.0" />
                   <Text layoutX="647.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Terça:">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -52,8 +50,8 @@
                         <Font size="14.5" />
                      </font>
                   </Text>
-                  <JFXTimePicker layoutX="538.0" layoutY="139.0" prefHeight="31.0" prefWidth="111.0" />
-                  <JFXTimePicker layoutX="702.0" layoutY="141.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioTercaInicio" layoutX="538.0" layoutY="139.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioTercaFim" layoutX="702.0" layoutY="141.0" prefHeight="31.0" prefWidth="111.0" />
                   <Text layoutX="182.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="até">
                      <font>
                         <Font size="14.5" />
@@ -64,8 +62,8 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
-                  <JFXTimePicker layoutX="62.0" layoutY="244.0" prefHeight="31.0" prefWidth="111.0" />
-                  <JFXTimePicker layoutX="226.0" layoutY="244.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioQuartaInicio" layoutX="62.0" layoutY="244.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioQuartaFim" layoutX="226.0" layoutY="244.0" prefHeight="31.0" prefWidth="111.0" />
                   <Text layoutX="645.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quinta:">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -76,8 +74,8 @@
                         <Font size="14.5" />
                      </font>
                   </Text>
-                  <JFXTimePicker layoutX="538.0" layoutY="234.0" prefHeight="31.0" prefWidth="111.0" />
-                  <JFXTimePicker layoutX="702.0" layoutY="234.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioQuintaInicio" layoutX="538.0" layoutY="234.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioQuintaFim" layoutX="702.0" layoutY="234.0" prefHeight="31.0" prefWidth="111.0" />
                   <Text layoutX="182.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="até">
                      <font>
                         <Font size="14.5" />
@@ -88,8 +86,8 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
-                  <JFXTimePicker layoutX="62.0" layoutY="328.0" prefHeight="31.0" prefWidth="111.0" />
-                  <JFXTimePicker layoutX="226.0" layoutY="330.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioSextaInicio" layoutX="62.0" layoutY="328.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioSextaFim" layoutX="226.0" layoutY="330.0" prefHeight="31.0" prefWidth="111.0" />
                   <Text layoutX="642.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sabado:">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -100,8 +98,10 @@
                         <Font size="14.5" />
                      </font>
                   </Text>
-                  <JFXTimePicker layoutX="538.0" layoutY="318.0" prefHeight="31.0" prefWidth="111.0" />
-                  <JFXTimePicker layoutX="702.0" layoutY="320.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioSabadoInicio" layoutX="538.0" layoutY="318.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXTimePicker fx:id="horarioSabadoFim" layoutX="702.0" layoutY="320.0" prefHeight="31.0" prefWidth="111.0" />
+                  <JFXComboBox fx:id="choiseFuncionario" layoutX="134.0" layoutY="35.0" onAction="#tabelaHorarios" prefHeight="31.0" prefWidth="221.0" />
+                  <Text fx:id="criarVazio" layoutX="323.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="209.4433568418026" />
                </children>
             </Pane>
          </children></Pane>

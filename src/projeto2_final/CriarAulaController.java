@@ -96,7 +96,7 @@ public class CriarAulaController implements Initializable {
     }    
     
     
-        public void criarAula(ActionEvent event) throws IOException {
+    public void criarAula(ActionEvent event) throws IOException {
         
       //  clienteData.setText("");
     

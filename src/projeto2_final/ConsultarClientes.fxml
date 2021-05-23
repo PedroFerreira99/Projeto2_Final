@@ -31,6 +31,8 @@
                </font>
             </Text>
             <Button layoutX="905.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaCriarClientes" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Criar cliente" textFill="WHITE" />
+            <Button layoutX="741.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaEditarCliente" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Editar cliente" textFill="WHITE" />
+            <Text fx:id="editarVazio" fill="#f81010" layoutX="741.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="181.0" />
          </children>
       </Pane>
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

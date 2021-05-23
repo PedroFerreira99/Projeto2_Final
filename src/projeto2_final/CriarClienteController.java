@@ -46,6 +46,8 @@ public class CriarClienteController implements Initializable {
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
+    Funcionario f = (Funcionario) FXRouter.getData(); 
+    
     @FXML
     private TextField clienteNome;
     
@@ -125,26 +127,11 @@ public class CriarClienteController implements Initializable {
         
       //  clienteData.setText("");
     
-        if (clienteNome.getText().isEmpty() && clienteUsername.getText().isEmpty() && clienteMorada.getText().isEmpty() && clienteEmail.getText().isEmpty() && clienteNcc.getText().isEmpty() && clienteTelemovel.getText().isEmpty()  && clientePassword.getText().isEmpty()) {
+        if (clienteNome.getText().isEmpty() || clienteUsername.getText().isEmpty() || clienteMorada.getText().isEmpty() || clienteEmail.getText().isEmpty() || clienteNcc.getText().isEmpty() || clienteTelemovel.getText().isEmpty()  || clientePassword.getText().isEmpty()) {
                 criarVazio.setText("Preencha os campos");   
                 Integer plano;  
                 
-               //    RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-               //String toogleGroupValue = selectedRadioButton.getText();
-                
-         /*       if(clientePlano.getValue().equals("plano completo")){
-                plano=1;
-            }else if(clientePlano.getValue().equals("plano matinal")){
-                plano=2;
-            }else{
-                plano=3;
-            }
-                
-                 System.out.println(plano);
-            //    System.out.println(clientePlano.getValue());
-                */
-            
-            //   System.out.println(toogleGroupValue);
+
          }else{
             String nomeInput = clienteNome.getText();
             String usernameInput = clienteUsername.getText();
@@ -157,15 +144,15 @@ public class CriarClienteController implements Initializable {
             RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
             String toogleGroupValue = selectedRadioButton.getText();
             
-            BigInteger plano;
+            BigDecimal plano;
             //System.out.println(toogleGroupValue);
             
             if(clientePlano.getValue().equals("plano completo")){
-                plano=new BigInteger("1");
+                plano=new BigDecimal("1");
             }else if(clientePlano.getValue().equals("plano matinal")){
-                plano=new BigInteger("2");
+                plano=new BigDecimal("2");
             }else{
-                plano=new BigInteger("3");
+                plano=new BigDecimal("3");
             }
             
             Plano p;
@@ -200,10 +187,19 @@ public class CriarClienteController implements Initializable {
     }
     
     public void voltarMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
+      /*  Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
+      
+        if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 1){
+            FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+            FXRouter.goTo("MenuAdmin", f);
+        }else if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 2){
+           
+            FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
+            FXRouter.goTo("MenuFuncionario", f);
+        }
     }
 }

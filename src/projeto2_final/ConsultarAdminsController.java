@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -66,6 +67,9 @@ public class ConsultarAdminsController implements Initializable {
     
     @FXML
     private TableColumn<Funcionario, String> col_data;
+    
+    @FXML
+    private Text editarVazio;
   
 
     ObservableList<Funcionario> adminList = FXCollections.observableArrayList();
@@ -125,15 +129,22 @@ public class ConsultarAdminsController implements Initializable {
         FXRouter.goTo("MenuAdmin");
     }
     
-    public void paginaCriarAdmin(ActionEvent event) throws IOException {
-        /*Parent root = FXMLLoader.load(getClass().getResource("CriarAdmins.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();*/
-        
+    public void paginaCriarAdmin(ActionEvent event) throws IOException {      
         FXRouter.when("CriarAdmin", "CriarAdmin.fxml");     
         FXRouter.goTo("CriarAdmin");
+    }
+    
+    
+    public void paginaEditarAdmin(ActionEvent event) throws IOException {
+        
+    if (tableAdmins.getSelectionModel().getSelectedItem() != null) {
+        Funcionario a = tableAdmins.getSelectionModel().getSelectedItem();
+
+        FXRouter.when("EditarAdmin", "EditarAdmin.fxml");     
+        FXRouter.goTo("EditarAdmin", a);
+    }else{
+        editarVazio.setText("Selecione um administrador");
+    }
     }
     
 }
