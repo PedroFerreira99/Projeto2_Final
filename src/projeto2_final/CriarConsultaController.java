@@ -9,6 +9,7 @@ import DAL.Aula;
 import DAL.Cliente;
 import DAL.Funcionario;
 import DAL.Marcacao;
+import DAL.Tipomarcacao;
 import com.github.fxrouter.FXRouter;
 import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
@@ -147,6 +148,7 @@ public class CriarConsultaController implements Initializable {
                 String horario = ((Marcacao) d).getHorario();
                 Cliente idCliente = ((Marcacao) d).getIdcliente();
                 Funcionario idFuncionario = ((Marcacao) d).getIdfuncionario();
+                Tipomarcacao realizado = ((Marcacao) d).getRealizado();
          
          marcacaoList.add(new Marcacao(id,data, horario,idCliente, idFuncionario)  );
             
@@ -173,6 +175,8 @@ public class CriarConsultaController implements Initializable {
         
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
+        
+        Tipomarcacao tipo = new Tipomarcacao( new BigDecimal("2") );
             
         Marcacao marca = new Marcacao();
             
@@ -180,6 +184,7 @@ public class CriarConsultaController implements Initializable {
             marca.setIdcliente(c);
             marca.setData(data);
             marca.setHorario(horario);
+            marca.setRealizado(tipo);
             
         
         em.getTransaction().begin();

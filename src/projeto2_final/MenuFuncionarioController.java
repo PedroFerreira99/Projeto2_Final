@@ -33,8 +33,8 @@ public class MenuFuncionarioController implements Initializable {
     
     public void consultClientes(ActionEvent event) throws IOException {
        
-        FXRouter.when("ConsultarClientes", "ConsultarClientes.fxml");     
-        FXRouter.goTo("ConsultarClientes" , f);
+        FXRouter.when("ConsultarClientesFuncionario", "ConsultarClientesFuncionario.fxml");     
+        FXRouter.goTo("ConsultarClientesFuncionario" , f);
     }
     
     public void meuHorario(ActionEvent event) throws IOException {
@@ -49,4 +49,21 @@ public class MenuFuncionarioController implements Initializable {
         FXRouter.goTo("ConsultarMinhasAulasFuncionario" , f);
     }
     
+    public void consultarRegistosMarcacoes(ActionEvent event) throws IOException {
+       
+        FXRouter.when("ConsultarRegistosMarcacoes", "ConsultarRegistosMarcacoes.fxml");     
+        FXRouter.goTo("ConsultarRegistosMarcacoes" , f);
+    }
+    
+    public void consultarConsultasEfetuadas(ActionEvent event) throws IOException {
+       
+        FXRouter.when("ConsultarConsultasEfetuadas", "ConsultarConsultasEfetuadas.fxml");     
+        FXRouter.goTo("ConsultarConsultasEfetuadas" , f);
+    }
+    
+    public void efetuarPagamentoCliente(ActionEvent event) throws IOException {
+       
+        FXRouter.when("EfetuarPagamentosFuncionario", "EfetuarPagamentosFuncionario.fxml");     
+        FXRouter.goTo("EfetuarPagamentosFuncionario" , f);
+    }
 }

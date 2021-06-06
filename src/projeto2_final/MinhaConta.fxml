@@ -54,7 +54,7 @@
          </children></Pane>
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="25.0" layoutY="9.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="FisioGYM" textFill="#eeb623">
+            <Button layoutX="25.0" layoutY="9.0" mnemonicParsing="false" onAction="#voltarMenu" style="-fx-background-color: #264653;" text="FisioGYM" textFill="#eeb623">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>

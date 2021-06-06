@@ -68,5 +68,11 @@ public class MenuClienteController implements Initializable {
         FXRouter.when("ConsultarMinhasAulas", "ConsultarMinhasAulas.fxml");     
         FXRouter.goTo("ConsultarMinhasAulas", c);
     }
+    
+    public void consultMinhasConsultas(ActionEvent event) throws IOException {
+            
+        FXRouter.when("ConsultarMinhasConsultasCliente", "ConsultarMinhasConsultasCliente.fxml");     
+        FXRouter.goTo("ConsultarMinhasConsultasCliente", c);
+    }
      
 }

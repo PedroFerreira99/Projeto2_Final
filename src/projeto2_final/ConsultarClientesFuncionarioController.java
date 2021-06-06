@@ -138,8 +138,8 @@ public class ConsultarClientesFuncionarioController implements Initializable {
     
     public void paginaCriarClientes(ActionEvent event) throws IOException {
 
-        FXRouter.when("CriarCliente", "CriarCliente.fxml");     
-        FXRouter.goTo("CriarCliente", f);
+        FXRouter.when("CriarClienteFuncionario", "CriarClienteFuncionario.fxml");     
+        FXRouter.goTo("CriarClienteFuncionario", f);
     }
     
     public void paginaEditarCliente(ActionEvent event) throws IOException {

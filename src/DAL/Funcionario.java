@@ -64,13 +64,13 @@ public class Funcionario implements Serializable {
     private String email;
     @Column(name = "PASSWORD")
     private String password;
+    @JoinColumn(name = "TIPOFUNCIONARIO", referencedColumnName = "ID_TIPOFUNCIONARIO")
+    @ManyToOne
+    private Tipofuncionario tipofuncionario;
     @OneToMany(mappedBy = "idfuncionario")
     private List<Horario> horarioList;
     @OneToMany(mappedBy = "idfuncionario")
     private List<Aula> aulaList;
-    @JoinColumn(name = "TIPOFUNCIONARIO", referencedColumnName = "ID_TIPOFUNCIONARIO")
-    @ManyToOne
-    private Tipofuncionario tipofuncionario;
     @OneToMany(mappedBy = "idfuncionario")
     private List<Marcacao> marcacaoList;
 
@@ -164,6 +164,14 @@ public class Funcionario implements Serializable {
         this.password = password;
     }
 
+    public Tipofuncionario getTipofuncionario() {
+        return tipofuncionario;
+    }
+
+    public void setTipofuncionario(Tipofuncionario tipofuncionario) {
+        this.tipofuncionario = tipofuncionario;
+    }
+
     @XmlTransient
     public List<Horario> getHorarioList() {
         return horarioList;
@@ -180,14 +188,6 @@ public class Funcionario implements Serializable {
 
     public void setAulaList(List<Aula> aulaList) {
         this.aulaList = aulaList;
-    }
-
-    public Tipofuncionario getTipofuncionario() {
-        return tipofuncionario;
-    }
-
-    public void setTipofuncionario(Tipofuncionario tipofuncionario) {
-        this.tipofuncionario = tipofuncionario;
     }
 
     @XmlTransient

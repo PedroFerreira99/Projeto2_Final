@@ -158,4 +158,8 @@ public class MinhaContaController implements Initializable {
         }
     }
     
+    public void voltarMenu(ActionEvent event) throws IOException {    
+        FXRouter.when("MenuCliente", "MenuCliente.fxml");     
+        FXRouter.goTo("MenuCliente");
+    }
 }

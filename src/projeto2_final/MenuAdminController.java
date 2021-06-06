@@ -76,4 +76,10 @@ public class MenuAdminController implements Initializable {
         FXRouter.goTo("ConsultarHorarioFuncionario");
     }
     
+/*    public void efetuarPagamentoCliente(ActionEvent event) throws IOException {
+            
+        FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
+        FXRouter.goTo("ConsultarHorarioFuncionario");
+    }
+    */
 }

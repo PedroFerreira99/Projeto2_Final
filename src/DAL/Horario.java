@@ -27,7 +27,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h")
-   // , @NamedQuery(name = "Horario.findLikeNome", query = "SELECT h FROM Horario h")
     , @NamedQuery(name = "Horario.findAllDistinct", query = "SELECT h FROM Horario h WHERE h.idhorario IN (SELECT MIN(h.idhorario) FROM Horario h GROUP BY h.idfuncionario ) ORDER BY h.idfuncionario")
     , @NamedQuery(name = "Horario.findByIdfuncionario", query = "SELECT h FROM Horario h WHERE h.idfuncionario = :idfuncionario")
     , @NamedQuery(name = "Horario.findByIdhorario", query = "SELECT h FROM Horario h WHERE h.idhorario = :idhorario")

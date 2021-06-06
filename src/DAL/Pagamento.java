@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p")
     , @NamedQuery(name = "Pagamento.findByIdpagamento", query = "SELECT p FROM Pagamento p WHERE p.idpagamento = :idpagamento")
     , @NamedQuery(name = "Pagamento.findByPreco", query = "SELECT p FROM Pagamento p WHERE p.preco = :preco")
+    , @NamedQuery(name = "Pagamento.findByCliente", query = "SELECT p FROM Pagamento p WHERE p.idcliente = :idcliente order by p.idcliente")
     , @NamedQuery(name = "Pagamento.findByData", query = "SELECT p FROM Pagamento p WHERE p.data = :data")})
 public class Pagamento implements Serializable {
 
@@ -54,6 +55,15 @@ public class Pagamento implements Serializable {
 
     public Pagamento(BigDecimal idpagamento) {
         this.idpagamento = idpagamento;
+
+    }
+    
+    public Pagamento(BigDecimal idpagamento, Double preco, String data, Cliente idcliente, Tipopagamento tipopagamento) {
+        this.idpagamento = idpagamento;
+        this.preco = preco;
+        this.data = data;
+        this.idcliente = idcliente;
+        this.tipopagamento = tipopagamento;
     }
 
     public BigDecimal getIdpagamento() {

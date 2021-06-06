@@ -52,11 +52,11 @@ public class Aula implements Serializable {
     private String horarioinicial;
     @Column(name = "HORARIOFINAL")
     private String horariofinal;
+    @OneToMany(mappedBy = "idaula")
+    private List<ClienteAula> clienteAulaList;
     @JoinColumn(name = "IDFUNCIONARIO", referencedColumnName = "IDFUNCIONARIO")
     @ManyToOne
     private Funcionario idfuncionario;
-    @OneToMany(mappedBy = "idaula")
-    private List<ClienteAula> clienteAulaList;
 
     public Aula() {
     }
@@ -114,14 +114,6 @@ public class Aula implements Serializable {
         this.horariofinal = horariofinal;
     }
 
-    public Funcionario getIdfuncionario() {
-        return idfuncionario;
-    }
-
-    public void setIdfuncionario(Funcionario idfuncionario) {
-        this.idfuncionario = idfuncionario;
-    }
-
     @XmlTransient
     public List<ClienteAula> getClienteAulaList() {
         return clienteAulaList;
@@ -129,6 +121,14 @@ public class Aula implements Serializable {
 
     public void setClienteAulaList(List<ClienteAula> clienteAulaList) {
         this.clienteAulaList = clienteAulaList;
+    }
+
+    public Funcionario getIdfuncionario() {
+        return idfuncionario;
+    }
+
+    public void setIdfuncionario(Funcionario idfuncionario) {
+        this.idfuncionario = idfuncionario;
     }
 
     @Override

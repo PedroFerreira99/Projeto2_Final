@@ -68,12 +68,12 @@ public class Cliente implements Serializable {
     @Column(name = "USERNAME")
     private String username;
     @OneToMany(mappedBy = "idcliente")
-    private List<Pagamento> pagamentoList;
-    @OneToMany(mappedBy = "idcliente")
     private List<ClienteAula> clienteAulaList;
     @JoinColumn(name = "IDPLANO", referencedColumnName = "IDPLANO")
     @ManyToOne
     private Plano idplano;
+    @OneToMany(mappedBy = "idcliente")
+    private List<Pagamento> pagamentoList;
     @OneToMany(mappedBy = "idcliente")
     private List<Marcacao> marcacaoList;
 
@@ -178,15 +178,6 @@ public class Cliente implements Serializable {
     }
 
     @XmlTransient
-    public List<Pagamento> getPagamentoList() {
-        return pagamentoList;
-    }
-
-    public void setPagamentoList(List<Pagamento> pagamentoList) {
-        this.pagamentoList = pagamentoList;
-    }
-
-    @XmlTransient
     public List<ClienteAula> getClienteAulaList() {
         return clienteAulaList;
     }
@@ -201,6 +192,15 @@ public class Cliente implements Serializable {
 
     public void setIdplano(Plano idplano) {
         this.idplano = idplano;
+    }
+
+    @XmlTransient
+    public List<Pagamento> getPagamentoList() {
+        return pagamentoList;
+    }
+
+    public void setPagamentoList(List<Pagamento> pagamentoList) {
+        this.pagamentoList = pagamentoList;
     }
 
     @XmlTransient

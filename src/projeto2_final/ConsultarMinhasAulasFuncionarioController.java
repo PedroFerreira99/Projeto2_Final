@@ -10,12 +10,14 @@ import DAL.Cliente;
 import DAL.ClienteAula;
 import DAL.Funcionario;
 import com.github.fxrouter.FXRouter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -118,4 +120,8 @@ public class ConsultarMinhasAulasFuncionarioController implements Initializable 
        //     new SimpleStringProperty(cellData.getValue().getIdaula().getIdfuncionario().getNome()));
     }    
     
+    public void voltarMenu(ActionEvent event) throws IOException {    
+        FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
+        FXRouter.goTo("MenuFuncionario");
+    }
 }
