@@ -74,6 +74,10 @@ public class ConsultarAulasClienteController implements Initializable {
     
     @FXML
     private Text criado;
+    
+    @FXML
+    private Text userNome;
+    
         
     ObservableList<Aula> aulaList = FXCollections.observableArrayList();
 
@@ -82,6 +86,8 @@ public class ConsultarAulasClienteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userNome.setText(c.getNome()); 
+        
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Aula.findAll");

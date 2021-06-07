@@ -43,23 +43,13 @@ public class MenuAdminController implements Initializable {
     }
     
     public void consultFuncionarios(ActionEvent event) throws IOException {
-       /* Parent root = FXMLLoader.load(getClass().getResource("ConsultarFuncionarios.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();*/
         
         FXRouter.when("ConsultarFuncionarios", "ConsultarFuncionarios.fxml");     
         FXRouter.goTo("ConsultarFuncionarios");
     }
     
     public void consultAdmins(ActionEvent event) throws IOException {
-       /* Parent root = FXMLLoader.load(getClass().getResource("ConsultarAdmins.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();*/
-        
+
         FXRouter.when("ConsultarAdmins", "ConsultarAdmins.fxml");     
         FXRouter.goTo("ConsultarAdmins");
     }
@@ -76,10 +66,10 @@ public class MenuAdminController implements Initializable {
         FXRouter.goTo("ConsultarHorarioFuncionario");
     }
     
-/*    public void efetuarPagamentoCliente(ActionEvent event) throws IOException {
+    public void efetuarPagamentoCliente(ActionEvent event) throws IOException {
             
-        FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
-        FXRouter.goTo("ConsultarHorarioFuncionario");
+        FXRouter.when("EfetuarPagamentosAdmin", "EfetuarPagamentosAdmin.fxml");     
+        FXRouter.goTo("EfetuarPagamentosAdmin");
     }
-    */
+    
 }

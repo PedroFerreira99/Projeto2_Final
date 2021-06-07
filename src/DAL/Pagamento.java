@@ -29,8 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pagamento.findAll", query = "SELECT p FROM Pagamento p")
     , @NamedQuery(name = "Pagamento.findByIdpagamento", query = "SELECT p FROM Pagamento p WHERE p.idpagamento = :idpagamento")
     , @NamedQuery(name = "Pagamento.findByPreco", query = "SELECT p FROM Pagamento p WHERE p.preco = :preco")
-    , @NamedQuery(name = "Pagamento.findByCliente", query = "SELECT p FROM Pagamento p WHERE p.idcliente = :idcliente order by p.idcliente")
-    , @NamedQuery(name = "Pagamento.findByData", query = "SELECT p FROM Pagamento p WHERE p.data = :data")})
+    , @NamedQuery(name = "Pagamento.findByCliente", query = "SELECT p FROM Pagamento p WHERE p.idcliente = :idcliente order by p.mes")
+    , @NamedQuery(name = "Pagamento.findByData", query = "SELECT p FROM Pagamento p WHERE p.mes = :mes")})
 public class Pagamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,11 +41,12 @@ public class Pagamento implements Serializable {
     private BigDecimal idpagamento;
     @Column(name = "PRECO")
     private Double preco;
-    @Column(name = "DATA")
-    private String data;
     @JoinColumn(name = "IDCLIENTE", referencedColumnName = "IDCLIENTE")
     @ManyToOne
     private Cliente idcliente;
+    @JoinColumn(name = "MES", referencedColumnName = "IDMES")
+    @ManyToOne
+    private Mes mes;
     @JoinColumn(name = "TIPOPAGAMENTO", referencedColumnName = "IDPAGAMENTO")
     @ManyToOne
     private Tipopagamento tipopagamento;
@@ -55,13 +56,12 @@ public class Pagamento implements Serializable {
 
     public Pagamento(BigDecimal idpagamento) {
         this.idpagamento = idpagamento;
-
     }
     
-    public Pagamento(BigDecimal idpagamento, Double preco, String data, Cliente idcliente, Tipopagamento tipopagamento) {
+    public Pagamento(BigDecimal idpagamento, Double preco, Mes mes, Cliente idcliente, Tipopagamento tipopagamento) {
         this.idpagamento = idpagamento;
         this.preco = preco;
-        this.data = data;
+        this.mes = mes;
         this.idcliente = idcliente;
         this.tipopagamento = tipopagamento;
     }
@@ -82,20 +82,20 @@ public class Pagamento implements Serializable {
         this.preco = preco;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
     public Cliente getIdcliente() {
         return idcliente;
     }
 
     public void setIdcliente(Cliente idcliente) {
         this.idcliente = idcliente;
+    }
+
+    public Mes getMes() {
+        return mes;
+    }
+
+    public void setMes(Mes mes) {
+        this.mes = mes;
     }
 
     public Tipopagamento getTipopagamento() {

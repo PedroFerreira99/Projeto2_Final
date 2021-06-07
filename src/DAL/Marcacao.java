@@ -83,7 +83,7 @@ public class Marcacao implements Serializable {
         this.idfuncionario = idfuncionario;
         this.realizado = realizado;
     }
-
+        
     public BigDecimal getIdmarcacao() {
         return idmarcacao;
     }

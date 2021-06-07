@@ -89,16 +89,7 @@ public class ConsultarAulasController implements Initializable {
             String horafim = ((Aula) d).getHorariofinal();
             
             String nomeF =  ((Aula) d).getIdfuncionario().getNome().toString();
-            
-        //    System.out.println("nome:" +nomeF);
-//            BigDecimal idFunc = new BigDecimal(  ((Aula) d).getIdfuncionario().toString());
-//            String nomeFunc = ((Aula) d).getIdfuncionario().getNome();
-            
-          //  Funcionario ff = new Funcionario( new BigDecimal( ((Aula) d).getIdfuncionario() ) );
-          //  
-            //Funcionario ff = new Funcionario(  );
-            //ff.setIdfuncionario(new BigDecimal(  id ) );
-            //ff.setNome(nomeF);
+
             
             Funcionario funcionario = ((Aula) d).getIdfuncionario();
             funcionario.setNome(nomeF);
@@ -140,9 +131,7 @@ public class ConsultarAulasController implements Initializable {
         
     if (tableAulas.getSelectionModel().getSelectedItem() != null) {
         Aula a = tableAulas.getSelectionModel().getSelectedItem();
-        //nameTextField.setText(a.getName());
-       // addressTextField.setText(a.getAddress());
-     //   System.out.println("valores:" +a.getNome() );
+
         
         FXRouter.when("EditarAula", "EditarAula.fxml");     
         FXRouter.goTo("EditarAula", a);

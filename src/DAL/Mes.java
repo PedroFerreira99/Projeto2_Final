@@ -24,38 +24,38 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Pedro Ferreira
  */
 @Entity
-@Table(name = "TIPOMARCACAO")
+@Table(name = "MES")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tipomarcacao.findAll", query = "SELECT t FROM Tipomarcacao t")
-    , @NamedQuery(name = "Tipomarcacao.findByIdtipo", query = "SELECT t FROM Tipomarcacao t WHERE t.idtipo = :idtipo")
-    , @NamedQuery(name = "Tipomarcacao.findByNome", query = "SELECT t FROM Tipomarcacao t WHERE t.nome = :nome")})
-public class Tipomarcacao implements Serializable {
+    @NamedQuery(name = "Mes.findAll", query = "SELECT m FROM Mes m")
+    , @NamedQuery(name = "Mes.findByIdmes", query = "SELECT m FROM Mes m WHERE m.idmes = :idmes")
+    , @NamedQuery(name = "Mes.findByNome", query = "SELECT m FROM Mes m WHERE m.nome = :nome")})
+public class Mes implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "IDTIPO")
-    private BigDecimal idtipo;
+    @Column(name = "IDMES")
+    private BigDecimal idmes;
     @Column(name = "NOME")
     private String nome;
-    @OneToMany(mappedBy = "realizado")
-    private List<Marcacao> marcacaoList;
+    @OneToMany(mappedBy = "mes")
+    private List<Pagamento> pagamentoList;
 
-    public Tipomarcacao() {
+    public Mes() {
     }
 
-    public Tipomarcacao(BigDecimal idtipo) {
-        this.idtipo = idtipo;
+    public Mes(BigDecimal idmes) {
+        this.idmes = idmes;
     }
 
-    public BigDecimal getIdtipo() {
-        return idtipo;
+    public BigDecimal getIdmes() {
+        return idmes;
     }
 
-    public void setIdtipo(BigDecimal idtipo) {
-        this.idtipo = idtipo;
+    public void setIdmes(BigDecimal idmes) {
+        this.idmes = idmes;
     }
 
     public String getNome() {
@@ -67,29 +67,29 @@ public class Tipomarcacao implements Serializable {
     }
 
     @XmlTransient
-    public List<Marcacao> getMarcacaoList() {
-        return marcacaoList;
+    public List<Pagamento> getPagamentoList() {
+        return pagamentoList;
     }
 
-    public void setMarcacaoList(List<Marcacao> marcacaoList) {
-        this.marcacaoList = marcacaoList;
+    public void setPagamentoList(List<Pagamento> pagamentoList) {
+        this.pagamentoList = pagamentoList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idtipo != null ? idtipo.hashCode() : 0);
+        hash += (idmes != null ? idmes.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Tipomarcacao)) {
+        if (!(object instanceof Mes)) {
             return false;
         }
-        Tipomarcacao other = (Tipomarcacao) object;
-        if ((this.idtipo == null && other.idtipo != null) || (this.idtipo != null && !this.idtipo.equals(other.idtipo))) {
+        Mes other = (Mes) object;
+        if ((this.idmes == null && other.idmes != null) || (this.idmes != null && !this.idmes.equals(other.idmes))) {
             return false;
         }
         return true;
@@ -97,7 +97,7 @@ public class Tipomarcacao implements Serializable {
 
     @Override
     public String toString() {
-        return "DAL.Tipomarcacao[ idtipo=" + idtipo + " ]";
+        return "DAL.Mes[ idmes=" + idmes + " ]";
     }
     
 }

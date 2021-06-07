@@ -76,12 +76,17 @@ public class MinhaContaController implements Initializable {
     
     @FXML
     private Text criarVazio;
+    
+    @FXML
+    private Text userNome;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        userNome.setText(c.getNome());
         
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -160,6 +165,6 @@ public class MinhaContaController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {    
         FXRouter.when("MenuCliente", "MenuCliente.fxml");     
-        FXRouter.goTo("MenuCliente");
+        FXRouter.goTo("MenuCliente" , c);
     }
 }

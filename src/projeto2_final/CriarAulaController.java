@@ -69,14 +69,6 @@ public class CriarAulaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*clienteNome.setText("");
-        clienteUsername.setText("");
-        clienteMorada.setText("");
-        clienteEmail.setText("");
-        clienteNcc.setText("");
-        clienteTelemovel.setText("");
-        clientePassword.setText("");
-        */
         
         
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
@@ -123,13 +115,6 @@ public class CriarAulaController implements Initializable {
             a.setHorarioinicial(horaInicioInput);
             a.setHorariofinal(horaFimInput);
           
-            
-         //   System.out.println("valor nome:" +nomeInput);
-           // System.out.println("valor data:" +dataInput);
-           // System.out.println("valor funcio:" +funcionarioInput);
-           // System.out.println("valor horainicio:" +horaInicioInput);
-          //  System.out.println("valor horafim:" +fid);
-            //System.out.println("valor recebido idf:" +fid.getIdfuncionario());
 
            
            

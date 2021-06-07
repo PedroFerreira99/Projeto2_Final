@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,10 +32,14 @@ import javax.persistence.Query;
  */
 public class MeuHorarioController implements Initializable {
     
+    
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
     Funcionario f = (Funcionario) FXRouter.getData(); 
+    
+    @FXML
+    private Text nomeUtilizador;
 
     
    // @FXML
@@ -88,6 +93,8 @@ public class MeuHorarioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        nomeUtilizador.setText(f.getNome());
                         
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em1 = factory.createEntityManager();
@@ -146,7 +153,7 @@ public class MeuHorarioController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {
         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-        FXRouter.goTo("MenuFuncionario");
+        FXRouter.goTo("MenuFuncionario" , f);
     }
     
 }

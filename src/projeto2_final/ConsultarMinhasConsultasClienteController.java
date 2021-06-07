@@ -65,6 +65,9 @@ public class ConsultarMinhasConsultasClienteController implements Initializable 
     @FXML
     private Text editarVazio;
     
+    @FXML
+    private Text userNome;
+    
     ObservableList<Marcacao> aulaList = FXCollections.observableArrayList();
 
     /**
@@ -73,7 +76,7 @@ public class ConsultarMinhasConsultasClienteController implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                
-        
+        userNome.setText(c.getNome());
         
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -106,18 +109,6 @@ public class ConsultarMinhasConsultasClienteController implements Initializable 
         col_id.setCellValueFactory(new PropertyValueFactory<>("idmarcacao"));
         col_data.setCellValueFactory(new PropertyValueFactory<>("data"));
         col_horario.setCellValueFactory(new PropertyValueFactory<>("horario"));
-        //col_realizado.setCellValueFactory(new PropertyValueFactory<>("realizado"));
-        
-     /*   col_cliente.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdcliente().getNome()));
-        
-        col_emailcliente.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdcliente().getEmail()));*/
-        
-      //  col_data.setCellValueFactory(cellData -> 
-        //    new SimpleStringProperty(cellData.getValue().getData()));
-      //  col_horario.setCellValueFactory(cellData -> 
-        //    new SimpleStringProperty(cellData.getValue().getIdmarcacao().getHorario())); 
 
         col_funcionario.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getIdfuncionario().getNome()));
@@ -146,6 +137,12 @@ public class ConsultarMinhasConsultasClienteController implements Initializable 
     }else{
        editarVazio.setText("Selecione uma consulta");
     }
+    }
+    
+    public void voltarMenu(ActionEvent event) throws IOException {
+        
+        FXRouter.when("MenuCliente", "MenuCliente.fxml");     
+        FXRouter.goTo("MenuCliente", c);
     }
 
     

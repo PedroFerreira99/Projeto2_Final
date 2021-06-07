@@ -50,6 +50,8 @@ public class CriarConsultaController implements Initializable {
     private static EntityManagerFactory factory;
     private Funcionario ff ;
     
+    boolean existe = false;
+    
     String[] horarios= {"02:00", "02:30", "03:00", "03:30", "04:00" };
     //ArrayList<String> horarios = new ArrayList<String>(Arrays.asList( "02:00", "02:30", "03:00", "03:30", "04:00") );
     
@@ -82,6 +84,9 @@ public class CriarConsultaController implements Initializable {
     @FXML
     private TableColumn<Marcacao, String> col_hora;
     
+    @FXML
+    private Text userNome;
+    
     ObservableList<String> funcionarioList = FXCollections.observableArrayList();
     
     ObservableList<String> horariosList = FXCollections.observableArrayList();
@@ -93,6 +98,8 @@ public class CriarConsultaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        userNome.setText(c.getNome());
         
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -168,6 +175,8 @@ public class CriarConsultaController implements Initializable {
     
     public void marcarConsulta (ActionEvent event) throws IOException {
         
+        if(!existe){
+        
         String nomeFuncionario = consultaFuncionario.getValue().toString();
         String data = consultaData.getValue().toString();
         String horario = consultaHorario.getValue().toString();
@@ -193,6 +202,8 @@ public class CriarConsultaController implements Initializable {
 
         FXRouter.when("MenuCliente", "MenuCliente.fxml");     
         FXRouter.goTo("MenuCliente", c);
+        
+         }
        
     }
     
@@ -221,6 +232,7 @@ public class CriarConsultaController implements Initializable {
     
     public void escolherHorario (ActionEvent event) throws IOException {
           horarioCheio.setText("");
+          existe = false;
 
         if(consultaHorario.getValue() != null ){
           String nomeFuncionario = consultaFuncionario.getValue().toString();
@@ -241,6 +253,8 @@ public class CriarConsultaController implements Initializable {
 
                 if(((Marcacao) d).getHorario().equals(consultaHorario.getValue().toString())){
                     horarioCheio.setText("ja existe consulta nesse dia");
+                    
+                    existe = true;
                 }
                                
                 

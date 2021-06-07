@@ -5,14 +5,10 @@
  */
 package projeto2_final;
 
-import DAL.Avaliacao;
 import DAL.Cliente;
-import DAL.Funcionario;
-import DAL.Marcacao;
 import DAL.Mes;
 import DAL.Pagamento;
 import DAL.Plano;
-import DAL.Tipomarcacao;
 import DAL.Tipopagamento;
 import com.github.fxrouter.FXRouter;
 import java.io.IOException;
@@ -26,7 +22,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -43,12 +38,10 @@ import javax.persistence.Query;
  *
  * @author Pedro Ferreira
  */
-public class EfetuarPagamentosFuncionarioController implements Initializable {
+public class EfetuarPagamentosAdminController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
-    
-    Funcionario f = (Funcionario) FXRouter.getData(); 
     
     boolean existe = false;
     
@@ -99,9 +92,6 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
     @FXML
     private TextField nomeProcurar;
     
-    @FXML
-    private Text nomeUtilizador;
-    
 
     ObservableList<Cliente> clienteList = FXCollections.observableArrayList();
     
@@ -116,9 +106,6 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        nomeUtilizador.setText(f.getNome());
-        
         procurarNome();
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -145,12 +132,14 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
             
             Plano pp = ((Cliente) d).getIdplano();
                 
-            clienteList.add(new Cliente(id, nome, username, telemovel, ncc, rua, email, data, sexo, pp));           
+
+            clienteList.add(new Cliente(id, nome, username, telemovel, ncc, rua, email, data, sexo, pp));
+            
             tableClientes.setItems(clienteList);
             
-
+            
             col_nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            col_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+            col_email.setCellValueFactory(new PropertyValueFactory<>("email")); 
             col_plano.setCellValueFactory(cellData -> 
                 new SimpleStringProperty(cellData.getValue().getIdplano().getNome()));
             col_preco.setCellValueFactory(cellData -> 
@@ -158,29 +147,27 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
  
             }
         
-
         Query qq = em.createNamedQuery("Tipopagamento.findAll");
         for (Object dd : qq.getResultList()) {
                       
             String tipo = ((Tipopagamento) dd).getNome();
             
-
             metodoList.addAll(tipo);
             metodoPaga.getItems().setAll(metodoList);
 
-            }   
-        
-    }
-
+            } 
+    }   
+    
+    
     public void tabelaClientes (ActionEvent event) throws IOException {
 
-        //clienteList.clear();
+
         tabelaMensalidades.getItems().clear();
-      //  consultaTabela.getItems().clear();
 
         if(tableClientes.getSelectionModel().getSelectedItem() != null){
             
             Cliente c = tableClientes.getSelectionModel().getSelectedItem();
+          
           
       precoInput.setText(c.getIdplano().getPreco().toString());
         
@@ -198,9 +185,11 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
                 Tipopagamento tipoPaga = ((Pagamento) d).getTipopagamento();
 
          
-        pagamentoList.add(new Pagamento(id, preco, mes, idCliente, tipoPaga)  );    
+         pagamentoList.add(new Pagamento(id, preco, mes, idCliente, tipoPaga)  );
+            
         tabelaMensalidades.setItems(pagamentoList);
-     
+                
+         //   }      
        }
         
         
@@ -209,12 +198,14 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
                       
             String nomeMes = ((Mes) dd).getNome();
             
+
             mesList.addAll(nomeMes);
             mesMensalidade.getItems().setAll(mesList);
 
             } 
       }
-
+        
+    
         col_clienteMensalidade.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getIdcliente().getNome()));
         col_mesMensalidade.setCellValueFactory(cellData -> 
@@ -224,8 +215,8 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
     
     
     public void escolherMes (ActionEvent event) throws IOException {
-        existe = false;
-        textErro.setText("");
+         existe = false;
+         textErro.setText("");
 
         if(mesMensalidade.getValue() != null ){
           String nomeMes = mesMensalidade.getValue().toString();
@@ -237,7 +228,6 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
         q.setParameter("idcliente", c);
         for (Object d : q.getResultList()) {
                     
-
                 BigDecimal id = ((Pagamento) d).getIdpagamento();
                 Cliente data = ((Pagamento) d).getIdcliente();
                 Mes horario = ((Pagamento) d).getMes();
@@ -248,8 +238,8 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
                 if(((Pagamento) d).getMes().getNome().equals(mesMensalidade.getValue().toString())){
                     
                     textErro.setText("ja esta pago");
-                    existe = true;
-                }
+                    existe = true;   
+            }
             
        }
        
@@ -257,10 +247,9 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
         
     }  
     
-    public void efetuarPagamento (ActionEvent event) throws IOException {
-        
+    public void efetuarPagamento (ActionEvent event) throws IOException {    
         if(!existe){
-        
+
         Cliente c = tableClientes.getSelectionModel().getSelectedItem();
         
         String mes = mesMensalidade.getValue().toString();
@@ -269,7 +258,8 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
         
         Mes idMes = descobrirId(mes);
         Tipopagamento tipo = null;
-
+        
+        
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         
@@ -291,8 +281,8 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
         em.persist(paga);
         em.getTransaction().commit();
 
-        FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-        FXRouter.goTo("MenuFuncionario", f);
+        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+        FXRouter.goTo("MenuAdmin");
          }
     }
     
@@ -321,7 +311,6 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
     
     nomeProcurar.textProperty().addListener((obs, oldText, newText) -> {
     //System.out.println("Text changed from "+oldText+" to "+newText);
-
     tableClientes.getItems().clear();
             
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
@@ -363,10 +352,9 @@ public class EfetuarPagamentosFuncionarioController implements Initializable {
     
     }
     
-    
     public void voltarMenu(ActionEvent event) throws IOException {    
-        FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-        FXRouter.goTo("MenuFuncionario" , f);
+        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+        FXRouter.goTo("MenuAdmin");
     }
     
 }

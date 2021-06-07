@@ -54,7 +54,7 @@
             </Pane>
             <Pane layoutX="643.0" layoutY="265.0" prefHeight="165.0" prefWidth="310.0" style="-fx-border-color: #000;">
                <children>
-                  <Button fx:id="consultarPagamentos" layoutX="13.0" layoutY="115.0" mnemonicParsing="false" style="-fx-background-color: #264653;" text="Consultar Pagamentos de mensalidades" textFill="WHITE" />
+                  <Button fx:id="consultarPagamentos" layoutX="13.0" layoutY="115.0" mnemonicParsing="false" onAction="#efetuarPagamentoCliente" style="-fx-background-color: #264653;" text="Consultar Pagamentos de mensalidades" textFill="WHITE" />
                   <ImageView fitHeight="100.0" fitWidth="90.0" layoutX="110.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Media/credit-card.png" />
@@ -87,7 +87,7 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <Text fill="WHITE" layoutX="966.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user">
+            <Text fill="WHITE" layoutX="966.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin">
                <font>
                   <Font size="24.0" />
                </font>

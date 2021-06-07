@@ -58,6 +58,9 @@ public class ConsultarMinhasAulasFuncionarioController implements Initializable 
     @FXML
     private TableColumn<Aula, String> col_horaFim;
     
+    @FXML
+    private Text nomeUtilizador;
+    
    // @FXML
   //  private TableColumn<Aula, String> col_funcionario;
         
@@ -70,7 +73,10 @@ public class ConsultarMinhasAulasFuncionarioController implements Initializable 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
+        
+        nomeUtilizador.setText(f.getNome());
+        
+        factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Aula.findByIdFuncionario");
        // System.out.println(c.getIdcliente());
@@ -122,6 +128,6 @@ public class ConsultarMinhasAulasFuncionarioController implements Initializable 
     
     public void voltarMenu(ActionEvent event) throws IOException {    
         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-        FXRouter.goTo("MenuFuncionario");
+        FXRouter.goTo("MenuFuncionario", f);
     }
 }

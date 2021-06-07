@@ -119,11 +119,6 @@ public class ConsultarAdminsController implements Initializable {
     
     
     public void voltarMenu(ActionEvent event) throws IOException {
-       /* Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();*/
         
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
         FXRouter.goTo("MenuAdmin");

@@ -64,7 +64,7 @@ public class Aula implements Serializable {
     public Aula(BigDecimal idaula) {
         this.idaula = idaula;
     }
-    
+
     public Aula(BigDecimal idaula, String nome, String diasemana, String horarioinicial, String horariofinal, Funcionario idfuncionario ) {
         this.idaula = idaula;
         this.nome = nome;
@@ -73,7 +73,7 @@ public class Aula implements Serializable {
         this.horariofinal = horariofinal;
         this.idfuncionario = idfuncionario;
     }
-
+    
     public BigDecimal getIdaula() {
         return idaula;
     }

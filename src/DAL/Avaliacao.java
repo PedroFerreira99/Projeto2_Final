@@ -28,10 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Avaliacao.findAll", query = "SELECT a FROM Avaliacao a")
     , @NamedQuery(name = "Avaliacao.findByIdavaliacao", query = "SELECT a FROM Avaliacao a WHERE a.idavaliacao = :idavaliacao")
-    , @NamedQuery(name = "Avaliacao.findByIdmarcacao", query = "SELECT a FROM Avaliacao a WHERE a.idmarcacao = :idmarcacao")
-  //  , @NamedQuery(name = "Avaliacao.findLikeNome", query = "SELECT a FROM Avaliacao a WHERE a.idmarcacao IN (SELECT m.idmarcacao from Marcacao m WHERE m.idcliente = (SELECT C.idcliente FROM Cliente C WHERE C.idcliente = :idcliente ) )")
-      
     , @NamedQuery(name = "Avaliacao.findBySexo", query = "SELECT a FROM Avaliacao a WHERE a.sexo = :sexo")
+    , @NamedQuery(name = "Avaliacao.findByIdmarcacao", query = "SELECT a FROM Avaliacao a WHERE a.idmarcacao = :idmarcacao")
     , @NamedQuery(name = "Avaliacao.findByPeso", query = "SELECT a FROM Avaliacao a WHERE a.peso = :peso")
     , @NamedQuery(name = "Avaliacao.findByAltura", query = "SELECT a FROM Avaliacao a WHERE a.altura = :altura")
     , @NamedQuery(name = "Avaliacao.findByDobraCutaneaTriceps", query = "SELECT a FROM Avaliacao a WHERE a.dobraCutaneaTriceps = :dobraCutaneaTriceps")

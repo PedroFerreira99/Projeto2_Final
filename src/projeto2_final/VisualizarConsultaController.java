@@ -11,7 +11,6 @@ import DAL.Marcacao;
 import com.github.fxrouter.FXRouter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -73,12 +72,18 @@ public class VisualizarConsultaController implements Initializable {
     @FXML
     private TextField avaliacaoPerna;
     
+    @FXML
+    private Text nomeUtilizador;
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        nomeUtilizador.setText(avaliacao.getIdmarcacao().getIdfuncionario().getNome());
+        
         avaliacaoNome.setText(avaliacao.getIdmarcacao().getIdcliente().getNome());
         avaliacaoEmail.setText(avaliacao.getIdmarcacao().getIdcliente().getEmail());
         avaliacaoSexo.setText(avaliacao.getIdmarcacao().getIdcliente().getSexo());
@@ -118,8 +123,21 @@ public class VisualizarConsultaController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {
         
+        Funcionario func = new Funcionario();
+        func.setIdfuncionario(avaliacao.getIdmarcacao().getIdfuncionario().getIdfuncionario());
+        func.setNome(avaliacao.getIdmarcacao().getIdfuncionario().getNome());
+        func.setNcc(avaliacao.getIdmarcacao().getIdfuncionario().getNcc());
+        func.setNif(avaliacao.getIdmarcacao().getIdfuncionario().getNif());
+        func.setDataNascimento(avaliacao.getIdmarcacao().getIdfuncionario().getDataNascimento());
+        func.setTelemovel(avaliacao.getIdmarcacao().getIdfuncionario().getTelemovel());
+        func.setRua(avaliacao.getIdmarcacao().getIdfuncionario().getRua());
+        func.setEmail(avaliacao.getIdmarcacao().getIdfuncionario().getEmail());
+        func.setPassword(avaliacao.getIdmarcacao().getIdfuncionario().getPassword());
+        func.setTipofuncionario(avaliacao.getIdmarcacao().getIdfuncionario().getTipofuncionario());
+        
+        
         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-        FXRouter.goTo("MenuFuncionario");
+        FXRouter.goTo("MenuFuncionario", func);
     }
     
 }

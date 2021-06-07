@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -22,6 +24,9 @@ import javafx.fxml.Initializable;
 public class MenuFuncionarioController implements Initializable {
     
     Funcionario f = (Funcionario) FXRouter.getData(); 
+    
+    @FXML
+    private Text nomeUtilizador;
 
     /**
      * Initializes the controller class.
@@ -29,12 +34,13 @@ public class MenuFuncionarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        nomeUtilizador.setText(f.getNome());
     } 
     
-    public void consultClientes(ActionEvent event) throws IOException {
+    public void consultMeusDados(ActionEvent event) throws IOException {
        
-        FXRouter.when("ConsultarClientesFuncionario", "ConsultarClientesFuncionario.fxml");     
-        FXRouter.goTo("ConsultarClientesFuncionario" , f);
+        FXRouter.when("MinhaContaFuncionario", "MinhaContaFuncionario.fxml");     
+        FXRouter.goTo("MinhaContaFuncionario" , f);
     }
     
     public void meuHorario(ActionEvent event) throws IOException {

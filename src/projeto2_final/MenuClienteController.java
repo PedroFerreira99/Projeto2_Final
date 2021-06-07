@@ -39,9 +39,7 @@ public class MenuClienteController implements Initializable {
     
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-        
+    public void initialize(URL url, ResourceBundle rb) { 
         userNome.setText(c.getNome());  
     }   
     
@@ -73,6 +71,12 @@ public class MenuClienteController implements Initializable {
             
         FXRouter.when("ConsultarMinhasConsultasCliente", "ConsultarMinhasConsultasCliente.fxml");     
         FXRouter.goTo("ConsultarMinhasConsultasCliente", c);
+    }
+    
+    public void consultMeusPagamentos(ActionEvent event) throws IOException {
+            
+        FXRouter.when("ConsultarPagamentosCliente", "ConsultarPagamentosCliente.fxml");     
+        FXRouter.goTo("ConsultarPagamentosCliente", c);
     }
      
 }

@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -41,9 +42,6 @@ public class ConsultarHorarioFuncionarioController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
-    
-   // @FXML
-  //  private ChoiceBox horarioFuncionario;
     
     
     @FXML
@@ -62,6 +60,9 @@ public class ConsultarHorarioFuncionarioController implements Initializable {
     
     @FXML
     private TextField nomeFuncionario;
+     
+    @FXML
+    private Text editarVazio;
     
     /**
      * Initializes the controller class.
@@ -80,46 +81,22 @@ public class ConsultarHorarioFuncionarioController implements Initializable {
             
             BigDecimal id = ((Horario) d).getIdhorario();
             Funcionario idFunc = ((Horario) d).getIdfuncionario();
-          //  String email = ((Horario) d).getIdfuncionario().getEmail();
-       //     BigInteger nif = ((Horario) d).getNif();
 
-       //     System.out.println(idFunc);
             
-            horarioList.add(new Horario (id,idFunc) )  ;
-            
+            horarioList.add(new Horario (id,idFunc) )  ;            
             tableHorarios.setItems(horarioList);
             
             
             
             col_id.setCellValueFactory(cellData -> 
                  new SimpleStringProperty(cellData.getValue().getIdfuncionario().getIdfuncionario().toString()));
-                        //.getValue().getIdfuncionario().getRua()));
             col_nome.setCellValueFactory(cellData -> 
                 new SimpleStringProperty(cellData.getValue().getIdfuncionario().getNome()));
             col_email.setCellValueFactory(cellData -> 
                 new SimpleStringProperty(cellData.getValue().getIdfuncionario().getEmail()));
-           // col_id.setText( i.toString() );
-            
-            
-           // col_id.setCellValueFactory(new PropertyValueFactory<>(i.toString()));
-         //   col_id.setCellValueFactory(i);
-          //  col_id.setCellValueFactory(cellData -> 
-         //       new SimpleStringProperty(cellData.getValue().getIdplano().getNome()));
-
-         //   i++;
-          //  }
         } 
     }    
-    
-    
-    public void criarHorario(ActionEvent event) throws IOException {
-            
-        FXRouter.when("CriarHorarioFuncionario", "CriarHorarioFuncionario.fxml");     
-        FXRouter.goTo("CriarHorarioFuncionario");
-    }
-    
-        
-
+          
     
     public void CriarHorario(ActionEvent event) throws IOException {
         FXRouter.when("CriarHorarioFuncionario", "CriarHorarioFuncionario.fxml");     
@@ -137,7 +114,7 @@ public class ConsultarHorarioFuncionarioController implements Initializable {
         
         System.out.println("cliente:" +h.getIdfuncionario().getIdfuncionario());
     }else{
-        //editarVazio.setText("Selecione um cliente");
+        editarVazio.setText("Selecione um horario");
     }
     }
     

@@ -47,7 +47,7 @@ public class ConsultarClientesController implements Initializable {
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
-    Funcionario f = (Funcionario) FXRouter.getData(); 
+    
     
     
     @FXML
@@ -151,7 +151,7 @@ public class ConsultarClientesController implements Initializable {
       //  }else if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 2){
            
             FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-            FXRouter.goTo("MenuAdmin", f);
+            FXRouter.goTo("MenuAdmin");
       //  }
     }
     
@@ -162,7 +162,7 @@ public class ConsultarClientesController implements Initializable {
         stage.setScene(scene);
         stage.show();*/
         FXRouter.when("CriarCliente", "CriarCliente.fxml");     
-        FXRouter.goTo("CriarCliente", f);
+        FXRouter.goTo("CriarCliente");
     }
     
     public void paginaEditarCliente(ActionEvent event) throws IOException {

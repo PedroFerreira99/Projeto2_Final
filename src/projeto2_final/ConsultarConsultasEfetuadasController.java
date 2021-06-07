@@ -72,6 +72,9 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
     
     @FXML
     private TextField nomeProcurar;
+    
+    @FXML
+    private Text nomeUtilizador;
         
     ObservableList<Avaliacao> aulaList = FXCollections.observableArrayList();
     /**
@@ -81,44 +84,29 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+        nomeUtilizador.setText(f.getNome());
         
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Avaliacao.findAll");
         for (Object d : q.getResultList()) {
             
-          //  if(((Marcacao) d).getIdfuncionario().getIdfuncionario().intValue() == f.getIdfuncionario().intValue()){
+            if(((Avaliacao) d).getIdmarcacao().getIdfuncionario().getIdfuncionario().intValue() == f.getIdfuncionario().intValue()){
            
             
             BigDecimal id = ((Avaliacao) d).getIdavaliacao();
             Marcacao marcacao = ((Avaliacao) d).getIdmarcacao();
-           // Cliente cliente = ((Avaliacao) d).geti();
-            
-         //   String email = ((Avaliacao) d).get;
-          //  String data = ((Avaliacao) d).getData();
-        //    String horario = ((Avaliacao) d).getHorario();
-         //   Funcionario func = ((Avaliacao) d).getIdfuncionario();
-        //    Tipomarcacao realizado = ((Avaliacao) d).getRealizado();
-            
-            
-
             
             aulaList.add(new Avaliacao(id , marcacao)  );
-            
             tableMarcacoes.setItems(aulaList);
 
                 }
-            //}
-      //  Funcionario sss = new Funcionario();
-        
-        
-        
+            }
+
         col_id.setCellValueFactory(new PropertyValueFactory<>("idavaliacao"));
         
         col_cliente.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdcliente().getNome()));
-        
         col_emailcliente.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdcliente().getEmail()));
         
@@ -126,12 +114,10 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
             new SimpleStringProperty(cellData.getValue().getIdmarcacao().getData()));
         col_horario.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getIdmarcacao().getHorario())); 
-       // col_horaFim.setCellValueFactory(new PropertyValueFactory<>("horariofinal"));
+
         col_funcionario.setCellValueFactory(cellData -> 
             new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdfuncionario().getNome()));
-        
-      //  procurarNome();
-       // }  
+
     } 
     
     public void verConsulta(ActionEvent event) throws IOException {
@@ -144,7 +130,7 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
         
      //   System.out.println("cliente:" +h.getIdfuncionario().getIdfuncionario());
     }else{
-        //editarVazio.setText("Selecione um cliente");
+        editarVazio.setText("Selecione uma consulta");
     }
     }
 
@@ -207,4 +193,9 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
     
     
     }*/
+    
+    public void voltarMenu(ActionEvent event) throws IOException {    
+        FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
+        FXRouter.goTo("MenuFuncionario" , f);
+    }
 }

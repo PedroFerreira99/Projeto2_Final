@@ -77,8 +77,6 @@ public class LoginController implements Initializable {
             factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
             EntityManager em = factory.createEntityManager();
             Query q = em.createNamedQuery("Cliente.findAll");
-            //Query q = em.createNamedQuery("Cliente.findByEmail");
-           // q.setParameter("email", LoginEmail.getText());
             for (Object d : q.getResultList()) {
            
                 String email = ((Cliente) d).getEmail();     
@@ -86,73 +84,31 @@ public class LoginController implements Initializable {
                    
                 if (email.equals(LoginEmail.getText()) && pass.equals(LoginPassword.getText())) {
                    System.out.println(" \n - " + ((Cliente) d).getNome() );
-               /*    Plano idplano = (((Cliente) d).getIdplano());
-                   System.out.println("login certo");
-                   System.out.println(idplano);
-                   */
                    
                    Cliente c = new Cliente();
                    c =  (Cliente) d;
-                   
-                   
-               /*   Parent page_parent = FXMLLoader.load(getClass().getResource("MenuCliente.fxml"));
-                   Scene page_scene = new Scene(page_parent);
-                   Stage a = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                   a.setScene(page_scene);
-                   a.setUserData(c);
-                   a.show();*/
+
+               
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EscolherLogin.fxml")));
+                    stage.setScene(scene);
+                    stage.show();
                
                    FXRouter.when("MenuCliente", "MenuCliente.fxml");     
                    FXRouter.goTo("MenuCliente",c);
-                 //FXRouter.when("login", "MenuCliente.fxml");
-              /*   FXRouter.goTo("MenuAdmin.fxml"); 
-                   System.out.println(c.getRua());
-                   */
+
                 }else{
                     loginErrado.setText("login errado");
                 }
             }
-         
-                
-                
-                
+           
             }
-        
-        
-   /*     
-         factory= Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-        
-        String x = LoginEmail.getText();
-         System.out.println(x);
-    //     ((Node) (event.getSource())).getScene().getWindow().hide();
+ 
+    }
     
-    
-        Query q = em.createNamedQuery("Tipofuncionario.findByIdTipofuncionario");
-            q.setParameter("idTipofuncionario", "2");
-            
-        //    Object obj = q.getSingleResult();
-            
-        
-        
-        
-        
-        
-        
-             for(Object obj : q.getResultList()){
-            System.out.println( ((Tipofuncionario)obj).getNome());
-            
-        }*/
-          
-   /*     Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
-        
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-     
-        stage.setScene(scene);
-        stage.show();
-               */
-       
+    public void voltarMenu(ActionEvent event) throws IOException {
+        FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     
+        FXRouter.goTo("EscolherLogin");
     }
     
     

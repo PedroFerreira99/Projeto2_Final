@@ -69,6 +69,9 @@ public class ConsultarRegistosMarcacoesController implements Initializable {
     
     @FXML
     private Text editarVazio;
+    
+    @FXML
+    private Text nomeUtilizador;
         
     ObservableList<Marcacao> aulaList = FXCollections.observableArrayList();
 
@@ -77,6 +80,9 @@ public class ConsultarRegistosMarcacoesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        nomeUtilizador.setText(f.getNome());
+        
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Marcacao.findAll");

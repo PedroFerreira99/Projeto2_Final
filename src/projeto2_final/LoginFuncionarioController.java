@@ -98,7 +98,7 @@ public class LoginFuncionarioController implements Initializable {
                     if(tipoUser == 1){
                         
                         Stage stage = new Stage();
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("LoginFuncionario.fxml")));
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EscolherLogin.fxml")));
                         stage.setScene(scene);
                         stage.show();
                         
@@ -109,7 +109,7 @@ public class LoginFuncionarioController implements Initializable {
                     else if(tipoUser == 2){
                         
                         Stage stage = new Stage();
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("LoginFuncionario.fxml")));
+                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EscolherLogin.fxml")));
                         stage.setScene(scene);
                         stage.show();
                         
@@ -130,6 +130,11 @@ public class LoginFuncionarioController implements Initializable {
                 }
                 
         }      
+    
+    public void voltarMenu(ActionEvent event) throws IOException {
+        FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     
+        FXRouter.goTo("EscolherLogin");
+    }
     
     
     

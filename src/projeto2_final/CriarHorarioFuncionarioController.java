@@ -105,11 +105,8 @@ public class CriarHorarioFuncionarioController implements Initializable {
             if(((Funcionario) d).getTipofuncionario().getIdTipofuncionario().intValue() == 2){     
                 String nome = ((Funcionario) d).getNome();
 
-                //System.out.println(nome);
 
                 funcionarioList.addAll(nome);
-
-                //clientePlano.setItems(planoList);
                 choiseFuncionario.getItems().setAll(funcionarioList);
             }
         } 
@@ -117,8 +114,6 @@ public class CriarHorarioFuncionarioController implements Initializable {
     
     
     public void tabelaHorarios (ActionEvent event) throws IOException {
-     //   System.out.println("dddd");
-    //    System.out.println(choiseFuncionario.getValue());
 
         if(choiseFuncionario.getValue() != null ){
  
@@ -131,8 +126,6 @@ public class CriarHorarioFuncionarioController implements Initializable {
             Query q = em.createNamedQuery("Funcionario.findByNome");
             q.setParameter("nome", nomeFuncionario);
 
-           // String email= ((Funcionario) q).getEmail();
-           // System.out.println(email);
             
             Funcionario func = new Funcionario();
             func = (Funcionario) q.getSingleResult();
@@ -278,6 +271,11 @@ public class CriarHorarioFuncionarioController implements Initializable {
         }
         
         return f;
+    }
+    
+    public void voltarMenu(ActionEvent event) throws IOException {    
+        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+        FXRouter.goTo("MenuAdmin");
     }
     
 }

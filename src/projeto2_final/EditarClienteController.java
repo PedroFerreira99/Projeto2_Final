@@ -215,7 +215,7 @@ public class EditarClienteController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin", c);
+        FXRouter.goTo("MenuAdmin");
     }
     
 }

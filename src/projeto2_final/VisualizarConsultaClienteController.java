@@ -6,16 +6,19 @@
 package projeto2_final;
 
 import DAL.Avaliacao;
+import DAL.Cliente;
 import DAL.Marcacao;
 import com.github.fxrouter.FXRouter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -67,11 +70,16 @@ public class VisualizarConsultaClienteController implements Initializable {
     
     @FXML
     private TextField avaliacaoPerna;
+    
+    @FXML
+    private Text userNome;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        userNome.setText(m.getIdcliente().getNome());
      //           avaliacaoNome.setText(avaliacao.getIdmarcacao().getIdcliente().getNome());
        // avaliacaoEmail.setText(avaliacao.getIdmarcacao().getIdcliente().getEmail());
        // avaliacaoSexo.setText(avaliacao.getIdmarcacao().getIdcliente().getSexo());
@@ -115,10 +123,42 @@ public class VisualizarConsultaClienteController implements Initializable {
     
     public void voltar(ActionEvent event) throws IOException {
         
-       // Cliente c = new Cliente();
+        Cliente cli = new Cliente();
+        cli.setIdcliente(m.getIdcliente().getIdcliente());
+        cli.setNome(m.getIdcliente().getNome());
+        cli.setNcc(m.getIdcliente().getNcc());
+        cli.setDataNascimento(m.getIdcliente().getDataNascimento());
+        cli.setTelemovel(m.getIdcliente().getTelemovel());
+        cli.setRua(m.getIdcliente().getRua());
+        cli.setEmail(m.getIdcliente().getEmail());
+        cli.setPassword(m.getIdcliente().getPassword());
+        cli.setIdplano(m.getIdcliente().getIdplano());
+        cli.setSexo(m.getIdcliente().getSexo());
+        cli.setUsername(m.getIdcliente().getUsername());
+        
         
         FXRouter.when("ConsultarMinhasConsultasCliente", "ConsultarMinhasConsultasCliente.fxml");     
-        FXRouter.goTo("ConsultarMinhasConsultasCliente");
+        FXRouter.goTo("ConsultarMinhasConsultasCliente" , cli);
+    }
+    
+    public void voltarMenu(ActionEvent event) throws IOException {
+        
+        Cliente cli = new Cliente();
+        cli.setIdcliente(m.getIdcliente().getIdcliente());
+        cli.setNome(m.getIdcliente().getNome());
+        cli.setNcc(m.getIdcliente().getNcc());
+        cli.setDataNascimento(m.getIdcliente().getDataNascimento());
+        cli.setTelemovel(m.getIdcliente().getTelemovel());
+        cli.setRua(m.getIdcliente().getRua());
+        cli.setEmail(m.getIdcliente().getEmail());
+        cli.setPassword(m.getIdcliente().getPassword());
+        cli.setIdplano(m.getIdcliente().getIdplano());
+        cli.setSexo(m.getIdcliente().getSexo());
+        cli.setUsername(m.getIdcliente().getUsername());
+        
+        
+        FXRouter.when("MenuCliente", "MenuCliente.fxml");     
+        FXRouter.goTo("MenuCliente" , cli);
     }
     
 }
