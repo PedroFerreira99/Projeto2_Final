@@ -38,6 +38,7 @@ public class EditarFuncionarioController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
+    private String password;
     
     Object arr[] = (Object[]) FXRouter.getData();
     Funcionario f = (Funcionario) arr[0];
@@ -88,7 +89,7 @@ public class EditarFuncionarioController implements Initializable {
         
             BigDecimal id = ((Funcionario) func).getIdfuncionario();
             String nome = ((Funcionario) func).getNome();
-            String password = ((Funcionario) func).getPassword();
+            password = ((Funcionario) func).getPassword();
             String morada = ((Funcionario) func).getRua();
             String email = ((Funcionario) func).getEmail();
             BigInteger ncc = ((Funcionario) func).getNcc();
@@ -117,23 +118,23 @@ public class EditarFuncionarioController implements Initializable {
         
       //  funcionarioData.setText("");
     
-        if (funcionarioNome.getText().isEmpty() || funcionarioPassword.getText().isEmpty() || funcionarioMorada.getText().isEmpty() || funcionarioEmail.getText().isEmpty() || funcionarioNcc.getText().isEmpty() || funcionarioNif.getText().isEmpty() || funcionarioData.getValue()==null || funcionarioTelemovel.getText().isEmpty() ) {
+        if (funcionarioNome.getText().isEmpty() || funcionarioMorada.getText().isEmpty() || funcionarioEmail.getText().isEmpty() || funcionarioNcc.getText().isEmpty() || funcionarioNif.getText().isEmpty() || funcionarioData.getValue()==null || funcionarioTelemovel.getText().isEmpty() ) {
                 criarVazio.setText("Preencha todos os campos");   
                 
          }else{
             String nomeInput = funcionarioNome.getText();
-            String passwordInput = BCrypt.hashpw(funcionarioPassword.getText(), BCrypt.gensalt());
             String moradaInput = funcionarioMorada.getText();
             String emailInput = funcionarioEmail.getText();
             BigInteger nccInput = new BigInteger(funcionarioNcc.getText());
             BigInteger nifInput = new BigInteger(funcionarioNif.getText());
             BigInteger telemovelInput = new BigInteger(funcionarioTelemovel.getText());
+            if(!funcionarioPassword.getText().isEmpty()){
+                password = BCrypt.hashpw(funcionarioPassword.getText(), BCrypt.gensalt());                
+            }
             
             Tipofuncionario tp;
             //System.out.println(plano);
             tp =new Tipofuncionario (new BigDecimal("2"));
-
-            
 
             factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
             EntityManager em = factory.createEntityManager();
@@ -141,7 +142,7 @@ public class EditarFuncionarioController implements Initializable {
             Funcionario func = new Funcionario();
             func.setIdfuncionario(f2.getIdfuncionario());
             func.setNome(nomeInput);
-            func.setPassword(passwordInput);
+            func.setPassword(password);
             func.setRua(moradaInput);
             func.setEmail(emailInput);
             func.setNcc(nccInput);

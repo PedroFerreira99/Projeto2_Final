@@ -48,6 +48,7 @@ public class EditarClienteController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
+    private String password;
     
     Object arr[] = (Object[]) FXRouter.getData();
     Funcionario f = (Funcionario) arr[0];
@@ -130,7 +131,7 @@ public class EditarClienteController implements Initializable {
             BigInteger ncc = ((Cliente) cli).getNcc();
             BigInteger telemovel = ((Cliente) cli).getTelemovel();
             String sexo = ((Cliente) cli).getSexo();
-            String password = ((Cliente) cli).getPassword();
+            password = ((Cliente) cli).getPassword();
             String data = ((Cliente) cli).getDataNascimento();
             String plano = ((Cliente) cli).getIdplano().getNome();
             
@@ -155,7 +156,7 @@ public class EditarClienteController implements Initializable {
     
     public void editarCliente(ActionEvent event) throws IOException {
 
-        if (clienteNome.getText().isEmpty() || clienteUsername.getText().isEmpty() || clienteMorada.getText().isEmpty() || clienteEmail.getText().isEmpty() || clienteNcc.getText().isEmpty() || clienteTelemovel.getText().isEmpty() || clientePassword.getText().isEmpty() ) {
+        if (clienteNome.getText().isEmpty() || clienteUsername.getText().isEmpty() || clienteMorada.getText().isEmpty() || clienteEmail.getText().isEmpty() || clienteNcc.getText().isEmpty() || clienteTelemovel.getText().isEmpty() ) {
                 criarVazio.setText("Preencha todos os campos");   
                 
          }else{
@@ -165,7 +166,9 @@ public class EditarClienteController implements Initializable {
             String emailInput = clienteEmail.getText();
             BigInteger nccInput = new BigInteger(clienteNcc.getText());
             BigInteger telemovelInput = new BigInteger(clienteTelemovel.getText());
-            String passwordInput = BCrypt.hashpw(clientePassword.getText(), BCrypt.gensalt());
+            if(!clientePassword.getText().isEmpty()){
+                password = BCrypt.hashpw(clientePassword.getText(), BCrypt.gensalt());
+            }
             
             RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
             String toogleGroupValue = selectedRadioButton.getText();
@@ -197,7 +200,7 @@ public class EditarClienteController implements Initializable {
             cli.setNcc(nccInput);
             cli.setTelemovel(telemovelInput);
             cli.setSexo(toogleGroupValue);
-            cli.setPassword(passwordInput);
+            cli.setPassword(password);
             cli.setDataNascimento(clienteData.getValue().toString());
             cli.setIdplano(p);
                             //);

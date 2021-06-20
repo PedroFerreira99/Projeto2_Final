@@ -41,6 +41,7 @@ public class EditarAdminController implements Initializable {
     Object arr[] = (Object[]) FXRouter.getData();
     Funcionario f = (Funcionario) arr[0];
     Funcionario a = (Funcionario) arr[1];
+    private String password;
     
     @FXML
     private TextField adminNome;
@@ -87,7 +88,7 @@ public class EditarAdminController implements Initializable {
         
             BigDecimal id = ((Funcionario) admin).getIdfuncionario();
             String nome = ((Funcionario) admin).getNome();
-            String password = ((Funcionario) admin).getPassword();
+            password = ((Funcionario) admin).getPassword();
             String morada = ((Funcionario) admin).getRua();
             String email = ((Funcionario) admin).getEmail();
             BigInteger ncc = ((Funcionario) admin).getNcc();
@@ -112,17 +113,19 @@ public class EditarAdminController implements Initializable {
         
       //  funcionarioData.setText("");
     
-        if (adminNome.getText().isEmpty() || adminPassword.getText().isEmpty() || adminMorada.getText().isEmpty() || adminEmail.getText().isEmpty() || adminNcc.getText().isEmpty() || adminNif.getText().isEmpty() || adminData.getValue()==null || adminTelemovel.getText().isEmpty() ) {
+        if (adminNome.getText().isEmpty() || adminMorada.getText().isEmpty() || adminEmail.getText().isEmpty() || adminNcc.getText().isEmpty() || adminNif.getText().isEmpty() || adminData.getValue()==null || adminTelemovel.getText().isEmpty() ) {
                 criarVazio.setText("Preencha todos os campos");   
                 
          }else{
             String nomeInput = adminNome.getText();
-            String passwordInput = BCrypt.hashpw(adminPassword.getText(), BCrypt.gensalt());
             String moradaInput = adminMorada.getText();
             String emailInput = adminEmail.getText();
             BigInteger nccInput = new BigInteger(adminNcc.getText());
             BigInteger nifInput = new BigInteger(adminNif.getText());
             BigInteger telemovelInput = new BigInteger(adminTelemovel.getText());
+            if(!adminPassword.getText().isEmpty()){
+                password = BCrypt.hashpw(adminPassword.getText(), BCrypt.gensalt());
+            }
             
             Tipofuncionario tp;
             //System.out.println(plano);
@@ -136,7 +139,7 @@ public class EditarAdminController implements Initializable {
             Funcionario adm = new Funcionario();
             adm.setIdfuncionario(a.getIdfuncionario());
             adm.setNome(nomeInput);
-            adm.setPassword(passwordInput);
+            adm.setPassword(password);
             adm.setRua(moradaInput);
             adm.setEmail(emailInput);
             adm.setNcc(nccInput);
