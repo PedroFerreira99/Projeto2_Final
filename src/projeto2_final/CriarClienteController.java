@@ -84,7 +84,8 @@ public class CriarClienteController implements Initializable {
     
     @FXML
     private Text criarVazio;
-    
+    @FXML
+    private Text nomeUtilizador;
     
     ObservableList<String> planoList = FXCollections.observableArrayList();
     
@@ -94,6 +95,7 @@ public class CriarClienteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeUtilizador.setText(f.getNome());
         clienteNome.setText("");
         clienteUsername.setText("");
         clienteMorada.setText("");

@@ -49,7 +49,9 @@ public class EditarClienteController implements Initializable {
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
-    Cliente c = (Cliente) FXRouter.getData();
+    Object arr[] = (Object[]) FXRouter.getData();
+    Funcionario f = (Funcionario) arr[0];
+    Cliente c = (Cliente) arr[1];
     
     @FXML
     private TextField clienteNome;
@@ -89,7 +91,8 @@ public class EditarClienteController implements Initializable {
     
     @FXML
     private Text criarVazio;
-    
+    @FXML
+    private Text nomeUtilizador;
     
     ObservableList<String> planoList = FXCollections.observableArrayList();
 
@@ -98,7 +101,7 @@ public class EditarClienteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        nomeUtilizador.setText(f.getNome());
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em1 = factory.createEntityManager();
         Query q1 = em1.createNamedQuery("Plano.findAll");
@@ -206,7 +209,7 @@ public class EditarClienteController implements Initializable {
             em.getTransaction().commit();
             
             FXRouter.when("ConsultarClientes", "ConsultarClientes.fxml");     
-            FXRouter.goTo("ConsultarClientes");
+            FXRouter.goTo("ConsultarClientes", f);
         }
     }
     
@@ -216,7 +219,7 @@ public class EditarClienteController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

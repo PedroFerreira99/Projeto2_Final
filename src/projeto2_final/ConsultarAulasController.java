@@ -40,7 +40,7 @@ import javax.persistence.Query;
  * @author Pedro Ferreira
  */
 public class ConsultarAulasController implements Initializable {
-    
+    Funcionario f = (Funcionario) FXRouter.getData();
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
@@ -68,7 +68,9 @@ public class ConsultarAulasController implements Initializable {
     
     @FXML
     private Text editarVazio;
-        
+    @FXML
+    private Text nomeUtilizador;
+    
     ObservableList<Aula> aulaList = FXCollections.observableArrayList();
 
     /**
@@ -76,6 +78,7 @@ public class ConsultarAulasController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeUtilizador.setText(f.getNome());
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Aula.findAll");
@@ -118,23 +121,22 @@ public class ConsultarAulasController implements Initializable {
     public void paginaCriarAulas(ActionEvent event) throws IOException {
         
         FXRouter.when("CriarAula", "CriarAula.fxml");     
-        FXRouter.goTo("CriarAula");
+        FXRouter.goTo("CriarAula", f);
     }
     
     public void voltarMenu(ActionEvent event) throws IOException {
         
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     
     public void paginaEditarAulas(ActionEvent event) throws IOException {
         
         if (tableAulas.getSelectionModel().getSelectedItem() != null) {
             Aula a = tableAulas.getSelectionModel().getSelectedItem();
-
-
+            Object arr[] = new Object[]{f, a};
             FXRouter.when("EditarAula", "EditarAula.fxml");     
-            FXRouter.goTo("EditarAula", a);
+            FXRouter.goTo("EditarAula", arr);
         }else{
             editarVazio.setText("Selecione uma aula");
         }

@@ -41,7 +41,7 @@ import javax.persistence.Query;
  * @author Pedro Ferreira
  */
 public class ConsultarHorarioFuncionarioController implements Initializable {
-    
+    Funcionario f = (Funcionario) FXRouter.getData();
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
@@ -65,13 +65,15 @@ public class ConsultarHorarioFuncionarioController implements Initializable {
      
     @FXML
     private Text editarVazio;
+    @FXML
+    private Text nomeUtilizador;
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        nomeUtilizador.setText(f.getNome());
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Horario.findAllDistinct");
@@ -102,22 +104,22 @@ public class ConsultarHorarioFuncionarioController implements Initializable {
     
     public void CriarHorario(ActionEvent event) throws IOException {
         FXRouter.when("CriarHorarioFuncionario", "CriarHorarioFuncionario.fxml");     
-        FXRouter.goTo("CriarHorarioFuncionario");
+        FXRouter.goTo("CriarHorarioFuncionario", f);
     }
     
     public void voltarMenu(ActionEvent event) throws IOException {
         
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     
     public void paginaEditarHorario(ActionEvent event) throws IOException {
         
         if (tableHorarios.getSelectionModel().getSelectedItem() != null) {
             Horario h = tableHorarios.getSelectionModel().getSelectedItem();
-
+            Object arr[] = new Object[]{f, h};
             FXRouter.when("EditarHorarioFuncionario", "EditarHorarioFuncionario.fxml");     
-            FXRouter.goTo("EditarHorarioFuncionario", h);
+            FXRouter.goTo("EditarHorarioFuncionario", arr);
 
             System.out.println("cliente:" +h.getIdfuncionario().getIdfuncionario());
         }else{

@@ -46,7 +46,7 @@ public class ConsultarClientesController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
-    
+    Funcionario f = (Funcionario) FXRouter.getData();
     
     
     
@@ -83,6 +83,8 @@ public class ConsultarClientesController implements Initializable {
         
     @FXML
     private Text editarVazio;
+    @FXML
+    private Text nomeUtilizador;
     
     
     ObservableList<Cliente> clienteList = FXCollections.observableArrayList();
@@ -92,7 +94,7 @@ public class ConsultarClientesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        nomeUtilizador.setText(f.getNome());        
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Cliente.findAll");
@@ -151,7 +153,7 @@ public class ConsultarClientesController implements Initializable {
       //  }else if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 2){
            
             FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-            FXRouter.goTo("MenuAdmin");
+            FXRouter.goTo("MenuAdmin", f);
       //  }
     }
     
@@ -162,15 +164,16 @@ public class ConsultarClientesController implements Initializable {
         stage.setScene(scene);
         stage.show();*/
         FXRouter.when("CriarCliente", "CriarCliente.fxml");     
-        FXRouter.goTo("CriarCliente");
+        FXRouter.goTo("CriarCliente", f);
     }
     
     public void paginaEditarCliente(ActionEvent event) throws IOException {
         
         if (tableClientes.getSelectionModel().getSelectedItem() != null) {
             Cliente c = tableClientes.getSelectionModel().getSelectedItem();
+            Object arr[] = new Object[]{f, c};
             FXRouter.when("EditarCliente", "EditarCliente.fxml");     
-            FXRouter.goTo("EditarCliente", c);
+            FXRouter.goTo("EditarCliente", arr);
 
         }else{
             editarVazio.setText("Selecione um cliente");

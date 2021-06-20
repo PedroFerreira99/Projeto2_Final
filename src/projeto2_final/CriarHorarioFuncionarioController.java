@@ -29,6 +29,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,7 +42,7 @@ import javax.persistence.Query;
  * @author Pedro Ferreira
  */
 public class CriarHorarioFuncionarioController implements Initializable {
-    
+    Funcionario f = (Funcionario) FXRouter.getData();
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
@@ -89,6 +90,8 @@ public class CriarHorarioFuncionarioController implements Initializable {
                                                 
     @FXML
     private JFXTimePicker horarioSabadoFim;
+    @FXML
+    private Text nomeUtilizador;
                                                     
     
     ObservableList<String> funcionarioList = FXCollections.observableArrayList();
@@ -100,6 +103,7 @@ public class CriarHorarioFuncionarioController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeUtilizador.setText(f.getNome());
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Funcionario.findAll");
@@ -250,7 +254,7 @@ public class CriarHorarioFuncionarioController implements Initializable {
             em.getTransaction().commit();
                 
             FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
-            FXRouter.goTo("ConsultarHorarioFuncionario");
+            FXRouter.goTo("ConsultarHorarioFuncionario", f);
         }
     }
     
@@ -277,7 +281,7 @@ public class CriarHorarioFuncionarioController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {    
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

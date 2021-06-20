@@ -30,6 +30,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,8 +46,9 @@ public class EditarHorarioFuncionarioController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
-    
-    Horario h = (Horario) FXRouter.getData();
+    Object arr[] = (Object[]) FXRouter.getData();
+    Funcionario f = (Funcionario) arr[0];
+    Horario h = (Horario) arr[1];
     
     @FXML
     private TextField horarioNome;
@@ -92,6 +94,8 @@ public class EditarHorarioFuncionarioController implements Initializable {
                                                 
     @FXML
     private JFXTimePicker horarioSabadoFim;
+    @FXML
+    private Text nomeUtilizador;
     
     private BigDecimal dia1;
     private BigDecimal dia2;
@@ -111,7 +115,7 @@ public class EditarHorarioFuncionarioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                
+        nomeUtilizador.setText(f.getNome());
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em1 = factory.createEntityManager();
         Query q = em1.createNamedQuery("Horario.findByIdfuncionario");
@@ -288,7 +292,7 @@ public class EditarHorarioFuncionarioController implements Initializable {
             
             
             FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
-            FXRouter.goTo("ConsultarHorarioFuncionario");
+            FXRouter.goTo("ConsultarHorarioFuncionario", f);
      //   }
     }
     
@@ -323,7 +327,7 @@ public class EditarHorarioFuncionarioController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {
         FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
-        FXRouter.goTo("ConsultarHorarioFuncionario");
+        FXRouter.goTo("ConsultarHorarioFuncionario", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

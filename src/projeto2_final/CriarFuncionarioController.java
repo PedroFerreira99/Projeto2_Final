@@ -43,6 +43,7 @@ public class CriarFuncionarioController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
+    Funcionario f = (Funcionario) FXRouter.getData();
     
     @FXML
     private TextField funcionarioNome;
@@ -70,6 +71,8 @@ public class CriarFuncionarioController implements Initializable {
     
     @FXML
     private Text criarVazio;
+    @FXML
+    private Text nomeUtilizador;
 
     /**
      * Initializes the controller class.
@@ -77,6 +80,7 @@ public class CriarFuncionarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        nomeUtilizador.setText(f.getNome());
     }    
     
     
@@ -124,17 +128,14 @@ public class CriarFuncionarioController implements Initializable {
             em.getTransaction().commit();
             
             FXRouter.when("ConsultarFuncionarios", "ConsultarFuncionarios.fxml");     
-            FXRouter.goTo("ConsultarFuncionarios");
+            FXRouter.goTo("ConsultarFuncionarios", f);
         }
     }
     
     
     public void voltarMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+        FXRouter.goTo("MenuAdmin", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

@@ -38,7 +38,9 @@ public class EditarAdminController implements Initializable {
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
-    Funcionario a = (Funcionario) FXRouter.getData();
+    Object arr[] = (Object[]) FXRouter.getData();
+    Funcionario f = (Funcionario) arr[0];
+    Funcionario a = (Funcionario) arr[1];
     
     @FXML
     private TextField adminNome;
@@ -66,12 +68,15 @@ public class EditarAdminController implements Initializable {
     
     @FXML
     private Text criarVazio;
+    @FXML
+    private Text nomeUtilizador;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeUtilizador.setText(f.getNome());
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Funcionario.findByIdfuncionario");
@@ -148,7 +153,7 @@ public class EditarAdminController implements Initializable {
             
             
             FXRouter.when("ConsultarAdmins", "ConsultarAdmins.fxml");     
-            FXRouter.goTo("ConsultarAdmins");
+            FXRouter.goTo("ConsultarAdmins", f);
         }
     }
     
@@ -157,7 +162,7 @@ public class EditarAdminController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

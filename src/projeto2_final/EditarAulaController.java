@@ -39,10 +39,11 @@ import javax.persistence.Query;
  * @author Pedro Ferreira
  */
 public class EditarAulaController implements Initializable {
+    Object arr[] = (Object[]) FXRouter.getData();
+    Funcionario f = (Funcionario) arr[0];
+    Aula a = (Aula) arr[1];
     
-    Aula a = (Aula) FXRouter.getData();
-    
-        private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
+    private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
     @FXML
@@ -65,6 +66,8 @@ public class EditarAulaController implements Initializable {
     
     @FXML
     private Text criarVazio;
+    @FXML
+    private Text nomeUtilizador;
     
     ObservableList<String> funcionarioList = FXCollections.observableArrayList();
     
@@ -74,7 +77,7 @@ public class EditarAulaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        nomeUtilizador.setText(f.getNome());        
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em1 = factory.createEntityManager();
         Query q1 = em1.createNamedQuery("Funcionario.findAll");
@@ -120,7 +123,7 @@ public class EditarAulaController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     
     
@@ -155,7 +158,7 @@ public class EditarAulaController implements Initializable {
             em.getTransaction().commit();
             
             FXRouter.when("ConsultarAulas", "ConsultarAulas.fxml");     
-            FXRouter.goTo("ConsultarAulas");
+            FXRouter.goTo("ConsultarAulas", f);
         }
     }
     

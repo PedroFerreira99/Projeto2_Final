@@ -41,7 +41,7 @@ public class ConsultarAdminsController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
-    
+    Funcionario f = (Funcionario) FXRouter.getData();
     @FXML
     private TableView<Funcionario> tableAdmins;
     
@@ -71,7 +71,8 @@ public class ConsultarAdminsController implements Initializable {
     
     @FXML
     private Text editarVazio;
-  
+    @FXML
+    private Text nomeUtilizador;
 
     ObservableList<Funcionario> adminList = FXCollections.observableArrayList();
 
@@ -80,6 +81,8 @@ public class ConsultarAdminsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeUtilizador.setText(f.getNome());
+        
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Funcionario.findAll");
@@ -122,21 +125,21 @@ public class ConsultarAdminsController implements Initializable {
     public void voltarMenu(ActionEvent event) throws IOException {
         
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     
     public void paginaCriarAdmin(ActionEvent event) throws IOException {      
         FXRouter.when("CriarAdmin", "CriarAdmin.fxml");     
-        FXRouter.goTo("CriarAdmin");
+        FXRouter.goTo("CriarAdmin", f);
     }
     
     
     public void paginaEditarAdmin(ActionEvent event) throws IOException {
         if (tableAdmins.getSelectionModel().getSelectedItem() != null) {
             Funcionario a = tableAdmins.getSelectionModel().getSelectedItem();
-
+            Object arr[] = new Object[]{f, a};
             FXRouter.when("EditarAdmin", "EditarAdmin.fxml");     
-            FXRouter.goTo("EditarAdmin", a);
+            FXRouter.goTo("EditarAdmin", arr);
         }else{
             editarVazio.setText("Selecione um administrador");
         }

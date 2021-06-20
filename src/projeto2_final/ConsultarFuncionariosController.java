@@ -41,6 +41,7 @@ public class ConsultarFuncionariosController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
+    Funcionario f = (Funcionario) FXRouter.getData();
     
     @FXML
     private TableView<Funcionario> tableFuncionarios;
@@ -71,6 +72,8 @@ public class ConsultarFuncionariosController implements Initializable {
     
     @FXML
     private Text editarVazio;
+    @FXML
+    private Text nomeUtilizador;
 
     ObservableList<Funcionario> funcionarioList = FXCollections.observableArrayList();
     
@@ -78,7 +81,7 @@ public class ConsultarFuncionariosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+        nomeUtilizador.setText(f.getNome());        
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Funcionario.findAll");
@@ -119,27 +122,21 @@ public class ConsultarFuncionariosController implements Initializable {
     
     
     public void voltarMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MenuAdmin.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+        FXRouter.goTo("MenuAdmin", f);
     }
     
     public void paginaCriarFuncionarios(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("CriarFuncionario.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        FXRouter.when("CriarFuncionario", "CriarFuncionario.fxml");     
+        FXRouter.goTo("CriarFuncionario", f);
     }
     
     public void paginaEditarFuncionario(ActionEvent event) throws IOException {
         if (tableFuncionarios.getSelectionModel().getSelectedItem() != null) {
-            Funcionario f = tableFuncionarios.getSelectionModel().getSelectedItem();
-
+            Funcionario f2 = tableFuncionarios.getSelectionModel().getSelectedItem();
+            Object arr[] = new Object[]{f, f2};
             FXRouter.when("EditarFuncionario", "EditarFuncionario.fxml");     
-            FXRouter.goTo("EditarFuncionario", f);
+            FXRouter.goTo("EditarFuncionario", arr);
         }else{
             editarVazio.setText("Selecione um funcionario");
         }

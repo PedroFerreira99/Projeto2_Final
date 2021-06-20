@@ -6,6 +6,7 @@
 package projeto2_final;
 
 import DAL.Cliente;
+import DAL.Funcionario;
 import DAL.Mes;
 import DAL.Pagamento;
 import DAL.Plano;
@@ -41,7 +42,7 @@ import javax.persistence.Query;
  * @author Pedro Ferreira
  */
 public class EfetuarPagamentosAdminController implements Initializable {
-    
+    Funcionario f = (Funcionario) FXRouter.getData();
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
@@ -93,6 +94,8 @@ public class EfetuarPagamentosAdminController implements Initializable {
     
     @FXML
     private TextField nomeProcurar;
+    @FXML
+    private Text nomeUtilizador;
     
 
     ObservableList<Cliente> clienteList = FXCollections.observableArrayList();
@@ -108,6 +111,7 @@ public class EfetuarPagamentosAdminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeUtilizador.setText(f.getNome());
         procurarNome();
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
@@ -284,7 +288,7 @@ public class EfetuarPagamentosAdminController implements Initializable {
         em.getTransaction().commit();
 
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
          }
     }
     
@@ -356,7 +360,7 @@ public class EfetuarPagamentosAdminController implements Initializable {
     
     public void voltarMenu(ActionEvent event) throws IOException {    
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     
     public void close(ActionEvent event) throws IOException {

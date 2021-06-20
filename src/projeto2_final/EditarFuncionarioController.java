@@ -39,7 +39,9 @@ public class EditarFuncionarioController implements Initializable {
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
     
-    Funcionario f = (Funcionario) FXRouter.getData();
+    Object arr[] = (Object[]) FXRouter.getData();
+    Funcionario f = (Funcionario) arr[0];
+    Funcionario f2 = (Funcionario) arr[1];
     
     @FXML
     private TextField funcionarioNome;
@@ -67,16 +69,19 @@ public class EditarFuncionarioController implements Initializable {
     
     @FXML
     private Text criarVazio;
+    @FXML
+    private Text nomeUtilizador;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeUtilizador.setText(f.getNome());
         factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
         EntityManager em = factory.createEntityManager();
         Query q = em.createNamedQuery("Funcionario.findByIdfuncionario");
-        q.setParameter("idfuncionario", f.getIdfuncionario());
+        q.setParameter("idfuncionario", f2.getIdfuncionario());
       
             Funcionario func = new Funcionario();
             func = (Funcionario) q.getSingleResult();
@@ -134,7 +139,7 @@ public class EditarFuncionarioController implements Initializable {
             EntityManager em = factory.createEntityManager();
             
             Funcionario func = new Funcionario();
-            func.setIdfuncionario(f.getIdfuncionario());
+            func.setIdfuncionario(f2.getIdfuncionario());
             func.setNome(nomeInput);
             func.setPassword(passwordInput);
             func.setRua(moradaInput);
@@ -153,14 +158,14 @@ public class EditarFuncionarioController implements Initializable {
             
             
             FXRouter.when("ConsultarFuncionarios", "ConsultarFuncionarios.fxml");     
-            FXRouter.goTo("ConsultarFuncionarios");
+            FXRouter.goTo("ConsultarFuncionarios", f);
         }
     }
     
     public void voltarMenu(ActionEvent event) throws IOException {
         
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin");
+        FXRouter.goTo("MenuAdmin", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

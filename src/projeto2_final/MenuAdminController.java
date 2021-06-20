@@ -50,38 +50,38 @@ public class MenuAdminController implements Initializable {
     public void consultFuncionarios(ActionEvent event) throws IOException {
         
         FXRouter.when("ConsultarFuncionarios", "ConsultarFuncionarios.fxml");     
-        FXRouter.goTo("ConsultarFuncionarios");
+        FXRouter.goTo("ConsultarFuncionarios", f);
     }
     
     public void consultAdmins(ActionEvent event) throws IOException {
 
         FXRouter.when("ConsultarAdmins", "ConsultarAdmins.fxml");     
-        FXRouter.goTo("ConsultarAdmins");
+        FXRouter.goTo("ConsultarAdmins", f);
     }
     
     public void consultAulas(ActionEvent event) throws IOException {
             
         FXRouter.when("ConsultarAulas", "ConsultarAulas.fxml");     
-        FXRouter.goTo("ConsultarAulas");
+        FXRouter.goTo("ConsultarAulas", f);
     }
     
     public void consultHorarioFuncionario(ActionEvent event) throws IOException {
             
         FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
-        FXRouter.goTo("ConsultarHorarioFuncionario");
+        FXRouter.goTo("ConsultarHorarioFuncionario", f);
     }
     
     public void efetuarPagamentoCliente(ActionEvent event) throws IOException {
             
         FXRouter.when("EfetuarPagamentosAdmin", "EfetuarPagamentosAdmin.fxml");     
-        FXRouter.goTo("EfetuarPagamentosAdmin");
+        FXRouter.goTo("EfetuarPagamentosAdmin", f);
     }
     
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.close();*/
         FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     
-        FXRouter.goTo("EscolherLogin");
+        FXRouter.goTo("EscolherLogin", f);
     }
     
 }
