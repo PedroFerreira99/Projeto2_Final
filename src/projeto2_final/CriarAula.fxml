@@ -23,7 +23,6 @@
             <Pane layoutX="117.0" layoutY="116.0" prefHeight="431.0" prefWidth="866.0" style="-fx-border-color: #000;">
                <children>
                   <Text layoutX="39.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
-                  <Text layoutX="500.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duraçao:" />
                   <Text layoutX="39.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data:">
                      <font>
                         <Font size="14.5" />
@@ -31,7 +30,6 @@
                   </Text>
                   <Text layoutX="499.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionario" />
                   <TextField fx:id="aulaNome" layoutX="138.0" layoutY="66.0" prefHeight="32.0" prefWidth="240.0" />
-                  <TextField fx:id="aulaDuracao" editable="false" layoutX="590.0" layoutY="142.0" prefHeight="32.0" prefWidth="240.0" />
                   <DatePicker fx:id="aulaData" layoutX="138.0" layoutY="143.0" prefHeight="31.0" prefWidth="240.0" />
                   <Button layoutX="323.0" layoutY="327.0" mnemonicParsing="false" onAction="#criarAula" prefHeight="38.0" prefWidth="221.0" style="-fx-background-color: #264653;" text="Criar" textFill="WHITE">
                      <font>

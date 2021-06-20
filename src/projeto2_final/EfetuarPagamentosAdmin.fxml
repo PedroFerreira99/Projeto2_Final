@@ -35,9 +35,9 @@
                   <Text fx:id="criarVazio" layoutX="329.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="209.443359375" />
                   <TableView fx:id="tabelaMensalidades" layoutX="604.0" layoutY="65.0" prefHeight="216.0" prefWidth="370.0">
                     <columns>
-                      <TableColumn fx:id="col_clienteMensalidade" prefWidth="101.0" text="Cliente" />
-                      <TableColumn fx:id="col_mesMensalidade" prefWidth="97.0" text="Mês" />
-                        <TableColumn fx:id="col_precoMensalidade" prefWidth="171.0" text="Pagamento" />
+                      <TableColumn fx:id="col_clienteMensalidade" prefWidth="129.0" text="Cliente" />
+                      <TableColumn fx:id="col_mesMensalidade" prefWidth="134.0" text="Mês" />
+                        <TableColumn fx:id="col_precoMensalidade" prefWidth="106.0" text="Pagamento" />
                     </columns>
                   </TableView>
                   <Text fx:id="dataVazia" fill="#f81010" layoutX="138.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.6708984375" />
@@ -47,7 +47,7 @@
                         <TableColumn fx:id="col_nome" prefWidth="106.0" text="Cliente" />
                         <TableColumn fx:id="col_email" prefWidth="95.0" text="Email" />
                         <TableColumn fx:id="col_plano" prefWidth="113.0" text="Plano" />
-                        <TableColumn fx:id="col_preco" prefWidth="100.0" text="Mensalidade" />
+                        <TableColumn fx:id="col_preco" prefWidth="104.0" text="Mensalidade" />
                      </columns>
                   </TableView>
                   <TextField fx:id="nomeProcurar" layoutX="103.0" layoutY="44.0" prefHeight="31.0" prefWidth="298.0" />

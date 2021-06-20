@@ -179,8 +179,8 @@ public class CriarAvaliacaoController implements Initializable {
         func.setPassword(marca.getIdfuncionario().getPassword());
         func.setTipofuncionario(marca.getIdfuncionario().getTipofuncionario());
         
-        FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-        FXRouter.goTo("MenuFuncionario" , func);
+        FXRouter.when("ConsultarRegistosMarcacoes", "ConsultarRegistosMarcacoes.fxml");     
+        FXRouter.goTo("ConsultarRegistosMarcacoes" , func);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

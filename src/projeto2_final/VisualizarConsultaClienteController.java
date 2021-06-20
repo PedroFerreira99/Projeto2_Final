@@ -159,8 +159,8 @@ public class VisualizarConsultaClienteController implements Initializable {
         cli.setUsername(m.getIdcliente().getUsername());
         
         
-        FXRouter.when("MenuCliente", "MenuCliente.fxml");     
-        FXRouter.goTo("MenuCliente" , cli);
+        FXRouter.when("ConsultarMinhasConsultasCliente", "ConsultarMinhasConsultasCliente.fxml");     
+        FXRouter.goTo("ConsultarMinhasConsultasCliente", cli);
     }
     
     

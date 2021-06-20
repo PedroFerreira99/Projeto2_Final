@@ -94,16 +94,13 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
         for (Object d : q.getResultList()) {
             
             if(((Avaliacao) d).getIdmarcacao().getIdfuncionario().getIdfuncionario().intValue() == f.getIdfuncionario().intValue()){
-           
-            
-            BigDecimal id = ((Avaliacao) d).getIdavaliacao();
-            Marcacao marcacao = ((Avaliacao) d).getIdmarcacao();
-            
-            aulaList.add(new Avaliacao(id , marcacao)  );
-            tableMarcacoes.setItems(aulaList);
+                BigDecimal id = ((Avaliacao) d).getIdavaliacao();
+                Marcacao marcacao = ((Avaliacao) d).getIdmarcacao();
 
-                }
+                aulaList.add(new Avaliacao(id , marcacao)  );
+                tableMarcacoes.setItems(aulaList);
             }
+        }
 
         col_id.setCellValueFactory(new PropertyValueFactory<>("idavaliacao"));
         
@@ -124,77 +121,17 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
     
     public void verConsulta(ActionEvent event) throws IOException {
         
-    if (tableMarcacoes.getSelectionModel().getSelectedItem() != null) {
-        Avaliacao avaliacao = tableMarcacoes.getSelectionModel().getSelectedItem();
+        if (tableMarcacoes.getSelectionModel().getSelectedItem() != null) {
+            Avaliacao avaliacao = tableMarcacoes.getSelectionModel().getSelectedItem();
 
-        FXRouter.when("VisualizarConsulta", "VisualizarConsulta.fxml");     
-        FXRouter.goTo("VisualizarConsulta", avaliacao);
-        
-     //   System.out.println("cliente:" +h.getIdfuncionario().getIdfuncionario());
-    }else{
-        editarVazio.setText("Selecione uma consulta");
+            FXRouter.when("VisualizarConsulta", "VisualizarConsulta.fxml");     
+            FXRouter.goTo("VisualizarConsulta", avaliacao);
+
+         //   System.out.println("cliente:" +h.getIdfuncionario().getIdfuncionario());
+        }else{
+            editarVazio.setText("Selecione uma consulta");
+        }
     }
-    }
-
-    
-   // nomeProcurar.textProperty().addListener(new ChangeListener<String>() {
-  /*  @Override
-    public void changed(ObservableValue<? extends String> observable,
-            String oldValue, String newValue) {
-
-        System.out.println(" Text Changed to  " + newValue + ")\n");
-    }
-    });*/
-  /* public void procurarNome(){
-    
-    nomeProcurar.textProperty().addListener((obs, oldText, newText) -> {
-    //System.out.println("Text changed from "+oldText+" to "+newText);
-    // ...
-    tableMarcacoes.getItems().clear();
-            
-        factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-        Query q = em.createNamedQuery("Avaliacao.findLikeNome");
-        q.setParameter("idcliente", new BigDecimal(newText) );
-        for (Object d : q.getResultList()) {
-    
-            
-            BigDecimal id = ((Avaliacao) d).getIdavaliacao();
-            Marcacao marcacao = ((Avaliacao) d).getIdmarcacao();
-
-            
-            aulaList.add(new Avaliacao(id , marcacao)  );
-            
-            tableMarcacoes.setItems(aulaList);
-
-                }
-            //}
-      //  Funcionario sss = new Funcionario();
-        
-        
-        
-        col_id.setCellValueFactory(new PropertyValueFactory<>("idavaliacao"));
-        
-        col_cliente.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdcliente().getNome()));
-        
-        col_emailcliente.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdcliente().getEmail()));
-        
-        col_data.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().getIdmarcacao().getData()));
-        col_horario.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().getIdmarcacao().getHorario())); 
-       // col_horaFim.setCellValueFactory(new PropertyValueFactory<>("horariofinal"));
-        col_funcionario.setCellValueFactory(cellData -> 
-            new SimpleStringProperty(cellData.getValue().getIdmarcacao().getIdfuncionario().getNome()));
-        
-      //  procurarNome();
-    });
-    
-    
-    
-    }*/
     
     public void voltarMenu(ActionEvent event) throws IOException {    
         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     

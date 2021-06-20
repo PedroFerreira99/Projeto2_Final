@@ -130,8 +130,8 @@ public class CriarAdminController implements Initializable {
     }
     
     public void voltarMenu(ActionEvent event) throws IOException {
-        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin", a);
+        FXRouter.when("ConsultarAdmins", "ConsultarAdmins.fxml");     
+        FXRouter.goTo("ConsultarAdmins", a);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

@@ -50,9 +50,6 @@ public class EditarAulaController implements Initializable {
     private TextField aulaNome;
     
     @FXML
-    private TextField aulaDuracao;
-    
-    @FXML
     private ChoiceBox aulaFuncionario;
     
     @FXML
@@ -122,8 +119,8 @@ public class EditarAulaController implements Initializable {
     }    
     
     public void voltarMenu(ActionEvent event) throws IOException {
-        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin", f);
+        FXRouter.when("ConsultarAulas", "ConsultarAulas.fxml");     
+        FXRouter.goTo("ConsultarAulas", f);
     }
     
     

@@ -279,9 +279,9 @@ public class CriarHorarioFuncionarioController implements Initializable {
         return f;
     }
     
-    public void voltarMenu(ActionEvent event) throws IOException {    
-        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin", f);
+    public void voltarMenu(ActionEvent event) throws IOException {
+        FXRouter.when("ConsultarHorarioFuncionario", "ConsultarHorarioFuncionario.fxml");     
+        FXRouter.goTo("ConsultarHorarioFuncionario", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

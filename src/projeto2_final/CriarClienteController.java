@@ -185,7 +185,7 @@ public class CriarClienteController implements Initializable {
             em.getTransaction().commit();
             
             FXRouter.when("ConsultarClientes", "ConsultarClientes.fxml");     
-            FXRouter.goTo("ConsultarClientes");
+            FXRouter.goTo("ConsultarClientes", f);
         }
     }
     
@@ -196,8 +196,8 @@ public class CriarClienteController implements Initializable {
         stage.setScene(scene);
         stage.show();*/
       
-            FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-            FXRouter.goTo("MenuAdmin", f);
+            FXRouter.when("ConsultarClientes", "ConsultarClientes.fxml");     
+            FXRouter.goTo("ConsultarClientes", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

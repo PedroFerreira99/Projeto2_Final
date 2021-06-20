@@ -164,8 +164,8 @@ public class EditarAdminController implements Initializable {
     
     
     public void voltarMenu(ActionEvent event) throws IOException {
-        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-        FXRouter.goTo("MenuAdmin", f);
+        FXRouter.when("ConsultarAdmins", "ConsultarAdmins.fxml");     
+        FXRouter.goTo("ConsultarAdmins", f);
     }
     public void close(ActionEvent event) throws IOException {
         /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();

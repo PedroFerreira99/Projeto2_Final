@@ -138,8 +138,8 @@ public class VisualizarConsultaController implements Initializable {
         func.setTipofuncionario(avaliacao.getIdmarcacao().getIdfuncionario().getTipofuncionario());
         
         
-        FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-        FXRouter.goTo("MenuFuncionario", func);
+        FXRouter.when("ConsultarConsultasEfetuadas", "ConsultarConsultasEfetuadas.fxml");     
+        FXRouter.goTo("ConsultarConsultasEfetuadas", func);
     }
     
     

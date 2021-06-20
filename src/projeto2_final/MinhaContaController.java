@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Cliente;
 import DAL.Funcionario;
 import DAL.Plano;
@@ -40,6 +41,7 @@ public class MinhaContaController implements Initializable {
     
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
+    private String password;
     
     Cliente c = (Cliente) FXRouter.getData(); 
     
@@ -107,7 +109,7 @@ public class MinhaContaController implements Initializable {
             BigInteger telemovel = ((Cliente) cli).getTelemovel();
             String rua = ((Cliente) cli).getRua();
             String email = ((Cliente) cli).getEmail();  
-            String password = ((Cliente) cli).getPassword();
+            password = ((Cliente) cli).getPassword();
             String sexo = ((Cliente) cli).getSexo();
             String username = ((Cliente) cli).getUsername();
             String plano = ((Cliente) cli).getIdplano().getNome();
@@ -122,7 +124,7 @@ public class MinhaContaController implements Initializable {
        clienteSexo.setText(sexo);
        clientePlano.setText(plano);
        clienteData.setValue(LocalDate.parse(data));
-       clientePassword.setText(password);
+       //clientePassword.setText(password);
 
     }   
     
@@ -131,7 +133,7 @@ public class MinhaContaController implements Initializable {
         
       //  clienteData.setText("");
     
-        if (clienteNome.getText().isEmpty() || clienteUsername.getText().isEmpty() || clienteMorada.getText().isEmpty() || clienteEmail.getText().isEmpty() || clienteNcc.getText().isEmpty() || clienteTelemovel.getText().isEmpty()  || clientePassword.getText().isEmpty()) {
+        if (clienteNome.getText().isEmpty() || clienteUsername.getText().isEmpty() || clienteMorada.getText().isEmpty() || clienteEmail.getText().isEmpty() || clienteNcc.getText().isEmpty() || clienteTelemovel.getText().isEmpty() ) {
                 criarVazio.setText("Preencha todos os campos");   
          }else{
             String nomeInput = clienteNome.getText();
@@ -140,7 +142,9 @@ public class MinhaContaController implements Initializable {
             String emailInput = clienteEmail.getText();
             BigInteger nccInput = new BigInteger(clienteNcc.getText());
             BigInteger telemovelInput = new BigInteger(clienteTelemovel.getText());
-            String passwordInput = clientePassword.getText();
+            if(!clientePassword.getText().isEmpty()){
+                password = BCrypt.hashpw(clientePassword.getText(), BCrypt.gensalt());                
+            }
 
             
             factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
@@ -154,7 +158,7 @@ public class MinhaContaController implements Initializable {
             c.setNcc(nccInput);
             c.setTelemovel(telemovelInput);
             c.setDataNascimento(clienteData.getValue().toString());
-            c.setPassword(passwordInput);
+            c.setPassword(password);
 
             em.getTransaction().begin();
             em.merge(c);

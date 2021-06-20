@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Cliente;
 import DAL.Funcionario;
 import DAL.Tipofuncionario;
@@ -36,6 +37,7 @@ import javax.persistence.Query;
 public class MinhaContaFuncionarioController implements Initializable {
     private static final String Persistence_UNIT_NAME ="Projeto2_FinalPU";
     private static EntityManagerFactory factory;
+    private String password;
     Funcionario f = (Funcionario) FXRouter.getData(); 
     
     @FXML
@@ -94,7 +96,7 @@ public class MinhaContaFuncionarioController implements Initializable {
             BigInteger ncc = ((Funcionario) fun).getNcc();
             BigInteger nif = ((Funcionario) fun).getNif();
             String data = ((Funcionario) fun).getDataNascimento();
-            String password = ((Funcionario) fun).getPassword();
+            password = ((Funcionario) fun).getPassword();
 
         funcionarioNome.setText(nome);
         funcionarioEmail.setText(email);
@@ -103,7 +105,6 @@ public class MinhaContaFuncionarioController implements Initializable {
         funcionarioNcc.setText(ncc.toString());
         funcionarioNif.setText(nif.toString());
         funcionarioData.setValue(LocalDate.parse(data));
-        funcionarioPassword.setText(password);
 
     }    
     
@@ -113,7 +114,7 @@ public class MinhaContaFuncionarioController implements Initializable {
         
       //  clienteData.setText("");
     
-        if (funcionarioNome.getText().isEmpty() || funcionarioEmail.getText().isEmpty() || funcionarioMorada.getText().isEmpty() || funcionarioTelemovel.getText().isEmpty() || funcionarioNcc.getText().isEmpty() || funcionarioNif.getText().isEmpty()  || funcionarioPassword.getText().isEmpty()) {
+        if (funcionarioNome.getText().isEmpty() || funcionarioEmail.getText().isEmpty() || funcionarioMorada.getText().isEmpty() || funcionarioTelemovel.getText().isEmpty() || funcionarioNcc.getText().isEmpty() || funcionarioNif.getText().isEmpty() ) {
                 criarVazio.setText("Preencha todos os campos");   
          }else{
             String nomeInput = funcionarioNome.getText();
@@ -122,7 +123,9 @@ public class MinhaContaFuncionarioController implements Initializable {
             BigInteger telemovelInput = new BigInteger(funcionarioTelemovel.getText());
             BigInteger nccInput = new BigInteger(funcionarioNcc.getText());
             BigInteger nifInput = new BigInteger(funcionarioNif.getText());
-            String passwordInput = funcionarioPassword.getText();
+            if(!funcionarioPassword.getText().isEmpty()){
+                password = BCrypt.hashpw(funcionarioPassword.getText(), BCrypt.gensalt());                
+            }
 
             
             factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
@@ -136,7 +139,7 @@ public class MinhaContaFuncionarioController implements Initializable {
             func.setTelemovel(telemovelInput);
             func.setNcc(nccInput);
             func.setNif(nifInput);
-            func.setPassword(passwordInput);
+            func.setPassword(password);
             func.setDataNascimento(funcionarioData.getValue().toString());
             func.setTipofuncionario(f.getTipofuncionario());
 

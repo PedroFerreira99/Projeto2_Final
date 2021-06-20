@@ -20,7 +20,7 @@
                   <TableColumn fx:id="col_data" prefWidth="135.0" text="Data" />
                   <TableColumn fx:id="col_horaInicio" minWidth="1.0" prefWidth="123.0" text="Hora Inicio" />
                   <TableColumn fx:id="col_horaFim" prefWidth="124.0" text="Hora Fim" />
-                  <TableColumn fx:id="col_funcionario" prefWidth="161.0" text="Funcionario" />
+                  <TableColumn fx:id="col_funcionario" prefWidth="166.0" text="Funcionario" />
               </columns>
             </TableView>
             <Text layoutX="447.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minhas aulas">
