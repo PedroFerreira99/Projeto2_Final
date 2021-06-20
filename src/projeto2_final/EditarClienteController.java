@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Aula;
 import DAL.Cliente;
 import DAL.Funcionario;
@@ -137,7 +138,7 @@ public class EditarClienteController implements Initializable {
        clienteEmail.setText(email);
        clienteNcc.setText(ncc.toString() );
        clienteTelemovel.setText(telemovel.toString());
-       clientePassword.setText(password);
+       //clientePassword.setText(password);
        clienteData.setValue(LocalDate.parse(data));
        clientePlano.setValue(plano);
        
@@ -152,7 +153,7 @@ public class EditarClienteController implements Initializable {
     public void editarCliente(ActionEvent event) throws IOException {
 
         if (clienteNome.getText().isEmpty() || clienteUsername.getText().isEmpty() || clienteMorada.getText().isEmpty() || clienteEmail.getText().isEmpty() || clienteNcc.getText().isEmpty() || clienteTelemovel.getText().isEmpty() || clientePassword.getText().isEmpty() ) {
-                criarVazio.setText("Preencha os campos");   
+                criarVazio.setText("Preencha todos os campos");   
                 
          }else{
             String nomeInput = clienteNome.getText();
@@ -161,7 +162,7 @@ public class EditarClienteController implements Initializable {
             String emailInput = clienteEmail.getText();
             BigInteger nccInput = new BigInteger(clienteNcc.getText());
             BigInteger telemovelInput = new BigInteger(clienteTelemovel.getText());
-            String passwordInput = clientePassword.getText();
+            String passwordInput = BCrypt.hashpw(clientePassword.getText(), BCrypt.gensalt());
             
             RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
             String toogleGroupValue = selectedRadioButton.getText();
@@ -217,9 +218,11 @@ public class EditarClienteController implements Initializable {
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
         FXRouter.goTo("MenuAdmin");
     }
-    public void close(ActionEvent event) {
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+    public void close(ActionEvent event) throws IOException {
+        /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();*/
+        FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     
+        FXRouter.goTo("EscolherLogin");
     }
     
 }

@@ -93,7 +93,7 @@ public class LoginController implements Initializable {
                     FXRouter.goTo("MenuCliente",c);
 
                 }else{
-                    loginErrado.setText("login errado");
+                    loginErrado.setText("Credenciais erradas");
                 }
             }
            

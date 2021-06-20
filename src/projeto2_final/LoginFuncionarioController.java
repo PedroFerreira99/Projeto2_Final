@@ -65,60 +65,58 @@ public class LoginFuncionarioController implements Initializable {
         passwordVazioF.setText("");
         loginErradoF.setText("");
         
-    try{
-        if (LoginEmailF.getText().isEmpty() && LoginPasswordF.getText().isEmpty()) {
-                emailVazioF.setText("Preencha o email");
-                passwordVazioF.setText("Preencha a password");
-            }
-        else if (LoginEmailF.getText().isEmpty()) {
-                emailVazioF.setText("Preencha o email");
-            }
-        else if(LoginPasswordF.getText().isEmpty()){
-               passwordVazioF.setText("Preencha a password");
-           }
-            
-        else{
-                 
-            factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
-            EntityManager em = factory.createEntityManager();
-            //Query q = em.createNamedQuery("Cliente.findAll");
-            Query q = em.createNamedQuery("Funcionario.findByEmail");
-            q.setParameter("email", LoginEmailF.getText());
-            
-            Funcionario f = new Funcionario();
-            f = (Funcionario) q.getSingleResult();
-            
-            
-            
-            if(BCrypt.checkpw(LoginPasswordF.getText(), f.getPassword())){
-                
-                int tipoUser = 0;
-                tipoUser = (((Funcionario) f).getTipofuncionario().getIdTipofuncionario()).intValue();
-                 System.out.println( tipoUser);
-  
-                    if(tipoUser == 1){
-                        //System.out.println("admin");
-                        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
-                        FXRouter.goTo("MenuAdmin" , f);
-                    }
-                    else if(tipoUser == 2){
-                        FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-                        FXRouter.goTo("MenuFuncionario" , f);
-                    }
-            }
+        try{
+            if (LoginEmailF.getText().isEmpty() && LoginPasswordF.getText().isEmpty()) {
+                    emailVazioF.setText("Preencha o email");
+                    passwordVazioF.setText("Preencha a password");
+                }
+            else if (LoginEmailF.getText().isEmpty()) {
+                    emailVazioF.setText("Preencha o email");
+                }
+            else if(LoginPasswordF.getText().isEmpty()){
+                   passwordVazioF.setText("Preencha a password");
+               }
 
             else{
-                System.out.println("errado");
-                loginErradoF.setText("errado");
-            }
-        }
-    }catch(NoResultException e){
-        System.out.println("nao existe");
-        loginErradoF.setText("errado");
-                
+
+                factory = Persistence.createEntityManagerFactory(Persistence_UNIT_NAME);
+                EntityManager em = factory.createEntityManager();
+                //Query q = em.createNamedQuery("Cliente.findAll");
+                Query q = em.createNamedQuery("Funcionario.findByEmail");
+                q.setParameter("email", LoginEmailF.getText());
+
+                Funcionario f = new Funcionario();
+                f = (Funcionario) q.getSingleResult();
+
+
+
+                if(BCrypt.checkpw(LoginPasswordF.getText(), f.getPassword())){
+
+                    int tipoUser = 0;
+                    tipoUser = (((Funcionario) f).getTipofuncionario().getIdTipofuncionario()).intValue();
+                     System.out.println( tipoUser);
+
+                        if(tipoUser == 1){
+                            //System.out.println("admin");
+                            FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+                            FXRouter.goTo("MenuAdmin" , f);
+                        }
+                        else if(tipoUser == 2){
+                            FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
+                            FXRouter.goTo("MenuFuncionario" , f);
+                        }
                 }
-                
-        }      
+
+                else{
+                    System.out.println("errado");
+                    loginErradoF.setText("Credenciais erradas");
+                }
+            }
+        }catch(NoResultException e){
+            System.out.println("nao existe");
+            loginErradoF.setText("Credenciais erradas");
+        }       
+    }   
     
     public void voltarMenu(ActionEvent event) throws IOException {
         FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     

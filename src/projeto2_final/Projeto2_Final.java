@@ -47,6 +47,5 @@ public class Projeto2_Final extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-    }
-    
+    }   
 }

@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Funcionario;
 import DAL.Tipofuncionario;
 import com.github.fxrouter.FXRouter;
@@ -91,7 +92,7 @@ public class EditarAdminController implements Initializable {
             
             
        adminNome.setText(nome);
-       adminPassword.setText(password);
+       //adminPassword.setText(password);
        adminMorada.setText(morada);
        adminEmail.setText(email);
        adminNcc.setText(ncc.toString() );
@@ -107,11 +108,11 @@ public class EditarAdminController implements Initializable {
       //  funcionarioData.setText("");
     
         if (adminNome.getText().isEmpty() || adminPassword.getText().isEmpty() || adminMorada.getText().isEmpty() || adminEmail.getText().isEmpty() || adminNcc.getText().isEmpty() || adminNif.getText().isEmpty() || adminData.getValue()==null || adminTelemovel.getText().isEmpty() ) {
-                criarVazio.setText("Preencha os campos");   
+                criarVazio.setText("Preencha todos os campos");   
                 
          }else{
             String nomeInput = adminNome.getText();
-            String passwordInput = adminPassword.getText();
+            String passwordInput = BCrypt.hashpw(adminPassword.getText(), BCrypt.gensalt());
             String moradaInput = adminMorada.getText();
             String emailInput = adminEmail.getText();
             BigInteger nccInput = new BigInteger(adminNcc.getText());
@@ -158,9 +159,11 @@ public class EditarAdminController implements Initializable {
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
         FXRouter.goTo("MenuAdmin");
     }
-    public void close(ActionEvent event) {
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+    public void close(ActionEvent event) throws IOException {
+        /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();*/
+        FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     
+        FXRouter.goTo("EscolherLogin");
     }
     
 }

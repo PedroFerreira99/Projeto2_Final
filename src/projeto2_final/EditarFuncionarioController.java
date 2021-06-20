@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Cliente;
 import DAL.Funcionario;
 import DAL.Tipofuncionario;
@@ -96,7 +97,7 @@ public class EditarFuncionarioController implements Initializable {
             
             
        funcionarioNome.setText(nome);
-       funcionarioPassword.setText(password);
+       //funcionarioPassword.setText(password);
        funcionarioMorada.setText(morada);
        funcionarioEmail.setText(email);
        funcionarioNcc.setText(ncc.toString() );
@@ -112,11 +113,11 @@ public class EditarFuncionarioController implements Initializable {
       //  funcionarioData.setText("");
     
         if (funcionarioNome.getText().isEmpty() || funcionarioPassword.getText().isEmpty() || funcionarioMorada.getText().isEmpty() || funcionarioEmail.getText().isEmpty() || funcionarioNcc.getText().isEmpty() || funcionarioNif.getText().isEmpty() || funcionarioData.getValue()==null || funcionarioTelemovel.getText().isEmpty() ) {
-                criarVazio.setText("Preencha os campos");   
+                criarVazio.setText("Preencha todos os campos");   
                 
          }else{
             String nomeInput = funcionarioNome.getText();
-            String passwordInput = funcionarioPassword.getText();
+            String passwordInput = BCrypt.hashpw(funcionarioPassword.getText(), BCrypt.gensalt());
             String moradaInput = funcionarioMorada.getText();
             String emailInput = funcionarioEmail.getText();
             BigInteger nccInput = new BigInteger(funcionarioNcc.getText());
@@ -161,9 +162,11 @@ public class EditarFuncionarioController implements Initializable {
         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
         FXRouter.goTo("MenuAdmin");
     }
-    public void close(ActionEvent event) {
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+    public void close(ActionEvent event) throws IOException {
+        /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();*/
+        FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     
+        FXRouter.goTo("EscolherLogin");
     }
     
 }

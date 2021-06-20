@@ -200,8 +200,10 @@ public class ConsultarConsultasEfetuadasController implements Initializable {
         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
         FXRouter.goTo("MenuFuncionario" , f);
     }
-    public void close(ActionEvent event) {
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        stage.close();
+    public void close(ActionEvent event) throws IOException {
+        /*Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();*/
+        FXRouter.when("EscolherLogin", "EscolherLogin.fxml");     
+        FXRouter.goTo("EscolherLogin");
     }
 }
