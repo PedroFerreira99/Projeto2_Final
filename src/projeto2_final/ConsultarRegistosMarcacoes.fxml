@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -28,17 +29,23 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button layoutX="858.0" layoutY="588.0" mnemonicParsing="false" onAction="#criarAvaliacao" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Realizar consulta" textFill="WHITE" />
+            <Button layoutX="858.0" layoutY="588.0" mnemonicParsing="false" onAction="#criarAvaliacao" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Realizar consulta" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Text fx:id="editarVazio" fill="#f81010" layoutX="858.0" layoutY="657.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="239.0" />
          </children>
       </Pane>
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             
-             <Button layoutX="830.0" layoutY="74.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #c91212;" text="Terminar Sessão" textFill="WHITE">
+             <Button layoutX="830.0" layoutY="74.0" mnemonicParsing="false" onAction="#close" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #c91212;" text="Terminar Sessão" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Text fx:id="nomeUtilizador" fill="WHITE" layoutX="966.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user">
                <font>
@@ -54,6 +61,9 @@
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </Pane>

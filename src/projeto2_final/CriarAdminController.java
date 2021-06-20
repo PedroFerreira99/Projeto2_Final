@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Funcionario;
 import DAL.Tipofuncionario;
 import com.github.fxrouter.FXRouter;
@@ -85,7 +86,7 @@ public class CriarAdminController implements Initializable {
                 
          }else{
             String nomeInput = adminNome.getText();
-            String passwordInput = adminPassword.getText();
+            String passwordInput = BCrypt.hashpw(adminPassword.getText(), BCrypt.gensalt());
             String moradaInput = adminMorada.getText();
             String emailInput = adminEmail.getText();
             BigInteger nccInput = new BigInteger(adminNcc.getText());
@@ -130,6 +131,10 @@ public class CriarAdminController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
     
 }

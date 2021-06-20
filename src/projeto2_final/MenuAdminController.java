@@ -72,4 +72,9 @@ public class MenuAdminController implements Initializable {
         FXRouter.goTo("EfetuarPagamentosAdmin");
     }
     
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+    
 }

@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Cliente;
 import DAL.Funcionario;
 import DAL.Plano;
@@ -82,20 +83,14 @@ public class LoginController implements Initializable {
                 String email = ((Cliente) d).getEmail();     
                 String pass = ((Cliente) d).getPassword();
                    
-                if (email.equals(LoginEmail.getText()) && pass.equals(LoginPassword.getText())) {
-                   System.out.println(" \n - " + ((Cliente) d).getNome() );
-                   
-                   Cliente c = new Cliente();
-                   c =  (Cliente) d;
+                if (email.equals(LoginEmail.getText()) && BCrypt.checkpw(LoginPassword.getText(), pass) ) {
+                    System.out.println(" \n - " + ((Cliente) d).getNome() );
 
-               
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EscolherLogin.fxml")));
-                    stage.setScene(scene);
-                    stage.show();
-               
-                   FXRouter.when("MenuCliente", "MenuCliente.fxml");     
-                   FXRouter.goTo("MenuCliente",c);
+                    Cliente c = new Cliente();
+                    c =  (Cliente) d;
+                   
+                    FXRouter.when("MenuCliente", "MenuCliente.fxml");     
+                    FXRouter.goTo("MenuCliente",c);
 
                 }else{
                     loginErrado.setText("login errado");

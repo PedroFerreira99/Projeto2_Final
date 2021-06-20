@@ -135,15 +135,19 @@ public class ConsultarFuncionariosController implements Initializable {
     }
     
     public void paginaEditarFuncionario(ActionEvent event) throws IOException {
-        
-    if (tableFuncionarios.getSelectionModel().getSelectedItem() != null) {
-        Funcionario f = tableFuncionarios.getSelectionModel().getSelectedItem();
+        if (tableFuncionarios.getSelectionModel().getSelectedItem() != null) {
+            Funcionario f = tableFuncionarios.getSelectionModel().getSelectedItem();
 
-        FXRouter.when("EditarFuncionario", "EditarFuncionario.fxml");     
-        FXRouter.goTo("EditarFuncionario", f);
-    }else{
-        editarVazio.setText("Selecione um funcionario");
+            FXRouter.when("EditarFuncionario", "EditarFuncionario.fxml");     
+            FXRouter.goTo("EditarFuncionario", f);
+        }else{
+            editarVazio.setText("Selecione um funcionario");
+        }
     }
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
+    
     
 }

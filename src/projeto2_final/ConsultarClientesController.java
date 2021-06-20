@@ -167,20 +167,19 @@ public class ConsultarClientesController implements Initializable {
     
     public void paginaEditarCliente(ActionEvent event) throws IOException {
         
-    if (tableClientes.getSelectionModel().getSelectedItem() != null) {
-        Cliente c = tableClientes.getSelectionModel().getSelectedItem();
-        
-    //    if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 1){
-    //        FXRouter.when("EditarCliente", "EditarCliente.fxml");     
-    //        FXRouter.goTo("EditarCliente", c);
-      //  }else if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 2){
+        if (tableClientes.getSelectionModel().getSelectedItem() != null) {
+            Cliente c = tableClientes.getSelectionModel().getSelectedItem();
             FXRouter.when("EditarCliente", "EditarCliente.fxml");     
             FXRouter.goTo("EditarCliente", c);
-      //  }
-        
-    }else{
-        editarVazio.setText("Selecione um cliente");
-    }
+
+        }else{
+            editarVazio.setText("Selecione um cliente");
+        }
     }
     
+    
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 }

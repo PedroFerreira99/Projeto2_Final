@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Funcionario;
 import DAL.Tipofuncionario;
 import com.github.fxrouter.FXRouter;
@@ -89,31 +90,18 @@ public class LoginFuncionarioController implements Initializable {
             
             
             
-            if(f.getPassword().equals(LoginPasswordF.getText())){
+            if(BCrypt.checkpw(LoginPasswordF.getText(), f.getPassword())){
                 
                 int tipoUser = 0;
                 tipoUser = (((Funcionario) f).getTipofuncionario().getIdTipofuncionario()).intValue();
                  System.out.println( tipoUser);
   
                     if(tipoUser == 1){
-                        
-                        Stage stage = new Stage();
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EscolherLogin.fxml")));
-                        stage.setScene(scene);
-                        stage.show();
-                        
                         //System.out.println("admin");
                         FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
                         FXRouter.goTo("MenuAdmin" , f);
                     }
                     else if(tipoUser == 2){
-                        
-                        Stage stage = new Stage();
-                        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("EscolherLogin.fxml")));
-                        stage.setScene(scene);
-                        stage.show();
-                        
-                        
                         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
                         FXRouter.goTo("MenuFuncionario" , f);
                     }
@@ -126,6 +114,7 @@ public class LoginFuncionarioController implements Initializable {
         }
     }catch(NoResultException e){
         System.out.println("nao existe");
+        loginErradoF.setText("errado");
                 
                 }
                 

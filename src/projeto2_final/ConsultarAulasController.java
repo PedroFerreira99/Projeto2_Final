@@ -129,16 +129,21 @@ public class ConsultarAulasController implements Initializable {
     
     public void paginaEditarAulas(ActionEvent event) throws IOException {
         
-    if (tableAulas.getSelectionModel().getSelectedItem() != null) {
-        Aula a = tableAulas.getSelectionModel().getSelectedItem();
+        if (tableAulas.getSelectionModel().getSelectedItem() != null) {
+            Aula a = tableAulas.getSelectionModel().getSelectedItem();
 
-        
-        FXRouter.when("EditarAula", "EditarAula.fxml");     
-        FXRouter.goTo("EditarAula", a);
-    }else{
-        editarVazio.setText("Selecione uma aula");
-    }
+
+            FXRouter.when("EditarAula", "EditarAula.fxml");     
+            FXRouter.goTo("EditarAula", a);
+        }else{
+            editarVazio.setText("Selecione uma aula");
+        }
     }
     
+    
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
     
 }

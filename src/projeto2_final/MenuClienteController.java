@@ -78,5 +78,10 @@ public class MenuClienteController implements Initializable {
         FXRouter.when("ConsultarPagamentosCliente", "ConsultarPagamentosCliente.fxml");     
         FXRouter.goTo("ConsultarPagamentosCliente", c);
     }
+    
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
      
 }

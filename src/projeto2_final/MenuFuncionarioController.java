@@ -14,7 +14,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -71,5 +73,11 @@ public class MenuFuncionarioController implements Initializable {
        
         FXRouter.when("EfetuarPagamentosFuncionario", "EfetuarPagamentosFuncionario.fxml");     
         FXRouter.goTo("EfetuarPagamentosFuncionario" , f);
+    }
+    
+    
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

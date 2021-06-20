@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Cliente;
 import DAL.Funcionario;
 import DAL.Plano;
@@ -19,12 +20,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -128,7 +131,7 @@ public class CriarClienteFuncionarioController implements Initializable {
             String emailInput = clienteEmail.getText();
             BigInteger nccInput = new BigInteger(clienteNcc.getText());
             BigInteger telemovelInput = new BigInteger(clienteTelemovel.getText());
-            String passwordInput = clientePassword.getText();
+            String passwordInput = BCrypt.hashpw(clientePassword.getText(), BCrypt.gensalt());
             
             RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
             String toogleGroupValue = selectedRadioButton.getText();
@@ -177,6 +180,10 @@ public class CriarClienteFuncionarioController implements Initializable {
       
         FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
         FXRouter.goTo("MenuFuncionario", f);
+    }
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Funcionario;
 import DAL.Plano;
 import DAL.Tipofuncionario;
@@ -88,7 +89,7 @@ public class CriarFuncionarioController implements Initializable {
                 
          }else{
             String nomeInput = funcionarioNome.getText();
-            String passwordInput = funcionarioPassword.getText();
+            String passwordInput = BCrypt.hashpw(funcionarioPassword.getText(), BCrypt.gensalt());
             String moradaInput = funcionarioMorada.getText();
             String emailInput = funcionarioEmail.getText();
             BigInteger nccInput = new BigInteger(funcionarioNcc.getText());
@@ -134,5 +135,9 @@ public class CriarFuncionarioController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Cliente;
 import DAL.Funcionario;
 import DAL.Plano;
@@ -139,7 +140,7 @@ public class CriarClienteController implements Initializable {
             String emailInput = clienteEmail.getText();
             BigInteger nccInput = new BigInteger(clienteNcc.getText());
             BigInteger telemovelInput = new BigInteger(clienteTelemovel.getText());
-            String passwordInput = clientePassword.getText();
+            String passwordInput = BCrypt.hashpw(clientePassword.getText(), BCrypt.gensalt());
             
             RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
             String toogleGroupValue = selectedRadioButton.getText();
@@ -193,13 +194,11 @@ public class CriarClienteController implements Initializable {
         stage.setScene(scene);
         stage.show();*/
       
-        if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 1){
             FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
             FXRouter.goTo("MenuAdmin", f);
-        }else if(f.getTipofuncionario().getIdTipofuncionario().intValue() == 2){
-           
-            FXRouter.when("MenuFuncionario", "MenuFuncionario.fxml");     
-            FXRouter.goTo("MenuFuncionario", f);
-        }
+    }
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

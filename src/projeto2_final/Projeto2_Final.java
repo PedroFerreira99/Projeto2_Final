@@ -5,6 +5,7 @@
  */
 package projeto2_final;
 
+import BCrypt.BCrypt;
 import DAL.Cliente;
 import DAL.Plano;
 import com.github.fxrouter.FXRouter;
@@ -29,21 +30,16 @@ public class Projeto2_Final extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-      /*  Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
-        
-        Scene scene = new Scene(root);
-     //   stage.setMaximized(true);
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("HomePage.fxml")));
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
         
- 
-        FXRouter.bind(this, stage,1100,800);
+        /*
+        FXRouter.bind(this, stage, 1100,800);
         FXRouter.when("HomePage", "HomePage.fxml");     
-        FXRouter.goTo("HomePage");
-     
-       // FXRouter.when("HomePage", "MenuAdmin.fxml");     
-       // FXRouter.goTo("HomePage");
+        FXRouter.goTo("HomePage");*/
        
+       //System.out.println(BCrypt.hashpw("renatopass", BCrypt.gensalt()));
     }
 
     /**

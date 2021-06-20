@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -131,15 +132,19 @@ public class ConsultarAdminsController implements Initializable {
     
     
     public void paginaEditarAdmin(ActionEvent event) throws IOException {
-        
-    if (tableAdmins.getSelectionModel().getSelectedItem() != null) {
-        Funcionario a = tableAdmins.getSelectionModel().getSelectedItem();
+        if (tableAdmins.getSelectionModel().getSelectedItem() != null) {
+            Funcionario a = tableAdmins.getSelectionModel().getSelectedItem();
 
-        FXRouter.when("EditarAdmin", "EditarAdmin.fxml");     
-        FXRouter.goTo("EditarAdmin", a);
-    }else{
-        editarVazio.setText("Selecione um administrador");
+            FXRouter.when("EditarAdmin", "EditarAdmin.fxml");     
+            FXRouter.goTo("EditarAdmin", a);
+        }else{
+            editarVazio.setText("Selecione um administrador");
+        }
     }
+    
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
     
 }

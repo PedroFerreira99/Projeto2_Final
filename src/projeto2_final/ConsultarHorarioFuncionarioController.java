@@ -22,12 +22,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -103,19 +105,29 @@ public class ConsultarHorarioFuncionarioController implements Initializable {
         FXRouter.goTo("CriarHorarioFuncionario");
     }
     
+    public void voltarMenu(ActionEvent event) throws IOException {
+        
+        FXRouter.when("MenuAdmin", "MenuAdmin.fxml");     
+        FXRouter.goTo("MenuAdmin");
+    }
     
     public void paginaEditarHorario(ActionEvent event) throws IOException {
         
-    if (tableHorarios.getSelectionModel().getSelectedItem() != null) {
-        Horario h = tableHorarios.getSelectionModel().getSelectedItem();
+        if (tableHorarios.getSelectionModel().getSelectedItem() != null) {
+            Horario h = tableHorarios.getSelectionModel().getSelectedItem();
 
-        FXRouter.when("EditarHorarioFuncionario", "EditarHorarioFuncionario.fxml");     
-        FXRouter.goTo("EditarHorarioFuncionario", h);
-        
-        System.out.println("cliente:" +h.getIdfuncionario().getIdfuncionario());
-    }else{
-        editarVazio.setText("Selecione um horario");
+            FXRouter.when("EditarHorarioFuncionario", "EditarHorarioFuncionario.fxml");     
+            FXRouter.goTo("EditarHorarioFuncionario", h);
+
+            System.out.println("cliente:" +h.getIdfuncionario().getIdfuncionario());
+        }else{
+            editarVazio.setText("Selecione um horario");
+        }
     }
+    
+    public void close(ActionEvent event) {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
     
 }

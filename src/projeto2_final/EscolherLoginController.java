@@ -40,29 +40,12 @@ public class EscolherLoginController implements Initializable {
     
     @FXML
     private void loginCliente(ActionEvent event) throws IOException {
-        System.out.println("You clicked me!");
-  
-      /*  Parent page_parent = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Scene page_scene = new Scene(page_parent);
-        Stage a = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        a.setScene(page_scene);
-        a.show();
-             */         
-        
         FXRouter.when("Login", "Login.fxml");     
         FXRouter.goTo("Login");
     }
     
     @FXML
     private void loginFuncionario(ActionEvent event) throws IOException {
-        System.out.println("You clicked me!");
-  
-      /*  Parent page_parent = FXMLLoader.load(getClass().getResource("LoginFuncionario.fxml"));
-        Scene page_scene = new Scene(page_parent);
-        Stage a = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        a.setScene(page_scene);
-        a.show();*/
-        
         FXRouter.when("LoginFuncionario", "LoginFuncionario.fxml");     
         FXRouter.goTo("LoginFuncionario");
                    

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -29,18 +30,27 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button layoutX="905.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaCriarAdmin" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Criar admin" textFill="WHITE" />
-            <Button layoutX="724.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaEditarAdmin" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #264653;" text="Editar administrador" textFill="WHITE" />
+            <Button layoutX="905.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaCriarAdmin" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Criar admin" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button layoutX="724.0" layoutY="588.0" mnemonicParsing="false" onAction="#paginaEditarAdmin" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #264653;" text="Editar administrador" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Text fx:id="editarVazio" fill="#f81010" layoutX="724.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.0" />
          </children>
       </Pane>
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             
-             <Button layoutX="830.0" layoutY="74.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #c91212;" text="Terminar Sessão" textFill="WHITE">
+             <Button layoutX="830.0" layoutY="74.0" mnemonicParsing="false" onAction="#close" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #c91212;" text="Terminar Sessão" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Text fill="WHITE" layoutX="966.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="admin">
                <font>
@@ -56,6 +66,9 @@
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </Pane>

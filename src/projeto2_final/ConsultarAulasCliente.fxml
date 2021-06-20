@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,13 +15,12 @@
          <children>
             <TableView fx:id="tableAulas" layoutX="92.0" layoutY="118.0" prefHeight="444.0" prefWidth="917.0">
               <columns>
-                <TableColumn fx:id="col_id" prefWidth="54.0" text="Id" />
-                <TableColumn fx:id="col_nome" prefWidth="197.0" text="Nome" />
-                  <TableColumn fx:id="col_data" prefWidth="135.0" text="Data" />
-                  <TableColumn fx:id="col_horaInicio" minWidth="1.0" prefWidth="124.0" text="Hora Inicio" />
-                  <TableColumn fx:id="col_horaFim" prefWidth="119.0" text="Hora Fim" />
-                  <TableColumn fx:id="col_funcionario" prefWidth="135.0" text="Funcionario" />
-                  <TableColumn fx:id="teste" prefWidth="75.0" text="Column X" />
+                <TableColumn fx:id="col_id" prefWidth="87.0" text="Id" />
+                <TableColumn fx:id="col_nome" prefWidth="164.0" text="Nome" />
+                  <TableColumn fx:id="col_data" prefWidth="154.0" text="Data" />
+                  <TableColumn fx:id="col_horaInicio" minWidth="1.0" prefWidth="162.0" text="Hora Inicio" />
+                  <TableColumn fx:id="col_horaFim" prefWidth="162.0" text="Hora Fim" />
+                  <TableColumn fx:id="col_funcionario" prefWidth="187.0" text="Funcionario" />
               </columns>
             </TableView>
             <Text layoutX="430.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aulas de grupo">
@@ -28,7 +28,10 @@
                   <Font size="36.0" />
                </font>
             </Text>
-            <Button layoutX="858.0" layoutY="588.0" mnemonicParsing="false" onAction="#inscreverAula" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Inscrever em aula" textFill="WHITE" />
+            <Button layoutX="858.0" layoutY="588.0" mnemonicParsing="false" onAction="#inscreverAula" prefHeight="48.0" prefWidth="151.0" style="-fx-background-color: #264653;" text="Inscrever em aula" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Text fx:id="criarVazio" fill="#f81010" layoutX="858.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="203.0000103712082" />
             <Text fx:id="criado" fill="#15c30f" layoutX="860.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="203.0000103712082" />
          </children>
@@ -36,10 +39,13 @@
       <Pane prefHeight="125.0" prefWidth="1100.0" style="-fx-background-color: #264653;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             
-             <Button layoutX="830.0" layoutY="74.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #c91212;" text="Terminar Sessão" textFill="WHITE">
+             <Button layoutX="830.0" layoutY="74.0" mnemonicParsing="false" onAction="#close" prefHeight="38.0" prefWidth="161.0" style="-fx-background-color: #c91212;" text="Terminar Sessão" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Text fx:id="userNome" fill="WHITE" layoutX="966.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user">
                <font>
@@ -55,6 +61,9 @@
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </Pane>
